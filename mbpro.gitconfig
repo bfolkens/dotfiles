@@ -1,0 +1,24 @@
+[user]
+	name = Bradford Folkens
+	email = bfolkens@gmail.com
+[alias]
+	b = branch
+	ci = commit
+	cia = commit -a
+	co = checkout
+	d = diff
+	dc = diff --cached
+	st = status
+	lc = log ORIG_HEAD.. --stat --no-merges
+	p = pull
+	pr = pull --rebase
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[core]
+	excludesfile = /Users/bfolkens/.gitignore
+	sharedRepository = true
+[apply]
+	whitespace = nowarn
