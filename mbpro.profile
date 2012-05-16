@@ -1,5 +1,7 @@
 # Build opts and OS opts
-export LC_CTYPE=en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 export LDFLAGS="-arch x86_64"
 export ARCHFLAGS="-Os -arch x86_64 -fno-common"
 export MANPATH=$HOME/local/share/man:/opt/local/share/man:$MANPATH
