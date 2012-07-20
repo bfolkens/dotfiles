@@ -22,3 +22,5 @@
 	sharedRepository = true
 [apply]
 	whitespace = nowarn
+[branch]
+	autosetupmerge = true
