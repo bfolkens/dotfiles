@@ -24,3 +24,5 @@
 	whitespace = nowarn
 [branch]
 	autosetupmerge = true
+[push]
+	default = simple
