@@ -26,3 +26,12 @@
 	autosetupmerge = true
 [push]
 	default = simple
+[diff]
+	tool = vimdiff
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[mergetool "storyboard"]
+	name = StoryboardMerge interactive merge
+	cmd = storyboard-merge $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = false
