@@ -23,3 +23,5 @@ set ttyfast         " smoother changes
 set scrolloff=3     " keep 3 lines when scrolling
 set ls=2          " allways show status line
 " set laststatus=2  " always display the status line
+
+let base16colorspace=256
