@@ -20,6 +20,7 @@
 [core]
 	excludesfile = /Users/bfolkens/.gitignore
 	sharedRepository = true
+	editor = /usr/bin/vim
 [apply]
 	whitespace = nowarn
 [branch]
