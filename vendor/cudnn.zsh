@@ -1,0 +1,1 @@
+export DYLD_LIBRARY_PATH=/opt/cuda/lib:$DYLD_LIBRARY_PATH

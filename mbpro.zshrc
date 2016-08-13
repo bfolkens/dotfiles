@@ -116,3 +116,15 @@ for file in ~/.config/dotfiles/aliases.d/* ; do
     . "$file"
   fi
 done
+
+# Load all files in vendor
+for file in ~/.config/dotfiles/vendor/* ; do
+  if [ -f "$file" ] ; then
+    . "$file"
+  fi
+done
+
+# CUSTOM
+
+unsetopt share_history
+
