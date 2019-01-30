@@ -1,6 +1,7 @@
 [user]
 	name = Bradford Folkens
 	email = bfolkens@gmail.com
+	signingkey = B27D3A8162A325E6DD580B22A491003638A3D981
 [alias]
 	b = branch
 	ci = commit
@@ -9,6 +10,7 @@
 	d = diff
 	dc = diff --cached
 	st = status
+	l = log --graph --oneline --decorate
 	lc = log ORIG_HEAD.. --stat --no-merges
 	p = pull
 	pr = pull --rebase
@@ -21,6 +23,7 @@
 	excludesfile = /Users/bfolkens/.gitignore
 	sharedRepository = true
 	editor = /usr/bin/vim
+  logallrefupdates = true
 [apply]
 	whitespace = nowarn
 [branch]
@@ -36,3 +39,16 @@
 	name = StoryboardMerge interactive merge
 	cmd = storyboard-merge $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[commit]
+	gpgsign = true
+[tag]
+	forceSignAnnotated = true
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh

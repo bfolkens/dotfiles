@@ -1,0 +1,8 @@
+.git
+node_modules
+tmp
+_build
+deps
+.data
+priv/static
+public/uploads

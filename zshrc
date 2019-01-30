@@ -1,3 +1,5 @@
+# vim:ft=zsh:ts=2:sw=2:sts:et:
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bfolkens/.oh-my-zsh
 
@@ -26,7 +28,7 @@ DEFAULT_USER="bfolkens"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -51,7 +53,7 @@ DEFAULT_USER="bfolkens"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx history history-substring-search brew rvm ruby bundler thefuck docker docker-compose)
+plugins=(git osx history history-substring-search brew ruby bundler docker docker-compose zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
 
@@ -64,21 +66,17 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+export TERM="xterm-256color"
 
 # Favorite keybindings
 
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='nvim'
 
 # PATH
-export PATH="$HOME/local/bin:$PATH"
+export PATH="/usr/local/sbin:$HOME/local/bin:$PATH"
 
 # Compilation flags
 export ARCHFLAGS="-Os -arch x86_64 -fno-common"
@@ -97,10 +95,6 @@ export PATH="$PATH:$EC2_HOME/bin:$EC2_AMITOOL_HOME/bin"
 export EC2_PRIVATE_KEY=`ls $HOME/.aws-ni/pk-*.pem`
 export EC2_CERT=`ls $HOME/.aws-ni/cert-*.pem`
 
-# RVM
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -111,14 +105,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Load all files in aliases.d
-for file in ~/.config/dotfiles/aliases.d/* ; do
-  if [ -f "$file" ] ; then
-    . "$file"
-  fi
-done
-
-# Load all files in vendor
-for file in ~/.config/dotfiles/vendor/* ; do
+for file in ~/.dotfiles/aliases.d/* ; do
   if [ -f "$file" ] ; then
     . "$file"
   fi
@@ -127,4 +114,71 @@ done
 # CUSTOM
 
 unsetopt share_history
+
+# RBENV
+
+eval "$(rbenv init -)"
+
+# GPG
+
+export GPG_TTY=$(tty)
+
+# Kubernetes
+
+export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
+source <(kubectl completion zsh)
+
+# npm
+
+export PATH="$PATH:$HOME/node_modules/.bin"
+
+# Android Studio
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+
+# OpenSSL tools
+
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# default tmux
+
+#if [ -z "$TMUX" ]; then
+#  tmux attach -t default || tmux new -s default
+#fi
+
+# Returns whether the given command is executable or aliased.
+_has() {
+  return $( whence $1 >/dev/null )
+}
+
+# Returns whether the given statement executed cleanly. Try to avoid this
+# because this slows down shell loading.
+_try() {
+  return $( eval $* >/dev/null 2>&1 )
+}
+
+# Returns whether the current host type is what we think it is. (HOSTTYPE is
+# set later.)
+_is() {
+  return $( [ "$HOSTTYPE" = "$1" ] )
+}
+
+# Returns whether out terminal supports color.
+_color() {
+  return $( [ -z "$INSIDE_EMACS" ] )
+}
+
+# fzf via Homebrew
+if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+  source /usr/local/opt/fzf/shell/completion.zsh
+fi
+
+# fzf + ag configuration
+if _has fzf && _has ag; then
+  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_DEFAULT_OPTS="--color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168"
+fi
 

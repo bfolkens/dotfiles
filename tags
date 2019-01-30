@@ -1,0 +1,12 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+dalias	aliases.d/docker.zsh	/^dalias() { alias | grep 'docker' | sed "s\/^\\([^=]*\\)=\\(.*\\)\/\\1 => \\2\/"| sed "s\/['|\\']\/\/g" | sort; }$/;"	f
+dbash	aliases.d/docker.zsh	/^dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }$/;"	f
+dbu	aliases.d/docker.zsh	/^dbu() { docker build -t=$1 .; }$/;"	f
+dri	aliases.d/docker.zsh	/^dri() { docker rmi $(docker images -q); }$/;"	f
+drm	aliases.d/docker.zsh	/^drm() { docker rm $(docker ps -a -q); }$/;"	f
+dstop	aliases.d/docker.zsh	/^dstop() { docker stop $(docker ps -a -q); }$/;"	f
