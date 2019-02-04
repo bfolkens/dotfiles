@@ -7,7 +7,6 @@ syntax on
 set nocompatible            " Disable compatibility to old-time vi
 set showmatch               " Show matching brackets.
 set ignorecase              " Do case insensitive matching
-set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 set tabstop=2               " number of columns occupied by a tab character
 set showtabline=2
@@ -60,6 +59,7 @@ nmap <Leader>r :Tags<CR>
 nmap <Leader>l :Lines<CR>
 nmap <Leader>' :Marks<CR>
 nmap <Leader>a :Ag<Space>
+nmap <Leader>j :jumps<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 

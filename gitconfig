@@ -22,7 +22,7 @@
 [core]
 	excludesfile = /Users/bfolkens/.gitignore
 	sharedRepository = true
-	editor = /usr/bin/vim
+	editor = nvim
   logallrefupdates = true
 [apply]
 	whitespace = nowarn
@@ -31,7 +31,7 @@
 [push]
 	default = simple
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
