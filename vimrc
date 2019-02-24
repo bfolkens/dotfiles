@@ -53,7 +53,7 @@ nnoremap <leader>d :TagbarToggle<CR>
 nnoremap <esc> :noh<CR>
 
 nmap ; :Buffers<CR>
-nmap <Leader>t :Files<CR>
+nmap <Leader>f :Files<CR>
 nmap <Leader>y :History<CR>
 nmap <Leader>r :Tags<CR>
 nmap <Leader>l :Lines<CR>
@@ -63,8 +63,18 @@ nmap <Leader>j :jumps<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 
-map <C-l> <C-w><C-l>
-map <C-h> <C-w><C-h>
+" vim-test maps
+nmap <Leader>t :TestNearest<CR>
+nmap <Leader>tf :TestFile<CR>
+nmap <Leader>ts :TestSuite<CR>
+nmap <Leader>tl :TestLast<CR>
+nmap <Leader>tg :TestVisit<CR>
+
+" window nav maps
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
 
 " Plugins
 
@@ -86,9 +96,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'edkolev/tmuxline.vim'
-"Plug 'janko-m/vim-test'
+Plug 'janko-m/vim-test'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
+
+Plug 'avdgaag/vim-phoenix'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
@@ -157,6 +169,17 @@ let g:UltiSnipsEditSplit="vertical"
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+
+" vim-test
+if has("nvim")
+  let g:neoterm_position = "vertical"
+  let test#strategy = "neovim"
+
+  let test#elixir#exunit#executable = "MIX_ENV=test mix test"
+
+  " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
+  " tnoremap <Esc> <C-\><C-n>
+end
 
 " NERDTree
 "autocmd StdinReadPre * let s:std_in=1
