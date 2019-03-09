@@ -1,4 +1,6 @@
-if !has('gui_running')
+if (has("termguicolors"))
+  set termguicolors
+else
   set t_Co=256
 endif
 
@@ -64,9 +66,9 @@ nmap <Leader>j :jumps<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " vim-test maps
-nmap <Leader>t :TestNearest<CR>
+nmap <Leader>tt :TestNearest<CR>
 nmap <Leader>tf :TestFile<CR>
-nmap <Leader>ts :TestSuite<CR>
+nmap <Leader>ta :TestSuite<CR>
 nmap <Leader>tl :TestLast<CR>
 nmap <Leader>tg :TestVisit<CR>
 
@@ -97,6 +99,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
+Plug 'gaving/vim-textobj-argument'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
 
@@ -114,6 +117,21 @@ colorscheme palenight
 " fzf
 set rtp+=/usr/local/opt/fzf
 let g:fzf_buffers_jump=1
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Palenight
 let g:palenight_terminal_italics = 1
@@ -172,13 +190,12 @@ let g:deoplete#enable_at_startup = 1
 
 " vim-test
 if has("nvim")
-  let g:neoterm_position = "vertical"
   let test#strategy = "neovim"
 
   let test#elixir#exunit#executable = "MIX_ENV=test mix test"
 
   " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
-  " tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-o> <C-\><C-n>
 end
 
 " NERDTree
