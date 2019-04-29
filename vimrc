@@ -29,9 +29,11 @@ set incsearch
 set ignorecase
 set smartcase
 set hidden          " allows buffers to be hidden
+set inccommand=split
 set wildmenu
 set wildmode=longest,list   " get bash-like tab completions
-set wildignore=*/.git/*,.data/*,*/tmp/*,*/node_modules/*,_build/*,dist/*,deps/*,priv/static/*,*.pyc,*.so,*.a,*.o,*.swp
+"Set via ~/.agignore
+"set wildignore=*/.git/*,.data/*,*/tmp/*,*/node_modules/*,_build/*,dist/*,deps/*,priv/static/*,*.pyc,*.so,*.a,*.o,*.swp
 filetype on         " Enable filetype detection
 filetype indent on  " Enable filetype-specific indenting
 filetype plugin on  " Enable filetype-specific plugins
@@ -60,7 +62,7 @@ nmap <Leader>y :History<CR>
 nmap <Leader>r :Tags<CR>
 nmap <Leader>l :Lines<CR>
 nmap <Leader>' :Marks<CR>
-nmap <Leader>a :Ag<Space>
+nmap <Leader>a :Ack!<Space>
 nmap <Leader>j :jumps<CR>
 
 map <C-n> :NERDTreeToggle<CR>
@@ -88,12 +90,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -143,14 +147,13 @@ let g:lightline = {
   \ 'component': {
   \   'lineinfo': '%3l:%-2v',
   \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}',
-  \   'gutentags': '%{gutentags#statusline("[","]")}'
   \ },
   \ 'component_function': {
   \   'readonly': 'LightlineReadonly',
   \   'fugitive': 'LightlineFugitive'
   \ },
   \ 'active': {
-  \   'left': [['mode'], ['readonly', 'filename', 'modified'], ['tagbar', 'gutentags']]
+  \   'left': [['mode'], ['readonly', 'filename', 'modified'], ['tagbar']]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
   \ 'subseparator': { 'left': '', 'right': '' },
@@ -166,16 +169,6 @@ function! LightlineFugitive()
   endif
   return ''
 endfunction
-
-" gutentags
-let g:gutentags_ctags_exclude_wildignore=1
-
-" gutentags+lightline
-augroup MyGutentagsStatusLineRefresher
-  autocmd!
-  autocmd User GutentagsUpdating call lightline#update()
-  autocmd User GutentagsUpdated call lightline#update()
-augroup END
 
 " gitgutter
 let g:gitgutter_realtime = 0
