@@ -56,6 +56,7 @@ nnoremap <leader>d :TagbarToggle<CR>
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
 
+" fzf shortcuts
 nmap ; :Buffers<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>y :History<CR>
@@ -199,8 +200,10 @@ end
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Use ag with Ack.vim instead
-if executable('ag')
+" Use ripgrep or ag with Ack.vim instead
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
