@@ -52,19 +52,18 @@ let mapleader = ","
 
 nnoremap <leader>c ddO
 nnoremap <leader>d :TagbarToggle<CR>
+nmap <Leader>a :Ack!<Space>
 
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
 
-" fzf shortcuts
-nmap ; :Buffers<CR>
-nmap <Leader>f :Files<CR>
-nmap <Leader>y :History<CR>
-nmap <Leader>r :Tags<CR>
-nmap <Leader>l :Lines<CR>
-nmap <Leader>' :Marks<CR>
-nmap <Leader>a :Ack!<Space>
-nmap <Leader>j :jumps<CR>
+" vim-picker shortcuts
+nmap ; <Plug>(PickerBuffer)
+nmap <leader>f <Plug>(PickerEdit)
+nmap <leader>s <Plug>(PickerSplit)
+nmap <leader>v <Plug>(PickerVsplit)
+nmap <leader>] <Plug>(PickerTag)
+nmap <leader>h <Plug>(PickerHelp)
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -94,13 +93,12 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'edkolev/tmuxline.vim'
@@ -109,6 +107,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'gaving/vim-textobj-argument'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
+Plug 'srstevenson/vim-picker'
 
 Plug 'c-brenn/phoenix.vim'
 Plug 'andyl/vim-textobj-elixir'
@@ -123,24 +122,10 @@ call plug#end()
 set background=dark
 colorscheme palenight
 
-" fzf
-set rtp+=/usr/local/opt/fzf
-let g:fzf_buffers_jump=1
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" vim-picker
+let g:picker_height = 16
+let g:picker_find_executable = 'rg'
+let g:picker_find_flags = '--color never --files'
 
 " Palenight
 let g:palenight_terminal_italics = 1
@@ -175,16 +160,13 @@ endfunction
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " vim-test
 if has("nvim")
