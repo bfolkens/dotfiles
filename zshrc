@@ -1,4 +1,5 @@
 # vim:ft=zsh:ts=2:sw=2:sts:et:
+# zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bfolkens/.oh-my-zsh
@@ -53,7 +54,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx history history-substring-search brew ruby bundler docker docker-compose zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(history z history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
 
@@ -69,11 +70,11 @@ export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
 
 # Favorite keybindings
-
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 
 export EDITOR='nvim'
+export MAILDIR="$HOME/Mail"
 
 # PATH
 export PATH="/usr/local/sbin:$HOME/local/bin:$PATH"
@@ -82,18 +83,7 @@ export PATH="/usr/local/sbin:$HOME/local/bin:$PATH"
 export ARCHFLAGS="-Os -arch x86_64 -fno-common"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/id_dsa.pub"
-
-# Golang
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOHOME=$HOME/.gowork
-
-# Amazon EC2 tools
-export EC2_HOME="$HOME/opt/ec2"
-export EC2_AMITOOL_HOME="$HOME/opt/ec2-ami"
-export PATH="$PATH:$EC2_HOME/bin:$EC2_AMITOOL_HOME/bin"
-export EC2_PRIVATE_KEY=`ls $HOME/.aws-ni/pk-*.pem`
-export EC2_CERT=`ls $HOME/.aws-ni/cert-*.pem`
+export SSH_KEY_PATH="~/.ssh/id_ed25519.pub"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -103,6 +93,8 @@ export EC2_CERT=`ls $HOME/.aws-ni/cert-*.pem`
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias m="neomutt"
+alias l="exa -la --git"
 
 # Load all files in aliases.d
 for file in ~/.dotfiles/aliases.d/* ; do
@@ -126,7 +118,8 @@ export GPG_TTY=$(tty)
 # Kubernetes
 
 export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
-source <(kubectl completion zsh)
+# This was super slow
+#source <(kubectl completion zsh)
 
 # npm
 
@@ -139,6 +132,10 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 # OpenSSL tools
 
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# Cargo (Rust)
+
+export PATH="/Users/bfolkens/.cargo/bin:$PATH"
 
 # default tmux
 
@@ -168,17 +165,4 @@ _color() {
   return $( [ -z "$INSIDE_EMACS" ] )
 }
 
-# fzf via Homebrew
-if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
-  source /usr/local/opt/fzf/shell/key-bindings.zsh
-  source /usr/local/opt/fzf/shell/completion.zsh
-fi
-
-# fzf + ag configuration
-if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_DEFAULT_OPTS="--color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168"
-fi
-
+# zprof
