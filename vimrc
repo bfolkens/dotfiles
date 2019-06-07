@@ -45,8 +45,12 @@ set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
 "set synmaxcol=132
+set clipboard+=unnamed " use the system clipboard
 
-let mapleader = ","
+set undodir=~/.vim/undodir " config global undo
+set undofile        " unset session undo
+
+let mapleader = ";"
 
 " Keymaps
 
@@ -54,11 +58,16 @@ nnoremap <leader>c ddO
 nnoremap <leader>d :TagbarToggle<CR>
 nmap <Leader>a :Ack!<Space>
 
+" Tab and shift-Tab to change buffer
+"nnoremap <silent><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+"noremap <silent><s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap <silent><tab>   :b#<CR>
+
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
 
 " vim-picker shortcuts
-nmap ; <Plug>(PickerBuffer)
+nmap <leader>b <Plug>(PickerBuffer)
 nmap <leader>f <Plug>(PickerEdit)
 nmap <leader>s <Plug>(PickerSplit)
 nmap <leader>v <Plug>(PickerVsplit)
@@ -109,6 +118,7 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
 
+Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'rhysd/vim-textobj-ruby'
@@ -189,3 +199,5 @@ elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
