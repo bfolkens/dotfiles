@@ -45,7 +45,6 @@ set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
 "set synmaxcol=132
-set clipboard+=unnamed " use the system clipboard
 
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
