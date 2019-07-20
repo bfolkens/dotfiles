@@ -45,6 +45,7 @@ set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
 "set synmaxcol=132
+set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
@@ -88,6 +89,10 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
+" LanguageClient
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+
 " Plugins
 
 call plug#begin()
@@ -117,6 +122,8 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
 
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'andyl/vim-textobj-elixir'
@@ -136,8 +143,10 @@ let g:picker_height = 16
 let g:picker_find_executable = 'rg'
 let g:picker_find_flags = '--color never --files'
 
-" Palenight
+" lightline + palenight
 let g:palenight_terminal_italics = 1
+
+" lightline
 let g:lightline = {
   \ 'component': {
   \   'lineinfo': '%3l:%-2v',
@@ -148,7 +157,8 @@ let g:lightline = {
   \   'fugitive': 'LightlineFugitive'
   \ },
   \ 'active': {
-  \   'left': [['mode'], ['readonly', 'filename', 'modified'], ['tagbar']]
+  \   'left': [['mode'], ['readonly', 'filename', 'modified', 'gitbranch'], ['tagbar']],
+  \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
   \ 'subseparator': { 'left': '', 'right': '' },
@@ -200,3 +210,9 @@ endif
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+
+" LanguageClient-neovim
+" let g:LanguageClient_serverCommands = {
+"   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"   \ 'elixir': ['/usr/local/src/elixir-ls/rel/language_server.sh']
+"   \ }
