@@ -50,6 +50,15 @@ set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
 
+if has('folding')
+  if has('windows')
+    set fillchars+=fold:· " Middle dot (U+00B7, UTF-8: C2 B7)
+    " Current theme sets these, so ignore for nwo
+    " set fillchars=vert:┃ " Box drawings heavy vertical (U+2503, UTF-8: E2 94 83)
+    " hi VertSplit ctermbg=NONE guibg=#FF5C8F
+  endif
+endif
+
 let mapleader = ";"
 
 " Keymaps
@@ -131,20 +140,25 @@ Plug 'rhysd/vim-textobj-ruby'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 " color schemes
 set background=dark
 colorscheme palenight
+" colorscheme solarized
+" colorscheme gruvbox
 
 " vim-picker
 let g:picker_height = 16
 let g:picker_find_executable = 'rg'
 let g:picker_find_flags = '--color never --files'
 
-" lightline + palenight
+" theme configs
 let g:palenight_terminal_italics = 1
+" let g:gruvbox_italic=1
 
 " lightline
 let g:lightline = {
