@@ -51,6 +51,9 @@ set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
 
 if has('folding')
+  set foldmethod=syntax
+  set foldlevelstart=4
+
   if has('windows')
     set fillchars+=fold:· " Middle dot (U+00B7, UTF-8: C2 B7)
     " Current theme sets these, so ignore for nwo
@@ -117,7 +120,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
@@ -132,6 +134,9 @@ Plug 'gaving/vim-textobj-argument'
 Plug 'srstevenson/vim-picker'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
+" Plug 'sheerun/vim-polyglot' - wait until we get leex support merged
+Plug 'ibarchenkov/vim-polyglot', { 'branch': 'add-elixir-leex-templates' }
 
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
@@ -153,8 +158,8 @@ colorscheme palenight
 
 " vim-picker
 let g:picker_height = 16
-let g:picker_find_executable = 'rg'
-let g:picker_find_flags = '--color never --files'
+let g:picker_custom_find_executable = 'rg'
+let g:picker_custom_find_flags = '--color never --files'
 
 " theme configs
 let g:palenight_terminal_italics = 1
