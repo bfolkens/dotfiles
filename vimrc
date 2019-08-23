@@ -137,6 +137,7 @@ Plug 'srstevenson/vim-picker'
 
 " Plug 'sheerun/vim-polyglot' - wait until we get leex support merged
 Plug 'ibarchenkov/vim-polyglot', { 'branch': 'add-elixir-leex-templates' }
+Plug 'lervag/vimtex'
 
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
