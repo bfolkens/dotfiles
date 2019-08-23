@@ -135,12 +135,15 @@ Plug 'srstevenson/vim-picker'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
-" Plug 'sheerun/vim-polyglot' - wait until we get leex support merged
-Plug 'ibarchenkov/vim-polyglot', { 'branch': 'add-elixir-leex-templates' }
+Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 
 Plug 'slashmili/alchemist.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 Plug 'c-brenn/phoenix.vim'
+
+Plug 'kana/vim-textobj-user'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'rhysd/vim-textobj-ruby'
 
@@ -161,6 +164,9 @@ colorscheme palenight
 let g:picker_height = 16
 let g:picker_custom_find_executable = 'rg'
 let g:picker_custom_find_flags = '--color never --files'
+
+" vim-polyglot
+let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
 
 " theme configs
 let g:palenight_terminal_italics = 1
