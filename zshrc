@@ -121,13 +121,19 @@ export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/
 # This was super slow
 #source <(kubectl completion zsh)
 
+# escripts
+
+export PATH="$PATH:$HOME/.mix/escripts"
+
 # npm
 
 export PATH="$PATH:$HOME/node_modules/.bin"
 
 # Android Studio
 
-export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_HOME="/usr/local/share/android-sdk"
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+export ANDROID_NDK_HOME="/usr/local/share/android-ndk"
 
 # OpenSSL tools
 
