@@ -132,6 +132,7 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
+Plug 'sbdchd/neoformat'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 
@@ -140,7 +141,6 @@ Plug 'lervag/vimtex'
 
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
 Plug 'c-brenn/phoenix.vim'
 
 Plug 'kana/vim-textobj-user'
@@ -222,6 +222,12 @@ if has("nvim")
   " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
   tnoremap <C-o> <C-\><C-n>
 end
+
+" neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+augroup END
 
 " NERDTree
 "autocmd StdinReadPre * let s:std_in=1
