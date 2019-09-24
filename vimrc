@@ -73,7 +73,7 @@ nmap <Leader>a :Ack!<Space>
 " Tab and shift-Tab to change buffer
 "nnoremap <silent><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
 "noremap <silent><s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-nnoremap <silent><tab>   :b#<CR>
+" nnoremap <silent><tab>   :b#<CR>
 
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
@@ -119,10 +119,6 @@ if has('conceal')
 endif
 
 
-" LanguageClient
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-
 " Plugins
 
 call plug#begin()
@@ -146,8 +142,7 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
-Plug 'sbdchd/neoformat'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'sbdchd/neoformat'
 
 " Completion
 if has('nvim')
@@ -161,7 +156,8 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'Shougo/echodoc.vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
@@ -210,13 +206,14 @@ let g:lightline = {
   \   'fugitive': 'LightlineFugitive'
   \ },
   \ 'active': {
-  \   'left': [['mode'], ['readonly', 'filename', 'modified', 'gitbranch'], ['tagbar']],
+  \   'left': [['mode'], ['readonly', 'relativepath', 'modified', 'gitbranch'], ['tagbar']],
   \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
   \ 'subseparator': { 'left': '', 'right': '' },
   \ 'colorscheme' : 'palenight'
   \ }
+
 function! LightlineReadonly()
   return &readonly ? '' : ''
 endfunction
@@ -243,10 +240,12 @@ if has("nvim")
 end
 
 " neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
+if has("Neoformat")
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+  augroup END
+end
 
 " NERDTree
 "autocmd StdinReadPre * let s:std_in=1
@@ -267,7 +266,21 @@ let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
 " LanguageClient-neovim
-" let g:LanguageClient_serverCommands = {
-"   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"   \ 'elixir': ['/usr/local/src/elixir-ls/rel/language_server.sh']
-"   \ }
+if has("LanguageClient_serverCommands")
+  let g:LanguageClient_serverCommands = {
+        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+        \ 'elixir': ['/usr/local/src/elixir-ls/rel/language_server.sh'],
+        \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+        \ 'python': ['/usr/local/bin/pyls']
+        \ }
+
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+end
+
+if exists('g:loaded_echodoc')
+  let g:echodoc#enable_at_startup = 1
+  let g:echodoc#type = 'signature'
+endif
