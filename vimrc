@@ -95,6 +95,12 @@ nmap <Leader>ta :TestSuite<CR>
 nmap <Leader>tl :TestLast<CR>
 nmap <Leader>tg :TestVisit<CR>
 
+" git-gutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterUndoHunk
+
 " window nav maps
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
@@ -102,21 +108,21 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
 " snippets
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=1 concealcursor=n
+" endif
 
 
 " Plugins
@@ -143,24 +149,21 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
 " Plug 'sbdchd/neoformat'
+Plug 'junegunn/goyo.vim'
+Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
 " Completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
-
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'lifepillar/vim-mucomplete'
 Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+" Plug 'honza/vim-snippets'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
+
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-editors/vim-elixir'
@@ -176,12 +179,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 " Plug 'morhetz/gruvbox'
 
 call plug#end()
-
-" color schemes
-set background=dark
-colorscheme palenight
-" colorscheme solarized
-" colorscheme gruvbox
 
 " vim-picker
 let g:picker_height = 16
@@ -210,9 +207,10 @@ let g:lightline = {
   \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' },
-  \ 'colorscheme' : 'palenight'
+  \ 'subseparator': { 'left': '', 'right': '' }
   \ }
+
+let g:lightline['colorscheme'] = 'palenight'
 
 function! LightlineReadonly()
   return &readonly ? '' : ''
@@ -232,24 +230,26 @@ let g:gitgutter_eager = 0
 " vim-test
 if has("nvim")
   let test#strategy = "neovim"
-
   let test#elixir#exunit#executable = "MIX_ENV=test mix test"
 
   " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
   tnoremap <C-o> <C-\><C-n>
 end
 
+" Goyo/Limelight integration
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" Limelight configuration
+let g:limelight_priority = -1
+
 " neoformat
-if has("Neoformat")
+if has("Neoformat") && has("autocmd")
   augroup fmt
     autocmd!
     autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
   augroup END
 end
-
-" NERDTree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Use ripgrep or ag with Ack.vim instead
 if executable('rg')
@@ -258,15 +258,28 @@ elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
+" vimtex
+" g:vimtex_compiler_progname = 'nvr'
+
+" vim-latex-live-preview
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
 
 " neosnippet
-let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
+" let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
+" mucomplete
+set completeopt+=menuone,noselect
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 1
+
 " LanguageClient-neovim
-if has("LanguageClient_serverCommands")
+" if has("g:LanguageClient_serverCommands")
+  " let g:LanguageClient_loggingLevel = 'DEBUG'
+  let g:LanguageClient_diagnosticsEnable = 0
+  let g:LanguageClient_diagnosticsList = 'Location'
+  let g:LanguageClient_autoStart = 1
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
         \ 'elixir': ['/usr/local/src/elixir-ls/rel/language_server.sh'],
@@ -278,9 +291,15 @@ if has("LanguageClient_serverCommands")
   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
   " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-end
+" end
 
-if exists('g:loaded_echodoc')
-  let g:echodoc#enable_at_startup = 1
-  let g:echodoc#type = 'signature'
-endif
+" echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+
+" color schemes
+set background=dark
+colorscheme palenight
+" colorscheme solarized
+" colorscheme gruvbox
+
