@@ -47,6 +47,10 @@ set noshowmode      " modeline not necessary with lightline
 "set synmaxcol=132
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 
+" ncm2 option suggestions
+set completeopt=menuone,noselect
+set shortmess+=c
+
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
 
@@ -112,22 +116,15 @@ nnoremap <C-k> <C-w><C-k>
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 " For conceal markers.
 " if has('conceal')
 "   set conceallevel=1 concealcursor=n
 " endif
 
-
 " Plugins
 
 call plug#begin()
+Plug 'roxma/nvim-yarp'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -153,22 +150,27 @@ Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
 " Completion
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'pbogut/ncm2-alchemist' " elixir
+Plug 'ncm2/ncm2-racer' " rust
+Plug 'ncm2/ncm2-tern' " javascript
+Plug 'ncm2/ncm2-cssomni' " css
+
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'lifepillar/vim-mucomplete'
 Plug 'Shougo/echodoc.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'ledger/vim-ledger'
 Plug 'lervag/vimtex'
-
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'c-brenn/phoenix.vim'
-
 Plug 'kana/vim-textobj-user'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'rhysd/vim-textobj-ruby'
@@ -269,10 +271,63 @@ let g:livepreview_previewer = 'open -a Preview'
 " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
-" mucomplete
-set completeopt+=menuone,noselect
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#completion_delay = 1
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" ncm2-latex
+au Filetype tex call ncm2#register_source({
+    \ 'name' : 'vimtex-cmds',
+    \ 'priority': 8,
+    \ 'complete_length': -1,
+    \ 'scope': ['tex'],
+    \ 'matcher': {'name': 'prefix', 'key': 'word'},
+    \ 'word_pattern': '\w+',
+    \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
+    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+    \ })
+au Filetype tex call ncm2#register_source({
+    \ 'name' : 'vimtex-labels',
+    \ 'priority': 8,
+    \ 'complete_length': -1,
+    \ 'scope': ['tex'],
+    \ 'matcher': {'name': 'combine',
+    \             'matchers': [
+    \               {'name': 'substr', 'key': 'word'},
+    \               {'name': 'substr', 'key': 'menu'},
+    \             ]},
+    \ 'word_pattern': '\w+',
+    \ 'complete_pattern': g:vimtex#re#ncm2#labels,
+    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+    \ })
+au Filetype tex call ncm2#register_source({
+    \ 'name' : 'vimtex-files',
+    \ 'priority': 8,
+    \ 'complete_length': -1,
+    \ 'scope': ['tex'],
+    \ 'matcher': {'name': 'combine',
+    \             'matchers': [
+    \               {'name': 'abbrfuzzy', 'key': 'word'},
+    \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+    \             ]},
+    \ 'word_pattern': '\w+',
+    \ 'complete_pattern': g:vimtex#re#ncm2#files,
+    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+    \ })
+au Filetype tex call ncm2#register_source({
+    \ 'name' : 'bibtex',
+    \ 'priority': 8,
+    \ 'complete_length': -1,
+    \ 'scope': ['tex'],
+    \ 'matcher': {'name': 'combine',
+    \             'matchers': [
+    \               {'name': 'prefix', 'key': 'word'},
+    \               {'name': 'abbrfuzzy', 'key': 'abbr'},
+    \               {'name': 'abbrfuzzy', 'key': 'menu'},
+    \             ]},
+    \ 'word_pattern': '\w+',
+    \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
+    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+    \ })
 
 " LanguageClient-neovim
 " if has("g:LanguageClient_serverCommands")
@@ -294,8 +349,9 @@ let g:mucomplete#completion_delay = 1
 " end
 
 " echodoc
+" set cmdheight=2
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
+let g:echodoc#type = 'echo'
 
 " color schemes
 set background=dark
