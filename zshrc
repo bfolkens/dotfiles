@@ -125,6 +125,10 @@ export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/
 
 export PATH="$PATH:$HOME/.mix/escripts"
 
+# Go
+
+export PATH="$PATH:$HOME/go/bin"
+
 # npm
 
 export PATH="$PATH:$HOME/node_modules/.bin"
