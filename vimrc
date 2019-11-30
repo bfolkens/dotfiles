@@ -48,7 +48,7 @@ set noshowmode      " modeline not necessary with lightline
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 
 " ncm2 option suggestions
-set completeopt=menuone,noselect
+set completeopt=menuone,noselect,preview
 set shortmess+=c
 
 set undodir=~/.vim/undodir " config global undo
@@ -155,8 +155,9 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'pbogut/ncm2-alchemist' " elixir
 Plug 'ncm2/ncm2-racer' " rust
-Plug 'ncm2/ncm2-tern' " javascript
+" Plug 'ncm2/ncm2-tern' " javascript
 Plug 'ncm2/ncm2-cssomni' " css
+Plug 'ncm2/ncm2-jedi' " python
 
 " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/echodoc.vim'
@@ -166,6 +167,7 @@ Plug 'Shougo/echodoc.vim'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'ledger/vim-ledger'
+Plug 'rcaputo/vim-ledger_x'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'slashmili/alchemist.vim'
@@ -261,7 +263,7 @@ elseif executable('ag')
 endif
 
 " vimtex
-" g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_progname = 'nvr'
 
 " vim-latex-live-preview
 autocmd Filetype tex setl updatetime=1
@@ -352,6 +354,10 @@ au Filetype tex call ncm2#register_source({
 " set cmdheight=2
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'echo'
+
+" yarp
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " color schemes
 set background=dark
