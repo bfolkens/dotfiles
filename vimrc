@@ -364,4 +364,3 @@ set background=dark
 colorscheme palenight
 " colorscheme solarized
 " colorscheme gruvbox
-
