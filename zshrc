@@ -67,7 +67,7 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # Favorite keybindings
 bindkey "^[[1~" beginning-of-line
@@ -145,7 +145,8 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # Cargo (Rust)
 
-export PATH="/Users/bfolkens/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # default tmux
 
