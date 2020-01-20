@@ -148,6 +148,9 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
+# Skim (sk)
+export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || ag -l -g \"\" || find ."
+
 # default tmux
 
 #if [ -z "$TMUX" ]; then
