@@ -7,4 +7,4 @@ alias gcpset="gcloud config configurations activate "
 
 alias k="kubectl"
 alias kx="kubectx"
-
+alias kpw="kubectl get pods --watch"
