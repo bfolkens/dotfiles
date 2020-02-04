@@ -145,7 +145,8 @@ Plug 'gaving/vim-textobj-argument'
 "Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
-" Plug 'sbdchd/neoformat'
+Plug 'sbdchd/neoformat'
+" Plug 'neomake/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
@@ -186,8 +187,8 @@ call plug#end()
 
 " vim-picker
 let g:picker_height = 16
-let g:picker_custom_find_executable = 'rg'
-let g:picker_custom_find_flags = '--color never --files'
+let g:picker_custom_find_executable = 'fd'
+let g:picker_custom_find_flags = '--color never'
 
 " vim-polyglot
 let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
@@ -248,12 +249,21 @@ autocmd! User GoyoLeave Limelight!
 let g:limelight_priority = -1
 
 " neoformat
-if has("Neoformat") && has("autocmd")
-  augroup fmt
-    autocmd!
-    autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-  augroup END
-end
+" if has("nvim")
+"   augroup fmt
+"     autocmd!
+"     autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+"   augroup END
+" let g:neoformat_verbose = 1
+" let g:neoformat_only_msg_on_error = 1
+" end
+
+" neomake
+" if has("Neomake")
+"   call neomake#configure#automake('w')
+" end
+
+" let g:neomake_javascript_enabled_makers = ['eslint_d']
 
 " Use ripgrep or ag with Ack.vim instead
 if executable('rg')
