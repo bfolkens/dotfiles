@@ -6,7 +6,6 @@ endif
 
 syntax on
 
-set nocompatible            " Disable compatibility to old-time vi
 set showmatch               " Show matching brackets.
 set ignorecase              " Do case insensitive matching
 set hlsearch                " highlight search results
