@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # TODO: Check debian
 wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
