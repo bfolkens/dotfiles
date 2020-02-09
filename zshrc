@@ -77,7 +77,7 @@ export EDITOR='nvim'
 export MAILDIR="$HOME/Mail"
 
 # PATH
-export PATH="/usr/local/sbin:$HOME/local/bin:$PATH"
+export PATH="/usr/local/sbin:$HOME/local/bin:/usr/local/bin:$PATH"
 
 # Compilation flags
 export ARCHFLAGS="-Os -arch x86_64 -fno-common"
@@ -132,6 +132,10 @@ export PATH="$PATH:$HOME/go/bin"
 # npm
 
 export PATH="$PATH:$HOME/node_modules/.bin"
+
+# pip3
+
+export PATH="$PATH:$HOME/Library/Python/3.7/bin"
 
 # Android Studio
 
