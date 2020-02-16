@@ -232,7 +232,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 " vim-test
-if has("nvim")
+if has('nvim')
   let test#strategy = "neovim"
   let test#elixir#exunit#executable = "MIX_ENV=test mix test"
 
@@ -241,24 +241,26 @@ if has("nvim")
 end
 
 " Goyo/Limelight integration
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+augroup Goyo
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+augroup END
 
 " Limelight configuration
 let g:limelight_priority = -1
 
 " neoformat
-" if has("nvim")
-"   augroup fmt
+" if has('nvim')
+"   augroup Neofmt
 "     autocmd!
 "     autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 "   augroup END
-" let g:neoformat_verbose = 1
-" let g:neoformat_only_msg_on_error = 1
+"   " let g:neoformat_verbose = 1
+"   let g:neoformat_only_msg_on_error = 1
 " end
 
 " neomake
-" if has("Neomake")
+" if has('Neomake')
 "   call neomake#configure#automake('w')
 " end
 
@@ -275,15 +277,19 @@ endif
 let g:vimtex_compiler_progname = 'nvr'
 
 " vim-latex-live-preview
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
+augroup LaTeXPreview
+  autocmd Filetype tex setl updatetime=1
+  let g:livepreview_previewer = 'open -a Preview'
+augroup END
 
 " neosnippet
 " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
 " ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup Ncm2
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
 
 " ncm2-latex
 au Filetype tex call ncm2#register_source({
@@ -341,7 +347,7 @@ au Filetype tex call ncm2#register_source({
     \ })
 
 " LanguageClient-neovim
-" if has("g:LanguageClient_serverCommands")
+" if has('g:LanguageClient_serverCommands')
   " let g:LanguageClient_loggingLevel = 'DEBUG'
   let g:LanguageClient_diagnosticsEnable = 0
   let g:LanguageClient_diagnosticsList = 'Location'
