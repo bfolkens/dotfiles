@@ -45,13 +45,12 @@ set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
 "set synmaxcol=132
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
-
-" ncm2 option suggestions
-set completeopt=menuone,noselect,preview
 set shortmess+=c
-
+set shortmess-=F
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
+
+set completeopt=menu,menuone,noselect
 
 if has('folding')
   set foldmethod=syntax
@@ -68,15 +67,13 @@ endif
 let mapleader = ";"
 
 " Keymaps
-
-nnoremap <leader>c ddO
-nnoremap <leader>d :TagbarToggle<CR>
 nmap <Leader>a :Ack!<Space>
+nnoremap <Leader>d :Vista<CR>
 
 " Tab and shift-Tab to change buffer
 "nnoremap <silent><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
 "noremap <silent><s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-" nnoremap <silent><tab>   :b#<CR>
+"nnoremap <silent><tab>   :b#<CR>
 
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
@@ -136,44 +133,36 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
-Plug 'majutsushi/tagbar'
 Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
-Plug 'kana/vim-textobj-user'
-Plug 'gaving/vim-textobj-argument'
-"Plug 'w0rp/ale'
-"Plug 'maximbaz/lightline-ale'
 Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
-" Plug 'neomake/neomake'
 Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
+Plug 'liuchengxu/vim-which-key'
 
 " Completion
+Plug 'natebosch/vim-lsc' " https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
 Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'pbogut/ncm2-alchemist' " elixir
-Plug 'ncm2/ncm2-racer' " rust
-" Plug 'ncm2/ncm2-tern' " javascript
-Plug 'ncm2/ncm2-cssomni' " css
-Plug 'ncm2/ncm2-jedi' " python
-
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'Shougo/echodoc.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
 
+Plug 'liuchengxu/vista.vim'
+
 Plug 'sheerun/vim-polyglot'
 Plug 'ledger/vim-ledger'
 Plug 'rcaputo/vim-ledger_x'
-Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'slashmili/alchemist.vim'
+" Plug 'lervag/vimtex'
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" Plug 'slashmili/alchemist.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'c-brenn/phoenix.vim'
+
 Plug 'kana/vim-textobj-user'
+Plug 'gaving/vim-textobj-argument'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'rhysd/vim-textobj-ruby'
 
@@ -199,15 +188,15 @@ let g:palenight_terminal_italics = 1
 " lightline
 let g:lightline = {
   \ 'component': {
-  \   'lineinfo': '%3l:%-2v',
-  \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}',
+  \   'lineinfo': '%3l:%-2v'
   \ },
   \ 'component_function': {
   \   'readonly': 'LightlineReadonly',
-  \   'fugitive': 'LightlineFugitive'
+  \   'fugitive': 'LightlineFugitive',
+  \   'vista': 'NearestMethodOrFunction'
   \ },
   \ 'active': {
-  \   'left': [['mode'], ['readonly', 'relativepath', 'modified', 'gitbranch'], ['tagbar']],
+  \   'left': [['mode'], ['readonly', 'relativepath', 'modified', 'gitbranch'], ['vista']],
   \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
@@ -250,14 +239,15 @@ augroup END
 let g:limelight_priority = -1
 
 " neoformat
-" if has('nvim')
-"   augroup Neofmt
-"     autocmd!
-"     autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-"   augroup END
-"   " let g:neoformat_verbose = 1
-"   let g:neoformat_only_msg_on_error = 1
-" end
+if has('nvim')
+  augroup Neofmt
+    autocmd!
+    autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+  augroup END
+
+  " let g:neoformat_verbose = 1
+  let g:neoformat_only_msg_on_error = 1
+end
 
 " neomake
 " if has('Neomake')
@@ -279,7 +269,7 @@ let g:vimtex_compiler_progname = 'nvr'
 " vim-latex-live-preview
 augroup LaTeXPreview
   autocmd Filetype tex setl updatetime=1
-  let g:livepreview_previewer = 'open -a Preview'
+  let g:livepreview_previewer = 'open -ag Preview'
 augroup END
 
 " neosnippet
@@ -291,79 +281,68 @@ augroup Ncm2
   autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup END
 
-" ncm2-latex
-au Filetype tex call ncm2#register_source({
-    \ 'name' : 'vimtex-cmds',
-    \ 'priority': 8,
-    \ 'complete_length': -1,
-    \ 'scope': ['tex'],
-    \ 'matcher': {'name': 'prefix', 'key': 'word'},
-    \ 'word_pattern': '\w+',
-    \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
-    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-    \ })
-au Filetype tex call ncm2#register_source({
-    \ 'name' : 'vimtex-labels',
-    \ 'priority': 8,
-    \ 'complete_length': -1,
-    \ 'scope': ['tex'],
-    \ 'matcher': {'name': 'combine',
-    \             'matchers': [
-    \               {'name': 'substr', 'key': 'word'},
-    \               {'name': 'substr', 'key': 'menu'},
-    \             ]},
-    \ 'word_pattern': '\w+',
-    \ 'complete_pattern': g:vimtex#re#ncm2#labels,
-    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-    \ })
-au Filetype tex call ncm2#register_source({
-    \ 'name' : 'vimtex-files',
-    \ 'priority': 8,
-    \ 'complete_length': -1,
-    \ 'scope': ['tex'],
-    \ 'matcher': {'name': 'combine',
-    \             'matchers': [
-    \               {'name': 'abbrfuzzy', 'key': 'word'},
-    \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-    \             ]},
-    \ 'word_pattern': '\w+',
-    \ 'complete_pattern': g:vimtex#re#ncm2#files,
-    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-    \ })
-au Filetype tex call ncm2#register_source({
-    \ 'name' : 'bibtex',
-    \ 'priority': 8,
-    \ 'complete_length': -1,
-    \ 'scope': ['tex'],
-    \ 'matcher': {'name': 'combine',
-    \             'matchers': [
-    \               {'name': 'prefix', 'key': 'word'},
-    \               {'name': 'abbrfuzzy', 'key': 'abbr'},
-    \               {'name': 'abbrfuzzy', 'key': 'menu'},
-    \             ]},
-    \ 'word_pattern': '\w+',
-    \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
-    \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-    \ })
+" vista
+augroup Vista
+  let g:vista#renderer#enable_icon = 1
+  let g:vista_sidebar_width = 50
 
-" LanguageClient-neovim
-" if has('g:LanguageClient_serverCommands')
-  " let g:LanguageClient_loggingLevel = 'DEBUG'
-  let g:LanguageClient_diagnosticsEnable = 0
-  let g:LanguageClient_diagnosticsList = 'Location'
-  let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_serverCommands = {
-        \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-        \ 'elixir': ['/usr/local/src/elixir-ls/rel/language_server.sh'],
-        \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-        \ 'python': ['/usr/local/bin/pyls']
-        \ }
+  function! NearestMethodOrFunction() abort
+    return get(b:, 'vista_nearest_method_or_function', '')
+  endfunction
 
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-  " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" end
+  autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+augroup END
+
+" LSC
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': 'gd',
+    \ 'GoToDefinitionSplit': ['gd', 'sv'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+
+let g:lsc_server_commands = {
+ \  'bash': {
+ \    'command': '/usr/local/bin/bash-language-server'
+ \  },
+ \  'elm': {
+ \    'command': '/usr/local/bin/elm-language-server'
+ \  },
+ \  'ruby': {
+ \    'command': '~/.rbenv/shims/solargraph stdio',
+ \    'log_level': -1,
+ \    'suppress_stderr': v:true,
+ \  },
+ \  'javascript': {
+ \    'command': '/usr/local/bin/javascript-typescript-stdio'
+ \  },
+ \  'elixir': {
+ \    'command': '/usr/local/src/elixir-ls/rel/language_server.sh'
+ \  },
+ \  'python': {
+ \    'command': '/usr/local/bin/pyls'
+ \  },
+ \  'rust': {
+ \    'command': '~/.cargo/bin/rustup run stable rls'
+ \  },
+ \  'latex': {
+ \    'command': 'texlab'
+ \  }
+ \}
+
+let g:lsc_enable_autocomplete  = v:true
+let g:lsc_enable_diagnostics   = v:true
+let g:lsc_reference_highlights = v:true
+let g:lsc_trace_level          = 'off'
 
 " echodoc
 " set cmdheight=2
