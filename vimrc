@@ -139,7 +139,6 @@ Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
-Plug 'liuchengxu/vim-which-key'
 
 " Completion
 Plug 'natebosch/vim-lsc' " https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
@@ -269,8 +268,8 @@ let g:vimtex_compiler_progname = 'nvr'
 " vim-latex-live-preview
 augroup LaTeXPreview
   autocmd Filetype tex setl updatetime=1
-  let g:livepreview_previewer = 'open -ag Preview'
 augroup END
+let g:livepreview_previewer = 'open -ag Preview'
 
 " neosnippet
 " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
@@ -282,14 +281,14 @@ augroup Ncm2
 augroup END
 
 " vista
+let g:vista#renderer#enable_icon = 1
+let g:vista_sidebar_width = 50
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
 augroup Vista
-  let g:vista#renderer#enable_icon = 1
-  let g:vista_sidebar_width = 50
-
-  function! NearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-  endfunction
-
   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 augroup END
 
