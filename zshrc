@@ -103,54 +103,27 @@ for file in ~/.dotfiles/aliases.d/* ; do
   fi
 done
 
+#
 # CUSTOM
+#
 
 unsetopt share_history
 
-# RBENV
-
-eval "$(rbenv init -)"
-
 # GPG
-
 export GPG_TTY=$(tty)
 
 # Kubernetes
-
 export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 # This was super slow
 #source <(kubectl completion zsh)
 
-# escripts
-
-export PATH="$PATH:$HOME/.mix/escripts"
-
-# Go
-
-export PATH="$PATH:$HOME/go/bin"
-
-# npm
-
-export PATH="$PATH:$HOME/node_modules/.bin"
-
-# pip3
-
-export PATH="$PATH:$HOME/Library/Python/3.7/bin"
-
 # Android Studio
-
 export ANDROID_HOME="/usr/local/share/android-sdk"
 export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 export ANDROID_NDK_HOME="/usr/local/share/android-ndk"
 
 # OpenSSL tools
-
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-
-# Cargo (Rust)
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Skim (sk)
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || ag -l -g \"\" || find ."
@@ -183,4 +156,11 @@ _color() {
   return $( [ -z "$INSIDE_EMACS" ] )
 }
 
+# direnv
+eval "$(direnv hook zsh)"
+
+# asdf
+. /usr/local/opt/asdf/asdf.sh
+
 # zprof
+
