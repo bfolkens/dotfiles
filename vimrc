@@ -21,6 +21,7 @@ set encoding=utf8
 set fileencoding=utf8
 set termencoding=utf8
 set ruler
+" set spell
 set nobackup
 set noswapfile
 set hlsearch
@@ -141,7 +142,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
 " Completion
-Plug 'natebosch/vim-lsc' " https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
+" Plug 'natebosch/vim-lsc' " https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
+Plug '~/dev/bfolkens-github/vim-lsc'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-path'
 Plug 'Shougo/echodoc.vim'
@@ -239,10 +241,10 @@ let g:limelight_priority = -1
 
 " neoformat
 if has('nvim')
-  augroup Neofmt
-    autocmd!
-    autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-  augroup END
+  " augroup Neofmt
+  "   autocmd!
+  "   autocmd BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+  " augroup END
 
   " let g:neoformat_verbose = 1
   let g:neoformat_only_msg_on_error = 1
@@ -324,6 +326,9 @@ let g:lsc_server_commands = {
  \  'javascript': {
  \    'command': '/usr/local/bin/javascript-typescript-stdio'
  \  },
+ \  'typescript': {
+ \    'command': '/usr/local/bin/javascript-typescript-stdio'
+ \  },
  \  'elixir': {
  \    'command': '/usr/local/src/elixir-ls/rel/language_server.sh'
  \  },
@@ -331,7 +336,7 @@ let g:lsc_server_commands = {
  \    'command': '/usr/local/bin/pyls'
  \  },
  \  'rust': {
- \    'command': '~/.cargo/bin/rustup run stable rls'
+ \    'command': 'rls'
  \  },
  \  'latex': {
  \    'command': 'texlab'
