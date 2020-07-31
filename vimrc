@@ -44,7 +44,6 @@ set ttyfast         " smoother changes
 set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
-"set synmaxcol=132
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 set shortmess+=c
 set shortmess-=F
@@ -53,8 +52,14 @@ set undofile        " unset session undo
 
 set completeopt=menu,menuone,noselect
 
+" Might speedup
+" https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
+set lazyredraw
+set synmaxcol=128
+syntax sync minlines=256
+
 if has('folding')
-  set foldmethod=syntax
+  set foldmethod=manual " syntax may have been slow
   set foldlevelstart=4
 
   if has('windows')
