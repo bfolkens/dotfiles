@@ -179,9 +179,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 
 call plug#end()
 
-let g:python_host_prog = '~/.asdf/shims/python'
-let g:python3_host_prog = '~/.asdf/shims/python'
-
 " vim-picker
 let g:picker_height = 16
 let g:picker_custom_find_executable = 'fd'
@@ -362,8 +359,8 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'echo'
 
 " yarp
-let g:python_host_prog = '/Users/bfolkens/.asdf/shims/python'
-let g:python3_host_prog = '/Users/bfolkens/.asdf/shims/python'
+let g:python_host_prog = '~/.asdf/shims/python'
+let g:python3_host_prog = '~/.asdf/shims/python'
 
 " color schemes
 set background=dark
