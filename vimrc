@@ -54,8 +54,9 @@ set completeopt=menu,menuone,noselect
 
 " Might speedup
 " https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
-set lazyredraw
-set synmaxcol=128
+" https://medium.com/@dhendyferdian/claiming-back-my-neovim-responsiveness-2d5c3b3cdeea
+" set lazyredraw
+" set synmaxcol=128
 syntax sync minlines=256
 
 if has('folding')
