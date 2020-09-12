@@ -45,12 +45,13 @@ set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
 set noshowmode      " modeline not necessary with lightline
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
-set shortmess+=c
-set shortmess-=F
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
 
-set completeopt=menu,menuone,noselect
+" Completion
+set shortmess+=c
+set shortmess-=F
+set completeopt=menuone,noinsert,noselect
 
 " Might speedup
 " https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
@@ -114,6 +115,10 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " snippets
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -148,11 +153,12 @@ Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
 " Completion
-" Plug 'natebosch/vim-lsc' " https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
-Plug '~/dev/bfolkens-github/vim-lsc'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-path'
-Plug 'Shougo/echodoc.vim'
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/lsp-status.nvim'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'Shougo/echodoc.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
@@ -180,6 +186,12 @@ Plug 'drewtempelmeyer/palenight.vim'
 
 call plug#end()
 
+" color schemes need to go before initializing plugins
+set background=dark
+colorscheme palenight
+" colorscheme solarized
+" colorscheme gruvbox
+
 " vim-picker
 let g:picker_height = 16
 let g:picker_custom_find_executable = 'fd'
@@ -191,37 +203,6 @@ let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
 " theme configs
 let g:palenight_terminal_italics = 1
 " let g:gruvbox_italic=1
-
-" lightline
-let g:lightline = {
-  \ 'component': {
-  \   'lineinfo': '%3l:%-2v'
-  \ },
-  \ 'component_function': {
-  \   'readonly': 'LightlineReadonly',
-  \   'fugitive': 'LightlineFugitive',
-  \   'vista': 'NearestMethodOrFunction'
-  \ },
-  \ 'active': {
-  \   'left': [['mode'], ['readonly', 'relativepath', 'modified', 'gitbranch'], ['vista']],
-  \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
-  \ },
-  \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' }
-  \ }
-
-let g:lightline['colorscheme'] = 'palenight'
-
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ''.branch : ''
-  endif
-  return ''
-endfunction
 
 " gitgutter
 let g:gitgutter_realtime = 0
@@ -283,10 +264,158 @@ let g:livepreview_previewer = 'open -ag Preview'
 " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
 
-" ncm2
-augroup Ncm2
-  autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup END
+" nvim-lsp
+lua <<EOF
+local diagnostic = require('diagnostic')
+local completion = require('completion')
+local lsp_status = require('lsp-status')
+
+local on_attach = function(client, bufnr)
+  lsp_status.on_attach(client, bufnr)
+  diagnostic.on_attach(client, bufnr)
+  completion.on_attach(client, bufnr)
+
+  -- Keybindings for LSPs
+  -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
+  local opts = { noremap=true, silent=true }
+  vim.fn.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", opts)
+end
+
+lsp_status.register_progress()
+lsp_status.config({
+  status_symbol = 'S',
+  indicator_errors = '',
+  indicator_warnings = '',
+  indicator_info = '',
+  indicator_hint = '',
+  indicator_ok = 'K',
+  spinner_frames = { '⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷' },
+})
+
+local nvim_lsp = require('nvim_lsp')
+nvim_lsp.bashls.setup{}
+nvim_lsp.clangd.setup({
+  callbacks = lsp_status.extensions.clangd.setup(),
+  init_options = {
+    clangdFileStatus = true
+  },
+  on_attach = on_attach,
+  capabilities = lsp_status.capabilities
+})
+nvim_lsp.cmake.setup{
+  on_attach = on_attach
+}
+nvim_lsp.cssls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.dockerls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.elixirls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.elmls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.julials.setup{
+  on_attach = on_attach
+}
+nvim_lsp.jsonls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.pyls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = lsp_status.capabilities
+})
+nvim_lsp.solargraph.setup{
+  on_attach = on_attach
+}
+nvim_lsp.sourcekit.setup{
+  on_attach = on_attach
+}
+nvim_lsp.texlab.setup{
+  on_attach = on_attach
+}
+nvim_lsp.vimls.setup{
+  on_attach = on_attach
+}
+nvim_lsp.yamlls.setup{
+  on_attach = on_attach
+}
+EOF
+
+" diagnostic-nvim
+let g:diagnostic_insert_delay = 1
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_virtual_text_prefix = ' '
+
+" highlight! LspDiagnosticsUnderline gui=undercurl term=undercurl cterm=undercurl
+highlight! LspDiagnosticsUnderlineHint guifg=#53FFE2
+highlight! LspDiagnosticsUnderlineInformation guifg=#FF53E6
+highlight! LspDiagnosticsUnderlineWarning guifg=#FF8C4B
+highlight! LspDiagnosticsUnderlineError guifg=#FF5370
+
+highlight! LspDiagnosticsHint guifg=#53FFE2
+highlight! LspDiagnosticsInformation guifg=#FF53E6
+highlight! LspDiagnosticsWarning guifg=#FF8C4B
+highlight! LspDiagnosticsError guifg=#FF5370
+
+call sign_define("LspDiagnosticsErrorSign", {"text" : "", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "", "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticsHintSign", {"text" : "", "texthl" : "LspDiagnosticsHint"})
+
+" lightline
+let g:lightline = {
+  \ 'component': {
+  \   'lineinfo': '%3l:%-2v'
+  \ },
+  \ 'component_function': {
+  \   'readonly': 'LightlineReadonly',
+  \   'fugitive': 'LightlineFugitive',
+  \   'vista': 'NearestMethodOrFunction',
+  \   'lsp_status': 'LSPStatus'
+  \ },
+  \ 'active': {
+  \   'left': [['mode'], ['readonly', 'fugitive', 'relativepath', 'modified'], ['lsp_status', 'vista']],
+  \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
+  \ },
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' }
+  \ }
+
+let g:lightline['colorscheme'] = 'palenight'
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ''.branch : ''
+  endif
+
+  return ''
+endfunction
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
 
 " vista
 let g:vista#renderer#enable_icon = 1
@@ -300,71 +429,11 @@ augroup Vista
   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 augroup END
 
-" LSC
-let g:lsc_auto_map = {
-    \ 'GoToDefinition': 'gd',
-    \ 'GoToDefinitionSplit': ['gd', 'sv'],
-    \ 'FindReferences': 'gr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': 'gI',
-    \ 'FindCodeActions': 'ga',
-    \ 'Rename': 'gR',
-    \ 'ShowHover': v:true,
-    \ 'DocumentSymbol': 'go',
-    \ 'WorkspaceSymbol': 'gS',
-    \ 'SignatureHelp': 'gm',
-    \ 'Completion': 'completefunc',
-    \}
-
-let g:lsc_server_commands = {
- \  'bash': {
- \    'command': '/usr/local/bin/bash-language-server'
- \  },
- \  'elm': {
- \    'command': '/usr/local/bin/elm-language-server'
- \  },
- \  'ruby': {
- \    'command': '~/.rbenv/shims/solargraph stdio',
- \    'log_level': -1,
- \    'suppress_stderr': v:true,
- \  },
- \  'javascript': {
- \    'command': '/usr/local/bin/javascript-typescript-stdio'
- \  },
- \  'typescript': {
- \    'command': '/usr/local/bin/javascript-typescript-stdio'
- \  },
- \  'elixir': {
- \    'command': '/usr/local/src/elixir-ls/rel/language_server.sh'
- \  },
- \  'python': {
- \    'command': '/usr/local/bin/pyls'
- \  },
- \  'rust': {
- \    'command': 'rls'
- \  },
- \  'latex': {
- \    'command': 'texlab'
- \  }
- \}
-
-let g:lsc_enable_autocomplete  = v:true
-let g:lsc_enable_diagnostics   = v:true
-let g:lsc_reference_highlights = v:true
-let g:lsc_trace_level          = 'off'
-
 " echodoc
 " set cmdheight=2
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'echo'
+" let g:echodoc#enable_at_startup = 1
+" let g:echodoc#type = 'echo'
 
 " yarp
 let g:python_host_prog = '~/.asdf/shims/python'
 let g:python3_host_prog = '~/.asdf/shims/python'
-
-" color schemes
-set background=dark
-colorscheme palenight
-" colorscheme solarized
-" colorscheme gruvbox
