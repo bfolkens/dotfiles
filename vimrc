@@ -129,6 +129,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "   set conceallevel=1 concealcursor=n
 " endif
 
+" vim-polyglot (needs to be before plug#begin
+let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
+
 " Plugins
 
 call plug#begin()
@@ -195,9 +198,6 @@ colorscheme palenight
 let g:picker_height = 16
 let g:picker_custom_find_executable = 'fd'
 let g:picker_custom_find_flags = '--color never'
-
-" vim-polyglot
-let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
 
 " theme configs
 let g:palenight_terminal_italics = 1
