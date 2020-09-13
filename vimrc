@@ -145,8 +145,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
@@ -186,6 +184,7 @@ Plug 'rhysd/vim-textobj-ruby'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'kyazdani42/blue-moon'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'morhetz/gruvbox'
 
