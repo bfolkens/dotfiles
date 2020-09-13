@@ -61,7 +61,8 @@ set completeopt=menuone,noinsert,noselect
 syntax sync minlines=256
 
 if has('folding')
-  set foldmethod=manual " syntax may have been slow
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
   set foldlevelstart=4
 
   if has('windows')
@@ -129,8 +130,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "   set conceallevel=1 concealcursor=n
 " endif
 
-" vim-polyglot (needs to be before plug#begin
-let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex']
+" vim-polyglot (needs to be before plug#begin)
+let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'toml', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
 
 " Plugins
 
@@ -153,6 +154,8 @@ Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
+
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Completion
 Plug 'neovim/nvim-lsp'
@@ -262,6 +265,21 @@ let g:livepreview_previewer = 'open -ag Preview'
 " neosnippet
 " let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
 " let g:neosnippet#enable_snipmate_compatibility = 1
+
+" nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- Modules and its options go here
+  highlight = { enable = true },
+  incremental_selection = { enable = true },
+  refactor = {
+    highlight_definitions = { enable = true },
+    smart_rename = { enable = true },
+    navigation = { enable = true },
+  },
+  textobjects = { enable = true },
+}
+EOF
 
 " nvim-lsp
 lua <<EOF
