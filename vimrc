@@ -153,6 +153,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
 Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'nvim-treesitter/completion-treesitter'
 
 " Completion
 Plug 'neovim/nvim-lsp'
@@ -451,3 +452,11 @@ augroup END
 " yarp
 let g:python_host_prog = '~/.asdf/shims/python'
 let g:python3_host_prog = '~/.asdf/shims/python'
+
+" TextYankPost
+if exists("##TextYankPost")
+  augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require 'vim.highlight'.on_yank {higroup='Substitute', timeout=100, on_visual=false}
+  augroup END
+endif
