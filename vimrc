@@ -95,8 +95,6 @@ nmap <leader>v <Plug>(PickerVsplit)
 nmap <leader>] <Plug>(PickerTag)
 nmap <leader>h <Plug>(PickerHelp)
 
-map <C-n> :NERDTreeToggle<CR>
-
 " vim-test maps
 nmap <Leader>tt :TestNearest<CR>
 nmap <Leader>tf :TestFile<CR>
@@ -161,8 +159,6 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'Shougo/echodoc.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
@@ -296,7 +292,7 @@ local on_attach = function(client, bufnr)
   -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
   local opts = { noremap=true, silent=true }
   vim.fn.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.fn.nvim_set_keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.fn.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.fn.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   vim.fn.nvim_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   vim.fn.nvim_set_keymap("n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
@@ -374,6 +370,9 @@ nvim_lsp.yamlls.setup{
 }
 EOF
 
+" completion-nvim
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 " diagnostic-nvim
 let g:diagnostic_insert_delay = 1
 let g:diagnostic_enable_virtual_text = 1
@@ -448,11 +447,6 @@ endfunction
 augroup Vista
   autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 augroup END
-
-" echodoc
-" set cmdheight=2
-" let g:echodoc#enable_at_startup = 1
-" let g:echodoc#type = 'echo'
 
 " yarp
 let g:python_host_prog = '~/.asdf/shims/python'
