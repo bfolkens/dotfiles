@@ -129,7 +129,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " endif
 
 " vim-polyglot (needs to be before plug#begin)
-let g:polyglot_disabled = ['tex', 'ex', 'exs', 'eex', 'leex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'toml', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
+let g:polyglot_disabled = ['tex', 'elixir', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'toml', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
 
 " Plugins
 
@@ -177,8 +177,8 @@ Plug 'c-brenn/phoenix.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'gaving/vim-textobj-argument'
-Plug 'andyl/vim-textobj-elixir'
-Plug 'rhysd/vim-textobj-ruby'
+" Plug 'andyl/vim-textobj-elixir'
+" Plug 'rhysd/vim-textobj-ruby'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
