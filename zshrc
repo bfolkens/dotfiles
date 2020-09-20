@@ -117,6 +117,9 @@ export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/
 # This was super slow
 #source <(kubectl completion zsh)
 
+# OpenJDK
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
 # Android Studio
 export ANDROID_HOME="/usr/local/share/android-sdk"
 export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
