@@ -22,6 +22,7 @@ set fileencoding=utf8
 set termencoding=utf8
 set ruler
 " set spell
+set spelllang=en
 set nobackup
 set noswapfile
 set hlsearch
@@ -129,7 +130,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " endif
 
 " vim-polyglot (needs to be before plug#begin)
-let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'toml', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
+let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
 
 " Plugins
 
@@ -156,9 +157,8 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'nvim-treesitter/completion-treesitter'
 
 " Completion
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
@@ -280,13 +280,11 @@ EOF
 
 " nvim-lsp
 lua <<EOF
-local diagnostic = require('diagnostic')
 local completion = require('completion')
 local lsp_status = require('lsp-status')
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
-  diagnostic.on_attach(client, bufnr)
   completion.on_attach(client, bufnr)
 
   -- Keybindings for LSPs
@@ -303,24 +301,13 @@ local on_attach = function(client, bufnr)
 end
 
 lsp_status.register_progress()
-lsp_status.config({
-  status_symbol = 'S',
-  indicator_errors = '',
-  indicator_warnings = '',
-  indicator_info = '',
-  indicator_hint = '',
-  indicator_ok = 'K',
-  spinner_frames = { '⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷' },
-})
 
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
+local util = require 'lspconfig/util'
 nvim_lsp.bashls.setup{}
 nvim_lsp.clangd.setup({
-  callbacks = lsp_status.extensions.clangd.setup(),
-  init_options = {
-    clangdFileStatus = true
-  },
   on_attach = on_attach,
+  root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git") or dirname,
   capabilities = lsp_status.capabilities
 })
 nvim_lsp.cmake.setup{
@@ -333,16 +320,18 @@ nvim_lsp.dockerls.setup{
   on_attach = on_attach
 }
 nvim_lsp.elixirls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/local/bin/elixir-ls/language_server.sh" }
 }
 nvim_lsp.elmls.setup{
   on_attach = on_attach
 }
-nvim_lsp.julials.setup{
-  on_attach = on_attach
-}
+-- nvim_lsp.julials.setup{
+--  on_attach = on_attach
+-- }
 nvim_lsp.jsonls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver" }
 }
 nvim_lsp.pyls.setup{
   on_attach = on_attach
@@ -364,20 +353,47 @@ nvim_lsp.tsserver.setup{
   on_attach = on_attach
 }
 nvim_lsp.vimls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vim-language-server/bin/index.js" }
 }
 nvim_lsp.yamlls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/yaml-language-server/bin/yaml-language-server" }
 }
 EOF
 
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 0
+    -- virtual_text = false,
+    virtual_text = {
+      spacing = 4,
+      prefix = '',
+    },
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = false,
+  }
+)
+EOF
+
+augroup NvimLspAutoFormatters
+  " autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 5000)
+  " autocmd BufWritePre *.rb lua vim.lsp.buf.formatting_sync(nil, 5000)
+  " autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 5000)
+  " autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 5000)
+augroup END
+
 " completion-nvim
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-" diagnostic-nvim
-let g:diagnostic_insert_delay = 1
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_virtual_text_prefix = ' '
 
 " highlight! LspDiagnosticsUnderline gui=undercurl term=undercurl cterm=undercurl
 highlight! LspDiagnosticsUnderlineHint guifg=#53FFE2
@@ -385,15 +401,15 @@ highlight! LspDiagnosticsUnderlineInformation guifg=#FF53E6
 highlight! LspDiagnosticsUnderlineWarning guifg=#FF8C4B
 highlight! LspDiagnosticsUnderlineError guifg=#FF5370
 
-highlight! LspDiagnosticsHint guifg=#53FFE2
-highlight! LspDiagnosticsInformation guifg=#FF53E6
-highlight! LspDiagnosticsWarning guifg=#FF8C4B
-highlight! LspDiagnosticsError guifg=#FF5370
+highlight! LspDiagnosticsDefaultHint guifg=#53FFE2
+highlight! LspDiagnosticsDefaultInformation guifg=#FF53E6
+highlight! LspDiagnosticsDefaultWarning guifg=#FF8C4B
+highlight! LspDiagnosticsDefaultError guifg=#FF5370
 
-call sign_define("LspDiagnosticsErrorSign", {"text" : "", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "", "texthl" : "LspDiagnosticsHint"})
+" call sign_define("LspDiagnosticsErrorSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultError"})
+" call sign_define("LspDiagnosticsWarningSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultWarning"})
+" call sign_define("LspDiagnosticsInformationSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultInformation"})
+" call sign_define("LspDiagnosticsHintSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultHint"})
 
 " lightline
 let g:lightline = {
@@ -404,10 +420,10 @@ let g:lightline = {
   \   'readonly': 'LightlineReadonly',
   \   'fugitive': 'LightlineFugitive',
   \   'vista': 'NearestMethodOrFunction',
-  \   'lsp_status': 'LSPStatus'
+  \   'lsp_status': 'LspStatus'
   \ },
   \ 'active': {
-  \   'left': [['mode'], ['readonly', 'fugitive', 'relativepath', 'modified'], ['lsp_status', 'vista']],
+  \   'left': [['mode'], ['readonly', 'fugitive', 'relativepath', 'modified'], ['lsp_status']],
   \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
   \ },
   \ 'separator': { 'left': '', 'right': '' },
