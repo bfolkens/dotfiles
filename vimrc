@@ -167,6 +167,7 @@ Plug 'nvim-lua/lsp-status.nvim'
 Plug 'liuchengxu/vista.vim'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'earthly/earthly.vim', { 'branch': 'main' }
 Plug 'ledger/vim-ledger'
 Plug 'rcaputo/vim-ledger_x'
 " Plug 'lervag/vimtex'
