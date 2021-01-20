@@ -343,6 +343,10 @@ end
 
 lsp_status.register_progress()
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
 nvim_lsp.bashls.setup{}
@@ -355,7 +359,14 @@ nvim_lsp.cmake.setup{
   on_attach = on_attach
 }
 nvim_lsp.cssls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-html-languageserver-bin/htmlServerMain.js", "--stdio" },
+  capabilities = capabilities,
+}
+nvim_lsp.html.setup{
+  on_attach = on_attach,
+  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-html-languageserver-bin/htmlServerMain.js", "--stdio" },
+  capabilities = capabilities,
 }
 nvim_lsp.dockerls.setup{
   on_attach = on_attach
