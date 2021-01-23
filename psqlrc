@@ -1,0 +1,35 @@
+-- Set client encoding to UTF8 (to match what is on the server)
+\encoding UTF8
+
+-- Do NOT automatically commit after every statement!
+\set AUTOCOMMIT off
+
+-- Be verbose about feedback
+\set VERBOSITY verbose
+
+-- [user]@[host]:[port]/[db]['*' if we are in a transaction]['#' if we are root-like; '>' otherwise]
+\set PROMPT1 '%n@%m:%>/%/%x%# '
+
+-- Ensure second prompt is empty, to facilitate easier copying
+-- of multiline SQL statements from a psql session into other
+-- tools / text editors.
+\set PROMPT2 ''
+
+-- Ensure autocompleted keywords stay lowercase
+\set COMP_KEYWORD_CASE lower
+
+-- Instead of displaying nulls as blank space, which look the same as empty strings (but are not the same!), show nulls as [NULL].
+\pset null '[NULL]'
+
+-- Show pretty unicode lines between rows and columns in select results.
+\pset linestyle unicode
+
+-- Show pretty lines around the outside of select results.
+\pset border 2
+
+-- Turn off the pager so that results just keep scrolling by, rather than stopping.
+\pset pager off
+
+-- Within columns, wrap long lines so that select results still fit on the display.
+\pset format wrapped
+
