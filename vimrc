@@ -317,18 +317,18 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
     -- Format on save
-    -- require('lspconfig').util.nvim_multiline_command [[
+    -- vim.api.nvim_exec([[
     --   augroup lsp_document_autoformat
     --     autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)
     --   augroup END
-    -- ]]
+    -- ]], false)
   elseif client.resolved_capabilities.document_range_formatting then
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    require('lspconfig').util.nvim_multiline_command [[
+    vim.api.nvim_exec([[
       :hi LspReferenceRead cterm=bold ctermbg=red guibg=#3d435c
       :hi LspReferenceText cterm=bold ctermbg=red guibg=#3d435c
       :hi LspReferenceWrite cterm=bold ctermbg=red guibg=#3d435c
@@ -337,7 +337,7 @@ local on_attach = function(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]]
+    ]], false)
   end
 
 end
@@ -350,41 +350,46 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
-nvim_lsp.bashls.setup{}
+nvim_lsp.bashls.setup{
+  on_attach = on_attach,
+  cmd = { "bash-language-server", "start" }
+}
 nvim_lsp.clangd.setup({
   on_attach = on_attach,
   root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git") or dirname,
   capabilities = lsp_status.capabilities
 })
 nvim_lsp.cmake.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "cmake-language-server" }
 }
 nvim_lsp.cssls.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-html-languageserver-bin/htmlServerMain.js", "--stdio" },
+  cmd = { "css-languageserver", "--stdio" },
   capabilities = capabilities,
 }
 nvim_lsp.html.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-html-languageserver-bin/htmlServerMain.js", "--stdio" },
+  cmd = { "html-languageserver", "--stdio" },
   capabilities = capabilities,
 }
 nvim_lsp.dockerls.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "docker-langserver", "--stdio" }
 }
 nvim_lsp.elixirls.setup{
   on_attach = on_attach,
   cmd = { "/Users/bfolkens/local/bin/elixir-ls/language_server.sh" }
 }
-nvim_lsp.elmls.setup{
-  on_attach = on_attach
-}
+-- nvim_lsp.elmls.setup{
+--   on_attach = on_attach
+-- }
 -- nvim_lsp.julials.setup{
 --  on_attach = on_attach
 -- }
 nvim_lsp.jsonls.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vscode-json-languageserver/bin/vscode-json-languageserver" }
+  cmd = { "vscode-json-languageserver" }
 }
 nvim_lsp.pyls.setup{
   on_attach = on_attach
@@ -400,18 +405,20 @@ nvim_lsp.sourcekit.setup{
   on_attach = on_attach
 }
 nvim_lsp.texlab.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "texlab" }
 }
 nvim_lsp.tsserver.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "typescript-language-server", "--stdio" }
 }
 nvim_lsp.vimls.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/vim-language-server/bin/index.js" }
+  cmd = { "vim-language-server", "--stdio" }
 }
 nvim_lsp.yamlls.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/.asdf/installs/nodejs/14.0.0/.npm/lib/node_modules/yaml-language-server/bin/yaml-language-server" }
+  cmd = { "yaml-language-server", "--stdio" }
 }
 EOF
 
@@ -433,9 +440,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
     -- This is similar to:
     -- "let g:diagnostic_insert_delay = 1"
-    update_in_insert = false,
+    update_in_insert = false
   }
 )
+
+-- vim.lsp.set_log_level("trace")
 EOF
 
 augroup NvimLspAutoFormatters
