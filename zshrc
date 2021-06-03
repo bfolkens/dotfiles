@@ -77,7 +77,7 @@ export EDITOR='nvim'
 export MAILDIR="$HOME/Mail"
 
 # PATH
-export PATH="/usr/local/sbin:$HOME/local/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$HOME/local/bin:/usr/local/opt/bin:$PATH"
 
 # Compilation flags
 export ARCHFLAGS="-Os -arch x86_64 -fno-common"
@@ -113,20 +113,28 @@ unsetopt share_history
 export GPG_TTY=$(tty)
 
 # Kubernetes
-export PATH="$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
 # This was super slow
 #source <(kubectl completion zsh)
+
+# google-cloud-sdk
+source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # OpenJDK
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
+# XCode dev env
+# export SDKROOT=$(xcrun --show-sdk-path)
+# Above is slow to wait each time on ZSH start, just copy below
+export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+
 # Android Studio
-export ANDROID_HOME="/usr/local/share/android-sdk"
-export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-export ANDROID_NDK_HOME="/usr/local/share/android-ndk"
+export ANDROID_HOME="/opt/homebrew/share/android-sdk"
+export ANDROID_SDK_ROOT="/opt/homebrew/share/android-sdk"
+export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 
 # OpenSSL tools
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl/bin:$PATH"
 
 # Skim (sk)
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || ag -l -g \"\" || find ."
@@ -160,10 +168,14 @@ _color() {
 }
 
 # direnv
-eval "$(direnv hook zsh)"
+eval "$(/opt/homebrew/bin/direnv hook zsh)"
+
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # asdf
-. /usr/local/opt/asdf/asdf.sh
+# . $(brew --prefix asdf)/asdf.sh
+. /opt/homebrew/opt/asdf/asdf.sh
+# . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
 # zprof
-
