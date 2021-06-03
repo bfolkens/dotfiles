@@ -52,7 +52,7 @@ set undofile        " unset session undo
 " Completion
 set shortmess+=c
 set shortmess-=F
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " Might speedup
 " https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
@@ -119,6 +119,9 @@ nnoremap <C-k> <C-w><C-k>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" vim-compe
+inoremap <silent><expr> <C-Space> compe#complete()
+
 " snippets
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -130,7 +133,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " endif
 
 " vim-polyglot (needs to be before plug#begin)
-let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'javascript', 'typescript', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
+let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'java', 'javascript', 'typescript', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
 
 " Plugins
 
@@ -158,7 +161,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 " Completion
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/lsp-status.nvim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
@@ -180,6 +183,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'gaving/vim-textobj-argument'
 Plug 'andyl/vim-textobj-elixir'
 " Plug 'rhysd/vim-textobj-ruby'
+
+Plug 'rizzatti/dash.vim'
 
 " Themes
 Plug 'drewtempelmeyer/palenight.vim'
@@ -281,12 +286,10 @@ EOF
 
 " nvim-lsp
 lua <<EOF
-local completion = require('completion')
 local lsp_status = require('lsp-status')
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
-  completion.on_attach(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -357,7 +360,8 @@ nvim_lsp.bashls.setup{
 nvim_lsp.clangd.setup({
   on_attach = on_attach,
   root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git") or dirname,
-  capabilities = lsp_status.capabilities
+  capabilities = lsp_status.capabilities,
+  cmd = { "/opt/homebrew/opt/llvm/bin/clangd" }
 })
 nvim_lsp.cmake.setup{
   on_attach = on_attach,
@@ -379,7 +383,7 @@ nvim_lsp.dockerls.setup{
 }
 nvim_lsp.elixirls.setup{
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/local/bin/elixir-ls/language_server.sh" }
+  cmd = { "/usr/local/elixir-ls/language_server.sh" }
 }
 -- nvim_lsp.elmls.setup{
 --   on_attach = on_attach
@@ -454,8 +458,17 @@ augroup NvimLspAutoFormatters
   " autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 5000)
 augroup END
 
-" completion-nvim
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" nvim-compe
+lua <<EOF
+require'compe'.setup({
+  enabled = true,
+  source = {
+    path = true,
+    buffer = true,
+    nvim_lsp = true,
+  },
+})
+EOF
 
 " highlight! LspDiagnosticsUnderline gui=undercurl term=undercurl cterm=undercurl
 highlight! LspDiagnosticsUnderlineHint guifg=#53FFE2
