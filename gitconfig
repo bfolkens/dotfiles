@@ -12,7 +12,7 @@
 	st = status
 	l = log --graph --oneline --decorate
 	lc = log ORIG_HEAD.. --stat --no-merges
-	p = pull
+	p = push
 	pr = pull --rebase
 [color]
 	diff = auto
@@ -49,6 +49,8 @@
 [tag]
 	forceSignAnnotated = true
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
 [credential "https://source.developers.google.com"]
 	helper = gcloud.sh
+[init]
+	defaultBranch = master
