@@ -2,7 +2,7 @@
 \encoding UTF8
 
 -- Do NOT automatically commit after every statement!
-\set AUTOCOMMIT off
+-- \set AUTOCOMMIT off
 
 -- Be verbose about feedback
 \set VERBOSITY verbose
@@ -33,3 +33,4 @@
 -- Within columns, wrap long lines so that select results still fit on the display.
 \pset format wrapped
 
+\timing on
