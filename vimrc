@@ -153,10 +153,12 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
 Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
-Plug 'junegunn/goyo.vim'
-Plug 'xi/limelight.vim' " until merged into junegunn/limelight.vim - PR #57
 
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'folke/twilight.nvim'
+Plug 'folke/zen-mode.nvim'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 " Plug 'nvim-treesitter/completion-treesitter'
 
 " Completion
@@ -221,15 +223,6 @@ if has('nvim')
   " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
   tnoremap <C-o> <C-\><C-n>
 end
-
-" Goyo/Limelight integration
-augroup Goyo
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-augroup END
-
-" Limelight configuration
-let g:limelight_priority = -1
 
 " neoformat
 if has('nvim')
@@ -393,7 +386,7 @@ nvim_lsp.elixirls.setup{
 -- }
 nvim_lsp.jsonls.setup{
   on_attach = on_attach,
-  cmd = { "vscode-json-languageserver" }
+  cmd = { "vscode-json-languageserver", "--stdio" }
 }
 nvim_lsp.pyls.setup{
   on_attach = on_attach
