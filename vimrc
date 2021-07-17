@@ -388,7 +388,7 @@ nvim_lsp.jsonls.setup{
   on_attach = on_attach,
   cmd = { "vscode-json-languageserver", "--stdio" }
 }
-nvim_lsp.pyls.setup{
+nvim_lsp.pylsp.setup{
   on_attach = on_attach
 }
 nvim_lsp.rust_analyzer.setup({
