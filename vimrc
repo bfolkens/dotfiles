@@ -119,9 +119,6 @@ nnoremap <C-k> <C-w><C-k>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" vim-compe
-inoremap <silent><expr> <C-Space> compe#complete()
-
 " snippets
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -163,7 +160,10 @@ Plug 'nvim-treesitter/playground'
 
 " Completion
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
 Plug 'nvim-lua/lsp-status.nvim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
@@ -451,14 +451,13 @@ augroup NvimLspAutoFormatters
   " autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 5000)
 augroup END
 
-" nvim-compe
+" nvim-cmp
 lua <<EOF
-require'compe'.setup({
-  enabled = true,
-  source = {
-    path = true,
-    buffer = true,
-    nvim_lsp = true,
+require'cmp'.setup({
+  sources = {
+    { name = 'path' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' }
   },
 })
 EOF
