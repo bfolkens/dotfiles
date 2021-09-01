@@ -103,12 +103,6 @@ nmap <Leader>ta :TestSuite<CR>
 nmap <Leader>tl :TestLast<CR>
 nmap <Leader>tg :TestVisit<CR>
 
-" git-gutter
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>hs <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterUndoHunk
-
 " window nav maps
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
@@ -135,7 +129,6 @@ let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html',
 " Plugins
 
 call plug#begin()
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -150,6 +143,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
 Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'folke/twilight.nvim'
 Plug 'folke/zen-mode.nvim'
@@ -211,10 +206,6 @@ let g:picker_custom_find_flags = '--color never'
 let g:palenight_terminal_italics = 1
 " let g:gruvbox_italic=1
 
-" gitgutter
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-
 " vim-test
 if has('nvim')
   let test#strategy = "neovim"
@@ -275,6 +266,11 @@ require'nvim-treesitter.configs'.setup {
   },
   textobjects = { enable = true },
 }
+EOF
+
+" gitsigns
+lua <<EOF
+require('gitsigns').setup()
 EOF
 
 " nvim-lsp
