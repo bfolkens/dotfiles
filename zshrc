@@ -131,10 +131,12 @@ export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platf
 # Android Studio
 export ANDROID_HOME="/opt/homebrew/share/android-sdk"
 export ANDROID_SDK_ROOT="/opt/homebrew/share/android-sdk"
-export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 
 # OpenSSL tools
 export PATH="/opt/homebrew/opt/openssl/bin:$PATH"
+
+# go
+export GOENV="$HOME/go"
 
 # Skim (sk)
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || ag -l -g \"\" || find ."
