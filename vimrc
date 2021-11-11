@@ -109,19 +109,21 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" snippets
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" For conceal markers.
-" if has('conceal')
-"   set conceallevel=1 concealcursor=n
-" endif
+" vim-vsnip
+" imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+" smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+" nmap        s   <Plug>(vsnip-select-text)
+" xmap        s   <Plug>(vsnip-select-text)
+" nmap        S   <Plug>(vsnip-cut-text)
+" xmap        S   <Plug>(vsnip-cut-text)
 
 " vim-polyglot (needs to be before plug#begin)
 let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html', 'java', 'javascript', 'typescript', 'lua', 'go', 'python', 'markdown', 'elm', 'yaml', 'julia']
@@ -159,10 +161,12 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets' " remove once more are supported by LSP
+
 Plug 'nvim-lua/lsp-status.nvim'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'honza/vim-snippets'
 
 Plug 'liuchengxu/vista.vim'
 
@@ -248,10 +252,6 @@ augroup LaTeXPreview
   autocmd Filetype tex setl updatetime=1
 augroup END
 let g:livepreview_previewer = 'open -ag Preview'
-
-" neosnippet
-" let g:neosnippet#snippets_directory='~/.config/nvim/plugged/vim-snippets'
-" let g:neosnippet#enable_snipmate_compatibility = 1
 
 " nvim-treesitter
 lua <<EOF
@@ -339,6 +339,7 @@ lsp_status.register_progress()
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = { properties = { 'documentation', 'detail', 'additionalTextEdits', } }
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
@@ -449,12 +450,21 @@ augroup END
 
 " nvim-cmp
 lua <<EOF
-require'cmp'.setup({
-  sources = {
-    { name = 'path' },
-    { name = 'buffer' },
-    { name = 'nvim_lsp' }
+local cmp = require'cmp'
+cmp.setup({
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'vsnip' }
+  }
 })
 EOF
 
