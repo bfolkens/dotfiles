@@ -163,6 +163,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'onsails/lspkind-nvim'
 Plug 'rafamadriz/friendly-snippets' " remove once more are supported by LSP
 
 Plug 'nvim-lua/lsp-status.nvim'
@@ -330,7 +331,6 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
-
 end
 
 lsp_status.register_progress()
@@ -475,6 +475,13 @@ cmp.setup({
     { name = 'vsnip' }
   }
 })
+
+local lspkind = require('lspkind')
+cmp.setup {
+  formatting = {
+    format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+  }
+}
 EOF
 
 " highlight! LspDiagnosticsUnderline gui=undercurl term=undercurl cterm=undercurl
