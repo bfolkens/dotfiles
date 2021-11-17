@@ -163,7 +163,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets' " remove once more are supported by LSP
 
 Plug 'nvim-lua/lsp-status.nvim'
@@ -350,7 +349,7 @@ nvim_lsp.bashls.setup{
 nvim_lsp.clangd.setup({
   on_attach = on_attach,
   root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git") or dirname,
-  capabilities = lsp_status.capabilities,
+  capabilities = capabilities,
   cmd = { "/opt/homebrew/opt/llvm/bin/clangd" }
 })
 nvim_lsp.cmake.setup{
@@ -373,7 +372,8 @@ nvim_lsp.dockerls.setup{
 }
 nvim_lsp.elixirls.setup{
   on_attach = on_attach,
-  cmd = { "/usr/local/elixir-ls/language_server.sh" }
+  cmd = { "/usr/local/elixir-ls/language_server.sh" },
+  capabilities = capabilities,
 }
 -- nvim_lsp.elmls.setup{
 --   on_attach = on_attach
@@ -390,7 +390,7 @@ nvim_lsp.pylsp.setup{
 }
 nvim_lsp.rust_analyzer.setup({
   on_attach = on_attach,
-  capabilities = lsp_status.capabilities
+  capabilities = capabilities
 })
 nvim_lsp.solargraph.setup{
   on_attach = on_attach
@@ -452,11 +452,20 @@ augroup END
 lua <<EOF
 local cmp = require'cmp'
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
   mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
