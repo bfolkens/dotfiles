@@ -44,7 +44,6 @@ set title           " show title in console title bar
 set ttyfast         " smoother changes
 set scrolloff=3     " keep 3 lines when scrolling
 set laststatus=2    " allways show status line
-set noshowmode      " modeline not necessary with lightline
 set signcolumn=yes  " keep the gutter open so it doesn't jar the screen
 set undodir=~/.vim/undodir " config global undo
 set undofile        " unset session undo
@@ -140,7 +139,8 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
 Plug 'srstevenson/vim-picker'
@@ -495,47 +495,37 @@ highlight! DiagnosticInfo guifg=#FF53E6
 highlight! DiagnosticWarn guifg=#FF8C4B
 highlight! DiagnosticError guifg=#FF5370
 
-" lightline
-let g:lightline = {
-  \ 'component': {
-  \   'lineinfo': '%3l:%-2v'
-  \ },
-  \ 'component_function': {
-  \   'readonly': 'LightlineReadonly',
-  \   'fugitive': 'LightlineFugitive',
-  \   'vista': 'NearestMethodOrFunction',
-  \   'lsp_status': 'LspStatus'
-  \ },
-  \ 'active': {
-  \   'left': [['mode'], ['readonly', 'fugitive', 'relativepath', 'modified'], ['lsp_status']],
-  \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype' ]]
-  \ },
-  \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' }
-  \ }
-
-let g:lightline['colorscheme'] = 'palenight'
-
-function! LightlineReadonly()
-  return &readonly ? '' : ''
-endfunction
-
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ''.branch : ''
-  endif
-
-  return ''
-endfunction
-
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
-endfunction
+" lualine
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+END
 
 " vista
 let g:vista#renderer#enable_icon = 1
