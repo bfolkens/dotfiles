@@ -79,11 +79,6 @@ let mapleader = ";"
 nmap <Leader>a :Ack!<Space>
 nnoremap <Leader>d :Vista<CR>
 
-" Tab and shift-Tab to change buffer
-"nnoremap <silent><tab>    :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-"noremap <silent><s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-"nnoremap <silent><tab>   :b#<CR>
-
 " Stop highlighting on Enter
 nnoremap <esc> :noh<CR>
 
@@ -101,6 +96,23 @@ nmap <Leader>tf :TestFile<CR>
 nmap <Leader>ta :TestSuite<CR>
 nmap <Leader>tl :TestLast<CR>
 nmap <Leader>tg :TestVisit<CR>
+
+" bufferline hacks
+"
+" These commands will navigate through buffers in order regardless of which mode you are using
+" e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+nnoremap <silent>[b :BufferLineCycleNext<CR>
+nnoremap <silent>]b :BufferLineCyclePrev<CR>
+
+" These commands will move the current buffer backwards or forwards in the bufferline
+" nnoremap <silent><mymap> :BufferLineMoveNext<CR>
+" nnoremap <silent><mymap> :BufferLineMovePrev<CR>
+
+" These commands will sort buffers by directory, language, or a custom criteria
+nnoremap <silent>be :BufferLineSortByExtension<CR>
+nnoremap <silent>bd :BufferLineSortByDirectory<CR>
+" nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
+
 
 " window nav maps
 nnoremap <C-l> <C-w><C-l>
@@ -140,6 +152,7 @@ Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'edkolev/tmuxline.vim'
 Plug 'janko-m/vim-test'
@@ -525,6 +538,11 @@ require('lualine').setup {
   tabline = {},
   extensions = {}
 }
+END
+
+" bufferline
+lua << END
+require("bufferline").setup {}
 END
 
 " vista
