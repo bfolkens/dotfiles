@@ -485,20 +485,15 @@ cmp.setup {
 EOF
 
 " highlight! LspDiagnosticsUnderline gui=undercurl term=undercurl cterm=undercurl
-highlight! LspDiagnosticsUnderlineHint guifg=#53FFE2
-highlight! LspDiagnosticsUnderlineInformation guifg=#FF53E6
-highlight! LspDiagnosticsUnderlineWarning guifg=#FF8C4B
-highlight! LspDiagnosticsUnderlineError guifg=#FF5370
+highlight! DiagnosticUnderlineHint guifg=#53FFE2
+highlight! DiagnosticUnderlineInfo guifg=#FF53E6
+highlight! DiagnosticUnderlineWarn guifg=#FF8C4B
+highlight! DiagnosticUnderlineError guifg=#FF5370
 
-highlight! LspDiagnosticsDefaultHint guifg=#53FFE2
-highlight! LspDiagnosticsDefaultInformation guifg=#FF53E6
-highlight! LspDiagnosticsDefaultWarning guifg=#FF8C4B
-highlight! LspDiagnosticsDefaultError guifg=#FF5370
-
-" call sign_define("LspDiagnosticsErrorSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultError"})
-" call sign_define("LspDiagnosticsWarningSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultWarning"})
-" call sign_define("LspDiagnosticsInformationSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultInformation"})
-" call sign_define("LspDiagnosticsHintSign", {"text" : "", "texthl" : "LspDiagnosticsDefaultHint"})
+highlight! DiagnosticHint guifg=#53FFE2
+highlight! DiagnosticInfo guifg=#FF53E6
+highlight! DiagnosticWarn guifg=#FF8C4B
+highlight! DiagnosticError guifg=#FF5370
 
 " lightline
 let g:lightline = {
