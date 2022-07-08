@@ -159,7 +159,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
-Plug 'rafamadriz/friendly-snippets' " remove once more are supported by LSP
 
 Plug 'nvim-lua/lsp-status.nvim'
 
@@ -330,10 +329,14 @@ end
 
 lsp_status.register_progress()
 
---Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+--Enable (broadcasting) snippet capability for completion
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = { properties = { 'documentation', 'detail', 'additionalTextEdits', } }
+
+--Enable lsp completion
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
@@ -453,10 +456,9 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
@@ -464,7 +466,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'vsnip' }
+    -- { name = 'vsnip' }
   }
 })
 
