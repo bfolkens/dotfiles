@@ -91,11 +91,11 @@ nmap <leader>] <Plug>(PickerTag)
 nmap <leader>h <Plug>(PickerHelp)
 
 " vim-test maps
-nmap <Leader>tt :TestNearest<CR>
-nmap <Leader>tf :TestFile<CR>
-nmap <Leader>ta :TestSuite<CR>
-nmap <Leader>tl :TestLast<CR>
-nmap <Leader>tg :TestVisit<CR>
+nmap <leader>t :TestNearest<CR>
+nmap <leader>tf :TestFile<CR>
+nmap <leader>ta :TestSuite<CR>
+nmap <leader>tl :TestLast<CR>
+nmap <leader>tg :TestVisit<CR>
 
 " window nav maps
 nnoremap <C-l> <C-w><C-l>
@@ -137,7 +137,7 @@ Plug 'mileszs/ack.vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'edkolev/tmuxline.vim'
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
 Plug 'nvim-lua/plenary.nvim'
