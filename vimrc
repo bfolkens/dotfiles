@@ -126,12 +126,12 @@ let g:polyglot_disabled = ['tex', 'rust', 'html', 'css', 'bash', 'json', 'html',
 
 call plug#begin()
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
+Plug 'kylechui/nvim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'nvim-lualine/lualine.nvim'
