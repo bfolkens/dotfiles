@@ -54,7 +54,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(history z history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(history history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
 
 # User configuration
 
@@ -72,6 +72,9 @@ export LANG="en_US.UTF-8"
 # Favorite keybindings
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
+
+# Fix ctrl-o for neomutt
+stty discard undef
 
 export EDITOR='nvim'
 export MAILDIR="$HOME/Mail"
@@ -119,6 +122,7 @@ export GPG_TTY=$(tty)
 # google-cloud-sdk
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+export USE_GKE_GCLOUD_AUTH_PLUGIN=true
 
 # OpenJDK
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
@@ -179,5 +183,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # . $(brew --prefix asdf)/asdf.sh
 . /opt/homebrew/opt/asdf/asdf.sh
 # . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # zprof
