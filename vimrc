@@ -142,7 +142,6 @@ Plug 'srstevenson/vim-picker'
 Plug 'sbdchd/neoformat'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 Plug 'folke/twilight.nvim'
 Plug 'folke/zen-mode.nvim'
@@ -416,17 +415,15 @@ nvim_lsp.yamlls.setup{
 EOF
 
 lua << EOF
-require("lsp_lines").setup()
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
     -- let g:diagnostic_enable_virtual_text = 0
-    virtual_text = false,
-
-    -- lsp_lines.nvim
-    virtual_lines = true,
-
+    -- virtual_text = false,
+    virtual_text = {
+      spacing = 4,
+      prefix = '',
+    },
     -- This is similar to:
     -- let g:diagnostic_show_sign = 1
     -- To configure sign display,
