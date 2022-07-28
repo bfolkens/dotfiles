@@ -135,6 +135,7 @@ Plug 'kylechui/nvim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mileszs/ack.vim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'SmiteshP/nvim-navic'
 Plug 'ryanoasis/vim-devicons'
 Plug 'edkolev/tmuxline.vim'
 Plug 'vim-test/vim-test'
@@ -271,9 +272,11 @@ EOF
 " nvim-lsp
 lua <<EOF
 local lsp_status = require('lsp-status')
+local navic = require("nvim-navic")
 
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client, bufnr)
+  navic.attach(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -496,6 +499,11 @@ highlight! DiagnosticError guifg=#FF5370
 
 " lualine
 lua << END
+local navic = require("nvim-navic")
+navic.setup {
+  separator = "  "
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -508,7 +516,9 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_c = {'filename',
+      { navic.get_location, cond = navic.is_available }
+    },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
