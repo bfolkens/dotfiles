@@ -209,7 +209,7 @@ let g:palenight_terminal_italics = 1
 
 " vim-test
 if has('nvim')
-  let test#strategy = "neovim"
+  let test#strategy = "basic"
   let test#elixir#exunit#executable = "MIX_ENV=test mix test"
 
   " by default in terminal mode, you have to press ctrl-\-n to get into normal mode
@@ -362,12 +362,12 @@ nvim_lsp.cmake.setup{
 }
 nvim_lsp.cssls.setup{
   on_attach = on_attach,
-  cmd = { "css-languageserver", "--stdio" },
+  cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
 }
 nvim_lsp.html.setup{
   on_attach = on_attach,
-  cmd = { "html-languageserver", "--stdio" },
+  cmd = { "vscode-html-language-server", "--stdio" },
   capabilities = capabilities,
 }
 nvim_lsp.dockerls.setup{
@@ -387,7 +387,7 @@ nvim_lsp.elixirls.setup{
 -- }
 nvim_lsp.jsonls.setup{
   on_attach = on_attach,
-  cmd = { "vscode-json-languageserver", "--stdio" }
+  cmd = { "vscode-json-language-server", "--stdio" }
 }
 nvim_lsp.pylsp.setup{
   on_attach = on_attach
