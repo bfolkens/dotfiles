@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["ack.vim"] = {
-    loaded = true,
-    path = "/Users/bfolkens/.local/share/nvim/site/pack/packer/start/ack.vim",
-    url = "https://github.com/mileszs/ack.vim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/bfolkens/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -239,6 +234,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/bfolkens/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-ripgrep"] = {
+    loaded = true,
+    path = "/Users/bfolkens/.local/share/nvim/site/pack/packer/start/vim-ripgrep",
+    url = "https://github.com/jremmen/vim-ripgrep"
   },
   ["vim-test"] = {
     loaded = true,
