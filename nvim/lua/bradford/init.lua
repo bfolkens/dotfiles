@@ -11,13 +11,9 @@ autocmd('TextYankPost', {
 		pattern = '*',
 		callback = function()
 			vim.highlight.on_yank({
-					higroup = 'IncSearch',
+					higroup = 'Substitute',
 					timeout = 100,
+					on_visual = false
 				})
 		end,
 	})
-
--- augroup highlight_yank
---   autocmd!
---   autocmd TextYankPost * silent! lua require 'vim.highlight'.on_yank {higroup='Substitute', timeout=100, on_visual=false}
--- augroup END
