@@ -26,8 +26,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
   -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ float = not vim.diagnostic.config().virtual_lines and { border = "rounded" }})<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next({ float = not vim.diagnostic.config().virtual_lines and { border = "rounded" }})<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
@@ -176,11 +176,14 @@ local lsp_lines = require("lsp_lines")
 lsp_lines.setup()
 
 -- FIXME: This isn't working?
-vim.keymap.set(
-  "",
-  "<leader>l",
-  lsp_lines.toggle,
-  { desc = "Toggle lsp_lines" }
+vim.keymap.set("", "<leader>l", function()
+  print(vim.diagnostic.config().virtual_text)
+  vim.diagnostic.config({
+      virtual_lines = not vim.diagnostic.config().virtual_lines,
+      virtual_text = not vim.diagnostic.config().virtual_text
+    })
+  end,
+  { silent = true, noremap = true }
 )
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -188,9 +191,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     -- This will disable virtual text, like doing:
     -- let g:diagnostic_enable_virtual_text = 0
     virtual_text = false,
-
-    -- lsp_lines.nvim
-    virtual_lines = true,
 
     -- This is similar to:
     -- let g:diagnostic_show_sign = 1
