@@ -50,8 +50,9 @@ return packer.startup(function(use)
 	use 'folke/twilight.nvim'
 	use 'folke/zen-mode.nvim'
 
+	-- Treesitter
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-	use 'nvim-treesitter/playground'
+	-- use 'nvim-treesitter/playground' # do we really need this? is it a prereq for something?
 	-- use 'nvim-treesitter/completion-treesitter'
 
 	-- Completion
