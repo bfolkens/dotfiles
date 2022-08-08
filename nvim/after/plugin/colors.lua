@@ -13,15 +13,15 @@ if vim.g.colors_name == "palenight" then
   vim.api.nvim_set_hl(0, "HorizSplit", { fg = "#3E425B" })
 
   -- Set diagnostic colors
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { fg = "#53FFE2" })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = "#FF53E6" })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "#FF8C4B" })
-  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#FF5370" })
-
   vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#53FFE2" })
   vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#FF53E6" })
   vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#FF8C4B" })
   vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#FF5370" })
-end
 
--- vim.api.nvim_set_hl(0, "LspDiagnosticsUnderline", { undercurl = true })
+  -- FIXME: For some reason the "sp" option isn't working for underline
+  -- FIXME: undercurl looks like an underline?
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { sp = "#53FFE2", undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { sp = "#FF53E6", undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = "#FF8C4B", undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "#FF5370", undercurl = true })
+end

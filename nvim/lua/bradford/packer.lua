@@ -44,7 +44,6 @@ return packer.startup(function(use)
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('gitsigns').setup() end
 	}
-	use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 	-- use 'ThePrimeagen/harpoon'
 
 	use 'folke/twilight.nvim'
