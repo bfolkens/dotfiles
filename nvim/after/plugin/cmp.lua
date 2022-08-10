@@ -13,17 +13,19 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
+    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 2 },
     { name = 'path' },
-    -- { name = 'vsnip' }
-  }
+    -- { name = 'vsnip', keyword_length = 2 }
+  },
+  window = {
+    documentation = cmp.config.window.bordered()
+  },
 })
 
 local lspkind = require('lspkind')
 cmp.setup {
   formatting = {
-    format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+    format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
   }
 }
-
