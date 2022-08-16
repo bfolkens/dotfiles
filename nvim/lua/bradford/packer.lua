@@ -38,12 +38,16 @@ return packer.startup(function(use)
 	use 'ryanoasis/vim-devicons'
 	use 'edkolev/tmuxline.vim'
 	use 'vim-test/vim-test'
-	use 'srstevenson/vim-picker'
 	use 'sbdchd/neoformat'
 	use {
 		'lewis6991/gitsigns.nvim',
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function() require('gitsigns').setup() end
+	}
+	use {
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.0',
+		requires = { 'nvim-lua/plenary.nvim' }
 	}
 	-- use 'ThePrimeagen/harpoon'
 
