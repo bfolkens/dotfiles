@@ -102,7 +102,7 @@ nvim_lsp.dockerls.setup{
 }
 nvim_lsp.elixirls.setup{
   on_attach = on_attach,
-  cmd = { "/usr/local/elixir-ls/language_server.sh" },
+  cmd = { "/Users/bfolkens/local/opt/elixir-ls/language_server.sh" },
   capabilities = capabilities,
 }
 -- nvim_lsp.elmls.setup{
@@ -143,7 +143,8 @@ nvim_lsp.sumneko_lua.setup {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        -- NOTE: some discussion on Reddit about this loading up all the plugin files? slowdown?
+        -- library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
