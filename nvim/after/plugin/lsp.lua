@@ -31,7 +31,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
     -- Format on save
@@ -40,12 +40,12 @@ local on_attach = function(client, bufnr)
     --     autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 5000)
     --   augroup END
     -- ]], false)
-  elseif client.resolved_capabilities.document_range_formatting then
+  elseif client.server_capabilities.documentRangeFormattingProvider then
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_exec([[
       :hi LspReferenceRead cterm=bold ctermbg=red guibg=#3d435c
       :hi LspReferenceText cterm=bold ctermbg=red guibg=#3d435c
@@ -81,7 +81,7 @@ nvim_lsp.bashls.setup{
 }
 nvim_lsp.clangd.setup({
   on_attach = on_attach,
-  root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git") or dirname,
+  root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git"),
   capabilities = capabilities,
   cmd = { "/opt/homebrew/opt/llvm/bin/clangd" }
 })
