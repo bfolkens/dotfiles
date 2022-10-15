@@ -61,17 +61,8 @@ end
 
 lsp_status.register_progress()
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
---Enable window/workDoneProgress for lsp-status
-capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
-
---Enable (broadcasting) snippet capability for completion
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = { properties = { 'documentation', 'detail', 'additionalTextEdits', } }
-
 --Enable lsp completion
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
