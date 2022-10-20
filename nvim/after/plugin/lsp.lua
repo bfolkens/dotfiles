@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 
     -- Format on save
     -- vim.api.nvim_exec([[
@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr)
     --   augroup END
     -- ]], false)
   elseif client.server_capabilities.documentRangeFormattingProvider then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
