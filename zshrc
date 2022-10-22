@@ -96,8 +96,6 @@ export SSH_KEY_PATH="~/.ssh/id_ed25519.pub"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias m="neomutt"
-alias l="exa -la --git"
 
 # Load all files in aliases.d
 for file in ~/.dotfiles/aliases.d/* ; do
@@ -123,9 +121,6 @@ export GPG_TTY=$(tty)
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=true
-
-# OpenJDK
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 # XCode dev env
 # export SDKROOT=$(xcrun --show-sdk-path)
