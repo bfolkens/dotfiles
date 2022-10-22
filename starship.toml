@@ -9,6 +9,9 @@ format = "[$duration](dimmed)"
 min_time = 2_000
 show_milliseconds = true
 
+[status]
+disabled = false
+
 
 # Nerd font replacements
 
