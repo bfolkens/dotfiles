@@ -20,8 +20,8 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+	-- Packer can manage itself
+	use 'wbthomason/packer.nvim'
 
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-commentary'
@@ -65,10 +65,15 @@ return packer.startup(function(use)
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
-			'hrsh7th/cmp-buffer', 'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-path', 'hrsh7th/cmp-vsnip',
-			'hrsh7th/vim-vsnip'
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-path'
 		}
+	}
+	use { 'saadparwaiz1/cmp_luasnip' }
+	use {
+		'L3MON4D3/LuaSnip',
+		after = 'nvim-cmp'
 	}
 
 	use 'nvim-lua/lsp-status.nvim'
@@ -77,7 +82,7 @@ return packer.startup(function(use)
 
 	-- Formats
 	use 'sheerun/vim-polyglot'
-	use {'earthly/earthly.vim', branch = 'main'}
+	use { 'earthly/earthly.vim', branch = 'main' }
 	use 'ledger/vim-ledger'
 	use 'rcaputo/vim-ledger_x'
 	-- use 'lervag/vimtex'
