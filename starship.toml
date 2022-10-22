@@ -12,6 +12,9 @@ show_milliseconds = true
 [status]
 disabled = false
 
+[git_metrics]
+disabled = false
+
 
 # Nerd font replacements
 
