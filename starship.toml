@@ -1,0 +1,126 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+right_format = "$cmd_duration"
+format = "$all$directory$character"
+
+[cmd_duration]
+format = "[$duration](dimmed)"
+min_time = 2_000
+show_milliseconds = true
+
+
+# Nerd font replacements
+
+[aws]
+symbol = " "
+
+[buf]
+symbol = " "
+disabled = true
+
+[c]
+symbol = " "
+disabled = true
+
+[conda]
+symbol = " "
+disabled = true
+
+[dart]
+symbol = " "
+disabled = true
+
+[directory]
+truncation_symbol = "…/"
+truncate_to_repo = false
+read_only = " "
+
+[docker_context]
+symbol = " "
+disabled = true
+
+[elixir]
+symbol = " "
+disabled = true
+
+[elm]
+symbol = " "
+disabled = true
+
+[gcloud]
+symbol = " "
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[golang]
+symbol = " "
+disabled = true
+
+[haskell]
+symbol = " "
+disabled = true
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+disabled = true
+
+[julia]
+symbol = " "
+disabled = true
+
+[lua]
+symbol = " "
+disabled = true
+
+[memory_usage]
+symbol = " "
+
+[meson]
+symbol = "喝 "
+disabled = true
+
+[nim]
+symbol = " "
+disabled = true
+
+[nix_shell]
+symbol = " "
+disabled = true
+
+[nodejs]
+symbol = " "
+disabled = true
+
+[package]
+symbol = " "
+disabled = true
+
+[python]
+symbol = " "
+disabled = true
+
+[rlang]
+symbol = "ﳒ "
+disabled = true
+
+[ruby]
+symbol = " "
+disabled = true
+
+[rust]
+symbol = " "
+disabled = true
+
+[scala]
+symbol = " "
+disabled = true
+
+[spack]
+symbol = "🅢 "
+disabled = true
