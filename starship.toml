@@ -88,6 +88,7 @@ disabled = true
 
 [gcloud]
 symbol = " "
+format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 
 [git_branch]
 symbol = " "
