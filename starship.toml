@@ -2,7 +2,34 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 right_format = "$cmd_duration"
-format = "$all$directory$character"
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$vcsh\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$kubernetes\
+$env_var\
+$line_break\
+$sudo\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$jobs\
+$time\
+$status\
+$package\
+$shell\
+$character"""
 
 [cmd_duration]
 format = "[$duration](dimmed)"
@@ -14,6 +41,11 @@ disabled = false
 
 [git_metrics]
 disabled = false
+
+[kubernetes]
+disabled = false
+style = "blue bold"
+format = 'on [$symbol$context( \($namespace\))]($style) '
 
 
 # Nerd font replacements
