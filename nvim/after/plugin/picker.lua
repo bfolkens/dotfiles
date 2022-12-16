@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>b", "<Plug>(PickerBuffer)")
+vim.keymap.set("n", "<leader>f", "<Plug>(PickerEdit)")
+vim.keymap.set("n", "<leader>s", "<Plug>(PickerSplit)")
+vim.keymap.set("n", "<leader>v", "<Plug>(PickerVsplit)")
+vim.keymap.set("n", "<leader>]", "<Plug>(PickerTag)")
+vim.keymap.set("n", "<leader>h", "<Plug>(PickerHelp)")

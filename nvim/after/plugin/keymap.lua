@@ -1,4 +1,3 @@
-local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ";"
@@ -12,10 +11,10 @@ vim.g.mapleader = ";"
 --  command_mode = "c"
 
 -- Stop highlighting on Enter
-keymap("n", "<esc>", ":noh<CR>", opts)
+vim.keymap.set("n", "<esc>", ":noh<CR>", opts)
 
 -- Better window navigation
-keymap("n", "<C-l>", "<C-w><C-l>", opts)
-keymap("n", "<C-h>", "<C-w><C-h>", opts)
-keymap("n", "<C-j>", "<C-w><C-j>", opts)
-keymap("n", "<C-k>", "<C-w><C-k>", opts)
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)

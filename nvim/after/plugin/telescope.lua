@@ -39,3 +39,7 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+
+vim.keymap.set("n", "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
+vim.keymap.set("n", "<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
+vim.keymap.set("n", "<leader>h", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
