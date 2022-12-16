@@ -39,6 +39,7 @@ return packer.startup(function(use)
 	use 'edkolev/tmuxline.vim'
 	use 'vim-test/vim-test'
 	use 'sbdchd/neoformat'
+	use 'mbbill/undotree'
 	use {
 		'lewis6991/gitsigns.nvim',
 		requires = { 'nvim-lua/plenary.nvim' },
