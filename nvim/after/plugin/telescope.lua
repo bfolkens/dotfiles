@@ -1,4 +1,5 @@
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 require('telescope').setup{
   defaults = {
@@ -40,6 +41,6 @@ require('telescope').setup{
   }
 }
 
-vim.keymap.set("n", "<leader>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
-vim.keymap.set("n", "<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>")
-vim.keymap.set("n", "<leader>h", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
+vim.keymap.set("n", "<leader>b", builtin.buffers)
+vim.keymap.set("n", "<leader>f", builtin.find_files)
+vim.keymap.set("n", "<leader>h", builtin.help_tags)
