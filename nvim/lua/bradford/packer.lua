@@ -52,6 +52,8 @@ return packer.startup(function(use)
 	}
 	-- use 'ThePrimeagen/harpoon'
 
+	use { 'ggandor/leap.nvim', config = function() require('leap').add_default_mappings() end }
+
 	use 'folke/twilight.nvim'
 	use 'folke/zen-mode.nvim'
 
