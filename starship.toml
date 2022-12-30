@@ -38,6 +38,7 @@ show_milliseconds = true
 
 [status]
 disabled = false
+symbol = "✖"
 
 [git_metrics]
 disabled = false
