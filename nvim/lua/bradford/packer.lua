@@ -62,8 +62,12 @@ return packer.startup(function(use)
 	-- use 'nvim-treesitter/playground'
 	-- use 'nvim-treesitter/completion-treesitter'
 
-	-- Completion
-	use 'neovim/nvim-lspconfig'
+	-- LSP/Completion
+	use {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
+	}
 	use 'onsails/lspkind-nvim'
 	use {
 		'hrsh7th/nvim-cmp',

@@ -1,3 +1,6 @@
+require("mason").setup()
+require("mason-lspconfig").setup { automatic_installation = true }
+
 local lsp_status = require('lsp-status')
 local navic = require("nvim-navic")
 
@@ -7,7 +10,7 @@ local on_attach = function(client, bufnr)
 
   -- Keybindings for LSPs
   -- Note these are in on_attach so that they don't override bindings in a non-LSP setting
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
   vim.keymap.set('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -55,37 +58,33 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
-nvim_lsp.bashls.setup{
+nvim_lsp.bashls.setup {
   on_attach = on_attach,
-  cmd = { "bash-language-server", "start" }
+  capabilities = capabilities
 }
 nvim_lsp.clangd.setup({
-  on_attach = on_attach,
   root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git"),
+  on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "/opt/homebrew/opt/llvm/bin/clangd" }
 })
-nvim_lsp.cmake.setup{
+nvim_lsp.cmake.setup {
   on_attach = on_attach,
-  cmd = { "cmake-language-server" }
+  capabilities = capabilities
 }
-nvim_lsp.cssls.setup{
+nvim_lsp.cssls.setup {
   on_attach = on_attach,
-  cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
 }
-nvim_lsp.html.setup{
+nvim_lsp.html.setup {
   on_attach = on_attach,
-  cmd = { "vscode-html-language-server", "--stdio" },
   capabilities = capabilities,
 }
-nvim_lsp.dockerls.setup{
+nvim_lsp.dockerls.setup {
   on_attach = on_attach,
-  cmd = { "docker-langserver", "--stdio" }
+  capabilities = capabilities
 }
-nvim_lsp.elixirls.setup{
+nvim_lsp.elixirls.setup {
   on_attach = on_attach,
-  cmd = { "/Users/bfolkens/local/opt/elixir-ls/language_server.sh" },
   capabilities = capabilities,
 }
 -- nvim_lsp.elmls.setup{
@@ -94,22 +93,21 @@ nvim_lsp.elixirls.setup{
 -- nvim_lsp.julials.setup{
 --  on_attach = on_attach
 -- }
-nvim_lsp.jsonls.setup{
+nvim_lsp.jsonls.setup {
   on_attach = on_attach,
-  cmd = { "vscode-json-languageserver", "--stdio" }
+  capabilities = capabilities
 }
-nvim_lsp.pylsp.setup{
-  on_attach = on_attach
+nvim_lsp.pylsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 nvim_lsp.rust_analyzer.setup({
   on_attach = on_attach,
   capabilities = capabilities
 })
-nvim_lsp.solargraph.setup{
-  on_attach = on_attach
-}
-nvim_lsp.sourcekit.setup{
-  on_attach = on_attach
+nvim_lsp.solargraph.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
@@ -122,7 +120,7 @@ nvim_lsp.sumneko_lua.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -136,57 +134,58 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-nvim_lsp.texlab.setup{
+nvim_lsp.sqlls.setup {
   on_attach = on_attach,
-  cmd = { "texlab" }
+  capabilities = capabilities
 }
-nvim_lsp.tsserver.setup{
+nvim_lsp.texlab.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "typescript-language-server", "--stdio" }
 }
-nvim_lsp.vimls.setup{
+nvim_lsp.vimls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "vim-language-server", "--stdio" }
 }
-nvim_lsp.yamlls.setup{
+nvim_lsp.yamlls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "yaml-language-server", "--stdio" }
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- This will disable virtual text, like doing:
-    -- let g:diagnostic_enable_virtual_text = 0
-    virtual_text = false,
+  -- This will disable virtual text, like doing:
+  -- let g:diagnostic_enable_virtual_text = 0
+  virtual_text = false,
 
-    -- This is similar to:
-    -- let g:diagnostic_show_sign = 1
-    -- To configure sign display,
-    --  see: ":help vim.lsp.diagnostic.set_signs()"
-    signs = true,
+  -- This is similar to:
+  -- let g:diagnostic_show_sign = 1
+  -- To configure sign display,
+  --  see: ":help vim.lsp.diagnostic.set_signs()"
+  signs = true,
 
-    -- This is similar to:
-    -- "let g:diagnostic_insert_delay = 1"
-    update_in_insert = false,
+  -- This is similar to:
+  -- "let g:diagnostic_insert_delay = 1"
+  update_in_insert = false,
 
-    underline = true,
-  }
+  underline = true,
+}
 )
 
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, {
-    border = "rounded",
-  }
+  border = "rounded",
+}
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help, {
-    border = 'rounded'
-  }
+  border = 'rounded'
+}
 )
 
 -- vim.lsp.set_log_level("trace")
