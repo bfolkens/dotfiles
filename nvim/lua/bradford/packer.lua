@@ -32,7 +32,6 @@ return packer.startup(function(use)
 	use 'kylechui/nvim-surround'
 	use 'ntpeters/vim-better-whitespace'
 	use 'lukas-reineke/indent-blankline.nvim'
-	use 'jremmen/vim-ripgrep'
 	use 'nvim-lualine/lualine.nvim'
 	use 'SmiteshP/nvim-navic'
 	use 'ryanoasis/vim-devicons'
