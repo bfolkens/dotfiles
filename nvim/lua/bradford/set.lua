@@ -71,9 +71,3 @@ if vim.fn.has("windows") then
 
   -- hi VertSplit ctermbg=NONE guibg=#FF5C8F
 end
-
-if vim.fn.executable("rg") then
-  -- if ripgrep installed, use that as a grepper
-  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-  vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-end
