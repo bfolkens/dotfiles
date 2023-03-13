@@ -137,6 +137,10 @@ nvim_lsp.lua_ls.setup {
     },
   },
 }
+nvim_lsp.nil_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 nvim_lsp.sqlls.setup {
   on_attach = on_attach,
   capabilities = capabilities
@@ -152,6 +156,10 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.vimls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+}
+nvim_lsp.vls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 nvim_lsp.yamlls.setup {
   on_attach = on_attach,
