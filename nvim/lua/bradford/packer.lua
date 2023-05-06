@@ -49,7 +49,7 @@ return packer.startup(function(use)
 		tag = '0.1.0',
 		requires = { 'nvim-lua/plenary.nvim' }
 	}
-	-- use 'ThePrimeagen/harpoon'
+	use 'ThePrimeagen/harpoon'
 
 	use 'ggandor/leap.nvim'
 
