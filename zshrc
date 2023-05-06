@@ -183,3 +183,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 
 # zprof
+
+# atuin
+eval "$(atuin init zsh)"
