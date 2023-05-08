@@ -1,11 +1,11 @@
 require("mason").setup()
 require("mason-lspconfig").setup { automatic_installation = true }
 
-local lsp_status = require('lsp-status')
 local navic = require("nvim-navic")
 
+local cmp = require('cmp_nvim_lsp')
+
 local on_attach = function(client, bufnr)
-  lsp_status.on_attach(client, bufnr)
   navic.attach(client, bufnr)
 
   -- Keybindings for LSPs
@@ -50,156 +50,40 @@ local on_attach = function(client, bufnr)
   end
 end
 
-lsp_status.register_progress()
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = cmp.default_capabilities()
 
---Enable lsp completion
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local nvim_lsp = require('lspconfig')
-local util = require 'lspconfig/util'
-nvim_lsp.bashls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.clangd.setup({
-  root_dir = util.root_pattern("build/compile_commands.json", "build/compile_flags.txt", ".git"),
-  on_attach = on_attach,
-  capabilities = capabilities,
+-- Configure all the LSPs
+local lspconfig = require('lspconfig')
+require('mason-lspconfig').setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+  end,
 })
-nvim_lsp.cmake.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.html.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.dockerls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.elixirls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
--- nvim_lsp.elmls.setup{
---   on_attach = on_attach
--- }
--- nvim_lsp.julials.setup{
---  on_attach = on_attach
--- }
-nvim_lsp.jsonls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.pylsp.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.rust_analyzer.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  -- cmd = {
-  --   "rustup", "run", "stable", "rust-analyzer"
-  -- }
-})
-nvim_lsp.solargraph.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        -- NOTE: some discussion on Reddit about this loading up all the plugin files? slowdown?
-        -- library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
-nvim_lsp.nil_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.sqlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.texlab.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.vimls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.vls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-nvim_lsp.yamlls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-nvim_lsp.zls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-  -- This will disable virtual text, like doing:
-  -- let g:diagnostic_enable_virtual_text = 0
-  virtual_text = false,
-
-  -- This is similar to:
-  -- let g:diagnostic_show_sign = 1
-  -- To configure sign display,
-  --  see: ":help vim.lsp.diagnostic.set_signs()"
-  signs = true,
-
-  -- This is similar to:
-  -- "let g:diagnostic_insert_delay = 1"
-  update_in_insert = false,
-
-  underline = true,
-}
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+  }
 )
 
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, {
-  border = "rounded",
-}
+    border = "rounded",
+  }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help, {
-  border = 'rounded'
-}
+    border = 'rounded'
+  }
 )
 
 -- vim.lsp.set_log_level("trace")

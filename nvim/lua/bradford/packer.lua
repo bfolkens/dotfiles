@@ -94,8 +94,7 @@ return packer.startup(function(use)
 		'L3MON4D3/LuaSnip',
 		after = 'nvim-cmp'
 	}
-
-	use 'nvim-lua/lsp-status.nvim'
+	use 'linrongbin16/lsp-progress.nvim'
 
 	use 'liuchengxu/vista.vim'
 
