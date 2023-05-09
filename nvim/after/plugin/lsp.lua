@@ -6,7 +6,9 @@ local navic = require("nvim-navic")
 local cmp = require('cmp_nvim_lsp')
 
 local on_attach = function(client, bufnr)
-  navic.attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 
   -- Keybindings for LSPs
   -- Note these are in on_attach so that they don't override bindings in a non-LSP setting

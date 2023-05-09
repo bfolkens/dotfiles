@@ -33,7 +33,10 @@ return packer.startup(function(use)
 	use 'ntpeters/vim-better-whitespace'
 	use 'lukas-reineke/indent-blankline.nvim'
 	use 'nvim-lualine/lualine.nvim'
-	use 'SmiteshP/nvim-navic'
+	use {
+		'SmiteshP/nvim-navic',
+		requires = 'neovim/nvim-lspconfig'
+	}
 	use 'ryanoasis/vim-devicons'
 	use 'edkolev/tmuxline.vim'
 	use 'vim-test/vim-test'
