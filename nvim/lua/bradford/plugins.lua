@@ -65,8 +65,13 @@ local plugins = {
 
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+	{
+		'nvim-treesitter/nvim-treesitter-textobjects',
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter'
+		}
+	},
 	-- 'nvim-treesitter/playground',
-	-- 'nvim-treesitter/completion-treesitter',
 
 	-- LSP/Completion
 	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
@@ -97,11 +102,6 @@ local plugins = {
 	-- 'slashmili/alchemist.vim',
 	-- 'elixir-editors/vim-elixir',
 	-- 'c-brenn/phoenix.vim',
-
-	'kana/vim-textobj-user',
-	'gaving/vim-textobj-argument',
-	'andyl/vim-textobj-elixir',
-	-- 'rhysd/vim-textobj-ruby',
 
 	-- Themes
 	'drewtempelmeyer/palenight.vim',
