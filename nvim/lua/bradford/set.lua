@@ -36,6 +36,7 @@ vim.opt.ttyfast = true                  -- Smoother changes
 vim.opt.scrolloff = 3                   -- Keep 3 lines when scrolling
 vim.opt.laststatus = 3                  -- Global statusline
 vim.opt.signcolumn = "yes"              -- Keep the gutter open so it doesn't jar the screen
+vim.opt.cursorcolumn = true             -- Vertical cursor alignment column
 -- vim.opt.winbar = "%f" nvim 0.8+
 
 -- Config global undo
