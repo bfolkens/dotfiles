@@ -90,8 +90,6 @@ local plugins = {
 	'L3MON4D3/LuaSnip', -- after nvim-cmp
 	'linrongbin16/lsp-progress.nvim',
 
-	'liuchengxu/vista.vim',
-
 	-- Formats
 	'sheerun/vim-polyglot',
 	{ 'earthly/earthly.vim', branch = 'main' },
