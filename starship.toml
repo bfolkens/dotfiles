@@ -47,7 +47,7 @@ disabled = false
 disabled = false
 style = "blue bold"
 format = 'on [$symbol$context( \($namespace\))]($style) '
-
+detect_folders = ['deploy']
 
 # Nerd font replacements
 
@@ -90,6 +90,7 @@ disabled = true
 [gcloud]
 symbol = " "
 format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+detect_env_vars = ["CLOUDSDK_ACTIVE_CONFIG_NAME"]
 
 [git_branch]
 symbol = " "
