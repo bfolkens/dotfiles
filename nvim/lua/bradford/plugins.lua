@@ -25,7 +25,7 @@ local plugins = {
 	'tpope/vim-repeat',
 	'kylechui/nvim-surround',
 	'ntpeters/vim-better-whitespace',
-	'lukas-reineke/indent-blankline.nvim',
+	{ 'lukas-reineke/indent-blankline.nvim', main = "ibl" },
 	'nvim-lualine/lualine.nvim',
 	{
 		'SmiteshP/nvim-navic',
