@@ -23,6 +23,7 @@ local plugins = {
 	'tpope/vim-unimpaired',
 	'tpope/vim-endwise',
 	'tpope/vim-repeat',
+  'chentoast/marks.nvim',
 	'kylechui/nvim-surround',
 	'ntpeters/vim-better-whitespace',
 	{ 'lukas-reineke/indent-blankline.nvim', main = "ibl" },
@@ -43,7 +44,6 @@ local plugins = {
 	},
 	{
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.0',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 	'ThePrimeagen/harpoon',
@@ -62,6 +62,11 @@ local plugins = {
 	},
 	'folke/twilight.nvim',
 	'folke/zen-mode.nvim',
+  -- {
+  --    "m4xshen/hardtime.nvim",
+  --    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --    opts = {}
+  -- },
 
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
