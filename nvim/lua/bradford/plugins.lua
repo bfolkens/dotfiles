@@ -2,14 +2,14 @@
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -23,7 +23,7 @@ local plugins = {
 	'tpope/vim-unimpaired',
 	'tpope/vim-endwise',
 	'tpope/vim-repeat',
-  'chentoast/marks.nvim',
+	'chentoast/marks.nvim',
 	'kylechui/nvim-surround',
 	'ntpeters/vim-better-whitespace',
 	{ 'lukas-reineke/indent-blankline.nvim', main = "ibl" },
@@ -62,14 +62,14 @@ local plugins = {
 	},
 	'folke/twilight.nvim',
 	'folke/zen-mode.nvim',
-  -- {
-  --    "m4xshen/hardtime.nvim",
-  --    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-  --    opts = {}
-  -- },
+	-- {
+	--    "m4xshen/hardtime.nvim",
+	--    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+	--    opts = {}
+	-- },
 
 	-- Treesitter
-	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+	{ 'nvim-treesitter/nvim-treesitter',     build = ':TSUpdate' },
 	{
 		'nvim-treesitter/nvim-treesitter-textobjects',
 		dependencies = {
@@ -97,7 +97,7 @@ local plugins = {
 
 	-- Formats
 	'sheerun/vim-polyglot',
-	{ 'earthly/earthly.vim', branch = 'main' },
+	{ 'earthly/earthly.vim',     branch = 'main' },
 	'ledger/vim-ledger',
 	'rcaputo/vim-ledger_x',
 	-- 'lervag/vimtex',
