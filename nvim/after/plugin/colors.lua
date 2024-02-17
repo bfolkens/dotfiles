@@ -1,5 +1,5 @@
 vim.opt.background = "dark"
-vim.cmd("colorscheme palenight")
+vim.cmd.colorscheme "palenight"
 
 -- vim.g.gruvbox_italic = 1
 
