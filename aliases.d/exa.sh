@@ -1,1 +1,2 @@
-alias l="exa -la --git"
+alias l="eza -la --git"
+alias t="eza -T"
