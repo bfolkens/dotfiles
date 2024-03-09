@@ -1,6 +1,0 @@
-vim.keymap.set("n", "<leader>b", "<Plug>(PickerBuffer)", { desc = "Pick a buffer to edit in the current window" })
-vim.keymap.set("n", "<leader>f", "<Plug>(PickerEdit)", { desc = "Pick a file to edit in the current window" })
-vim.keymap.set("n", "<leader>s", "<Plug>(PickerSplit)", { desc = "Pick a file to edit in a new horizontal split" })
-vim.keymap.set("n", "<leader>v", "<Plug>(PickerVsplit)", { desc = "Pick a file to edit in a new vertical split" })
-vim.keymap.set("n", "<leader>]", "<Plug>(PickerTag)", { desc = "Pick a tag to jump to in the current window" })
-vim.keymap.set("n", "<leader>h", "<Plug>(PickerHelp)", { desc = "Pick a help tag to jump to in the current window" })

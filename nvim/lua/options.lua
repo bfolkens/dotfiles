@@ -1,3 +1,5 @@
+-- Set options
+
 vim.opt.termguicolors = true
 vim.opt.showmatch = true                -- Show matching brackets.
 vim.opt.ignorecase = true               -- Do case insensitive matching
