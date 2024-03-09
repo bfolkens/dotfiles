@@ -8,7 +8,6 @@ return {
 	'ntpeters/vim-better-whitespace',
 	'ryanoasis/vim-devicons',
 	'edkolev/tmuxline.vim',
-	'folke/twilight.nvim',
 	'folke/zen-mode.nvim',
 	-- {
 	--    "m4xshen/hardtime.nvim",
