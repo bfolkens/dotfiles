@@ -4,7 +4,9 @@ return {
     build = ':MasonUpdate',
     dependencies = {
       'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim'
+      'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/cmp-nvim-lsp',
+      'SmiteshP/nvim-navic'
     },
     config = function()
       require('mason').setup {
