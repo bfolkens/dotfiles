@@ -1,4 +1,5 @@
-alias k="kubectl"
-alias kx="kubectx"
-alias kpw="kubectl get pods --watch"
-alias kgp="kubectl get pods"
+abbr --add k kubectl
+abbr --add kx kubectx
+abbr --add kpw kubectl get pods --watch
+abbr --add kgp kubectl get pods
+abbr --add kdpf kubectl delete pods --field-selector='status.phase=Failed'
