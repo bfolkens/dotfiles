@@ -19,9 +19,6 @@ return {
 	-- Treesitter
 	-- 'nvim-treesitter/playground',
 
-	-- LSP/Completion
-	"neovim/nvim-lspconfig",
-
 	-- Formats
 	'sheerun/vim-polyglot',
 	{ 'earthly/earthly.vim',     branch = 'main' },
