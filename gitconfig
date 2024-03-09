@@ -4,6 +4,7 @@
 	signingkey = D1950D8A624DEBB0F542BC6B1C79310F9F025097
 [alias]
 	b = branch
+	bl = blame -w -C -C -C
 	ci = commit
 	cia = commit -a
 	co = checkout
@@ -28,8 +29,11 @@
 	whitespace = nowarn
 [branch]
 	autosetupmerge = true
+	sort = -committerdate
 [push]
 	default = simple
+	useForceIfIncludes = true
+	useForceWithLease = true
 [diff]
 	tool = nvimdiff
 [filter "media"]
@@ -54,3 +58,5 @@
 	helper = gcloud.sh
 [init]
 	defaultBranch = master
+[rerere]
+	enabled = true
