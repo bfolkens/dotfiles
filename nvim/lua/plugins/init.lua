@@ -6,9 +6,6 @@ return {
 	'tpope/vim-endwise',
 	'tpope/vim-repeat',
 	'ntpeters/vim-better-whitespace',
-	'ryanoasis/vim-devicons',
-	'edkolev/tmuxline.vim',
-	'folke/zen-mode.nvim',
 	-- {
 	--    "m4xshen/hardtime.nvim",
 	--    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
