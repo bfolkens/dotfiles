@@ -3,7 +3,6 @@ return {
 	'tpope/vim-commentary',
 	'tpope/vim-projectionist',
 	'tpope/vim-unimpaired',
-	'tpope/vim-endwise',
 	'tpope/vim-repeat',
 	'ntpeters/vim-better-whitespace',
 	-- {
