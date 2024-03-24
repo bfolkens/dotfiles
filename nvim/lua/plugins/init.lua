@@ -1,8 +1,6 @@
 return {
 	'tpope/vim-fugitive',
-	'tpope/vim-commentary',
 	'tpope/vim-projectionist',
-	'tpope/vim-unimpaired',
 	'tpope/vim-repeat',
 	'ntpeters/vim-better-whitespace',
 	-- {
