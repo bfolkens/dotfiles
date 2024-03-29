@@ -1,19 +1,31 @@
 return {
   {
     'williamboman/mason.nvim',
+    lazy = false,
     build = ':MasonUpdate',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim',
-      'hrsh7th/cmp-nvim-lsp',
-      'SmiteshP/nvim-navic'
-    },
     config = function()
       require('mason').setup {
         ui = {
           border = 'rounded'
         }
       }
+    end
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    lazy = false,
+    opts = {
+      auto_install = true
+    }
+  },
+  {
+    'neovim/nvim-lspconfig',
+    lazy = false,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'SmiteshP/nvim-navic'
+    },
+    config = function()
       require("mason-lspconfig").setup { automatic_installation = true }
 
       local navic = require("nvim-navic")
