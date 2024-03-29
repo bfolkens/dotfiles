@@ -24,6 +24,16 @@ return {
     event = "BufEnter",
     config = {}
   },
+  {
+    'echasnovski/mini.move',
+    event = "BufEnter",
+    config = {
+      mappings = {
+        line_up = '[e',
+        line_down = ']e',
+      }
+    }
+  },
   -- {
   --   'echasnovski/mini.surround',
   --   event = "BufEnter",
