@@ -16,7 +16,6 @@ opt.number = true                   -- Add line numbers
 opt.relativenumber = true
 opt.encoding = "utf8"
 opt.fileencoding = "utf8"
-opt.termencoding = "utf8"
 opt.ruler = true
 opt.spelllang = "en"
 opt.backup = false
