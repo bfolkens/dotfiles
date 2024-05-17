@@ -16,9 +16,9 @@ cmp.setup({
     { name = "path" },
   },
   mapping = {
-    ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-    ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    -- ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+    -- ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+    -- ["<CR>"] = cmp.mapping.confirm { select = true },
 
     -- Better way of doing things
     ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
@@ -55,6 +55,10 @@ ls.config.set_config {
   history = false,
   updateevents = "TextChanged,TextChangedI",
 }
+
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snippets/*.lua", true)) do
+  loadfile(ft_path)()
+end
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
   if ls.expand_or_jumpable() then
