@@ -30,8 +30,10 @@ return {
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         disable = function(lang, buf)
           -- Colors are a mess
-          if lang == "elixir" or lang == "ruby" then
-            return true
+          for _, value in ipairs({ "elixir", "ruby" }) do
+            if string.match(lang, value) then
+              return true
+            end
           end
 
           local max_filesize = 100 * 1024 -- 100 KB
