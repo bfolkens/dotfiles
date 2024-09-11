@@ -19,6 +19,7 @@ $env_var\
 $line_break\
 $sudo\
 $directory\
+$direnv\
 $git_branch\
 $git_commit\
 $git_state\
@@ -74,6 +75,10 @@ disabled = true
 truncation_symbol = "…/"
 truncate_to_repo = false
 read_only = " "
+
+[direnv]
+disabled = true
+symbol = " "
 
 [docker_context]
 symbol = " "
