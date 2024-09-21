@@ -23,6 +23,9 @@
 
 -- Show pretty unicode lines between rows and columns in select results.
 \pset linestyle unicode
+\pset unicode_border_linestyle single
+\pset unicode_column_linestyle single
+\pset unicode_header_linestyle single
 
 -- Show pretty lines around the outside of select results.
 \pset border 2
@@ -32,5 +35,12 @@
 
 -- Within columns, wrap long lines so that select results still fit on the display.
 \pset format wrapped
+
+\set ON_ERROR_STOP on
+\set ON_ERROR_ROLLBACK interactive
+
+set intervalstyle to 'postgres_verbose';
+
+\setenv LESS '-iMFXSx4R'
 
 \timing on
