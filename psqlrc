@@ -2,7 +2,7 @@
 \encoding UTF8
 
 -- Do NOT automatically commit after every statement!
--- \set AUTOCOMMIT off
+\set AUTOCOMMIT off
 
 -- Be verbose about feedback
 \set VERBOSITY verbose
