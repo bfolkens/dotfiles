@@ -1,7 +1,7 @@
 [user]
 	name = Bradford Folkens
-	email = i.am@bradfolkens.com
-	signingkey = D1950D8A624DEBB0F542BC6B1C79310F9F025097
+	email = hello@bradfolkens.com
+	signingkey = 4D6D38401C02D1A6CC74612A97C49EF75638AB5F
 [alias]
 	b = branch
 	ba = branch -a
