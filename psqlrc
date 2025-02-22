@@ -2,7 +2,8 @@
 \encoding UTF8
 
 -- Do NOT automatically commit after every statement!
-\set AUTOCOMMIT off
+-- This can be dangerous to have on: https://www.cybertec-postgresql.com/en/disabling-autocommit-in-postgresql-can-damage-your-health/
+-- \set AUTOCOMMIT off
 
 -- Be verbose about feedback
 \set VERBOSITY verbose
