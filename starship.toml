@@ -15,6 +15,7 @@ $gcloud\
 $openstack\
 $azure\
 $kubernetes\
+$nix_shell\
 $env_var\
 $line_break\
 $sudo\
@@ -137,7 +138,6 @@ disabled = true
 
 [nix_shell]
 symbol = " "
-disabled = true
 
 [nodejs]
 symbol = " "
