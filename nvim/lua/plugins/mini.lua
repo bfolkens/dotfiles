@@ -5,12 +5,12 @@ return {
     config = {}
   },
   {
-    'echasnovski/mini.comment',
+    'echasnovski/mini.bracketed',
     event = "BufEnter",
     config = {}
   },
   {
-    'echasnovski/mini.bracketed',
+    'echasnovski/mini.comment',
     event = "BufEnter",
     config = {}
   },
@@ -34,6 +34,7 @@ return {
       }
     }
   },
+  -- This clobbers 's', need to find a different keymap
   -- {
   --   'echasnovski/mini.surround',
   --   event = "BufEnter",

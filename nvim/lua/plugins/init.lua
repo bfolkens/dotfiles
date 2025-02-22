@@ -1,7 +1,5 @@
 return {
 	'tpope/vim-fugitive',
-	'tpope/vim-projectionist',
-	'tpope/vim-repeat',
 	'ntpeters/vim-better-whitespace',
 	-- {
 	--    "m4xshen/hardtime.nvim",
