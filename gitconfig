@@ -36,6 +36,7 @@
 	default = simple
 	useForceIfIncludes = true
 	useForceWithLease = true
+	autoSetupRemote = true
 [diff]
 	tool = nvimdiff
 [filter "media"]
