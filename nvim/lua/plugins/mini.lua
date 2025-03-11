@@ -15,6 +15,14 @@ return {
     config = {}
   },
   {
+    'echasnovski/mini.icons',
+    event = "BufEnter",
+    config = function ()
+      require('mini.icons').setup()
+      MiniIcons.mock_nvim_web_devicons()
+    end
+  },
+  {
     'echasnovski/mini.pairs',
     event = "BufEnter",
     config = {}
