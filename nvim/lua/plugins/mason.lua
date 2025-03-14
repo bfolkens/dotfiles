@@ -3,13 +3,11 @@ return {
     'williamboman/mason.nvim',
     lazy = false,
     build = ':MasonUpdate',
-    config = function()
-      require('mason').setup {
-        ui = {
-          border = 'rounded'
-        }
+    opts = {
+      ui = {
+        border = 'rounded'
       }
-    end
+    }
   },
   {
     'williamboman/mason-lspconfig.nvim',

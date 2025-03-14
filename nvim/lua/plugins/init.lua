@@ -1,6 +1,7 @@
 return {
 	'tpope/vim-fugitive',
 	'ntpeters/vim-better-whitespace',
+	'kylechui/nvim-surround',
 	-- {
 	--    "m4xshen/hardtime.nvim",
 	--    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
@@ -30,4 +31,5 @@ return {
 	-- 		vim.g.gruvbox_italic = 1
 	-- 	end
 	-- }
+	'mfussenegger/nvim-dap'
 }
