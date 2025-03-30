@@ -63,3 +63,5 @@
 	defaultBranch = master
 [rerere]
 	enabled = false
+[fetch]
+	prune = true
