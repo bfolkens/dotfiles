@@ -41,6 +41,7 @@ opt.laststatus = 3                  -- Global statusline
 opt.signcolumn = "yes"              -- Keep the gutter open so it doesn't jar the screen
 opt.cursorcolumn = true             -- Vertical cursor alignment column
 -- opt.winbar = "%f" nvim 0.8+
+opt.winborder = 'rounded'
 
 -- Config global undo
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
