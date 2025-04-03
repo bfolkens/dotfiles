@@ -32,5 +32,9 @@ return {
     vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { fg = c.info, sp = c.info, undercurl = true })
     vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = c.warn, sp = c.warn, undercurl = true })
     vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = c.error, sp = c.error, undercurl = true })
+
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = "#32384F" })
+    vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#464e6e" })
+    vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#1e222f" })
   end
 }
