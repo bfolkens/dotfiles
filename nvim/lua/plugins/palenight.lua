@@ -37,8 +37,8 @@ return {
     vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#464e6e" })
     vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#1e222f" })
 
-    vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, ctermbg = "red", bg = "#4D435C" })
-    vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, ctermbg = "red", bg = "#4D435C" })
-    vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, ctermbg = "red", bg = "#4D435C" })
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, bg = "#4D435C" })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, bg = "#4D435C" })
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, bg = "#4D435C" })
   end
 }
