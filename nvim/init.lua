@@ -11,6 +11,6 @@ require("lazy-bootstrap")
 -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#lspa
 -- https://neovim.io/doc/user/lsp.html#lsp-config
 
-vim.lsp.enable({ 'sumneko', 'typescript-ls', 'lexical', 'solargraph', 'tailwindcss', 'terraform-ls', 'nil-ls' })
+vim.lsp.enable({ 'sumneko', 'typescript-ls', 'lexical', 'solargraph', 'tailwindcss', 'terraform-ls', 'nil-ls', 'texlab' })
 
 -- vim.lsp.set_log_level("trace")
