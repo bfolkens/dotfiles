@@ -30,7 +30,7 @@ return {
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         disable = function(lang, buf)
           -- Colors are a mess
-          for _, value in ipairs({ "elixir", "ruby" }) do
+          for _, value in ipairs({ "elixir", "ruby", "nix", "terraform" }) do
             if string.match(lang, value) then
               return true
             end
