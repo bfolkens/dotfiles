@@ -67,7 +67,7 @@ vim.cmd("syntax sync minlines=256")
 -- Folding
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter.foldexpr()"
-opt.foldlevelstart = 4
+opt.foldlevelstart = 8
 
 if vim.fn.has("windows") then
   -- Middle dot (U+00B7, UTF-8: C2 B7)
