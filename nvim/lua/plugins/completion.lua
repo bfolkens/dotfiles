@@ -36,12 +36,12 @@ return {
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
       menu = {
-        border = 'none',
+        border = 'rounded',
         draw = {
           treesitter = { 'lsp' }
         }
       },
-      documentation = { auto_show = false, window = { border = 'none' } },
+      documentation = { auto_show = false, window = { border = 'rounded' } },
     },
 
     signature = {
@@ -52,7 +52,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'buffer', 'path', 'snippets' },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

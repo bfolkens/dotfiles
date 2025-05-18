@@ -7,7 +7,6 @@ return {
 
 		require('telescope').setup {
 			defaults = {
-				border = false,
 				-- Default configuration for telescope goes here:
 				-- config_key = value,
 				mappings = {

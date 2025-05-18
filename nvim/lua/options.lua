@@ -41,7 +41,10 @@ opt.laststatus = 3                  -- Global statusline
 opt.signcolumn = "yes"              -- Keep the gutter open so it doesn't jar the screen
 opt.cursorcolumn = true             -- Vertical cursor alignment column
 -- opt.winbar = "%f" nvim 0.8+
-opt.winborder = 'rounded'
+
+-- Keep this off for now until telescope and others fix double border
+-- https://github.com/nvim-telescope/telescope.nvim/issues/3436
+opt.winborder = 'none'
 
 -- Config global undo
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
