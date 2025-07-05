@@ -12,6 +12,7 @@ vim.lsp.enable({
   'terraform-ls',
   'texlab',
   'typescript-ls',
+  'r_language_server'
 })
 
 -- Add border to the diagnostic popup window
