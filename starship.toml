@@ -26,6 +26,7 @@ $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
+${custom.jj}\
 $jobs\
 $time\
 $status\
@@ -170,3 +171,13 @@ disabled = true
 [spack]
 symbol = "🅢 "
 disabled = true
+
+# Plugins
+
+[custom.jj]
+command = "prompt"
+format = "$output"
+ignore_timeout = true
+shell = ["starship-jj", "--ignore-working-copy", "starship"]
+use_stdin = false
+when = true
