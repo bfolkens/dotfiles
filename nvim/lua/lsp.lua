@@ -3,8 +3,10 @@
 -- https://neovim.io/doc/user/lsp.html#lsp-config
 
 vim.lsp.enable({
-  'elixir-ls',
-  'nil-ls',
+  -- 'elixir-lsp',
+  'lexical',
+  -- 'next-ls',
+  -- 'nil-ls',
   'postgres-lsp',
   'solargraph',
   'sumneko',
@@ -12,7 +14,7 @@ vim.lsp.enable({
   'terraform-ls',
   'texlab',
   'typescript-ls',
-  'r_language_server'
+  'r'
 })
 
 -- Add border to the diagnostic popup window
