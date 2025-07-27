@@ -22,11 +22,11 @@ return {
       MiniIcons.mock_nvim_web_devicons()
     end
   },
-  {
-    'echasnovski/mini.pairs',
-    event = "BufEnter",
-    opts = {}
-  },
+  -- {
+  --   'echasnovski/mini.pairs',
+  --   event = "BufEnter",
+  --   opts = {}
+  -- },
   {
     'echasnovski/mini.splitjoin',
     event = "BufEnter",

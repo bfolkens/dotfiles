@@ -6,6 +6,9 @@ return {
 	--    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 	--    opts = {}
 	-- },
+	'mfussenegger/nvim-dap',
+	-- 'folke/twilight.nvim',
+	-- 'folke/zen-mode.nvim',
 
 	-- Treesitter
 	-- 'nvim-treesitter/playground',
@@ -30,5 +33,4 @@ return {
 	-- 		vim.g.gruvbox_italic = 1
 	-- 	end
 	-- }
-	'mfussenegger/nvim-dap'
 }
