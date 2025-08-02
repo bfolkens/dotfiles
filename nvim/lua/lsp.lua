@@ -3,8 +3,8 @@
 -- https://neovim.io/doc/user/lsp.html#lsp-config
 
 vim.lsp.enable({
-  -- 'elixir-lsp',
-  'lexical',
+  'elixir-ls',
+  -- 'lexical',
   -- 'next-ls',
   -- 'nil-ls',
   'postgres-lsp',
