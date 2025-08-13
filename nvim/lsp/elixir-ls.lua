@@ -6,7 +6,7 @@ return {
   settings = {
     elixirLS = {
       dialyzerEnabled = true,
-      fetchDeps = true,
+      fetchDeps = false,
       enableTestLenses = true,
       suggestSpecs = true,
       incrementalDialyzer = true,
