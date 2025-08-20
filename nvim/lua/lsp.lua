@@ -7,6 +7,8 @@ vim.lsp.enable({
   -- 'lexical',
   -- 'next-ls',
   -- 'nil-ls',
+  'bashls',
+  'fish-lsp',
   'postgres-lsp',
   'solargraph',
   'sumneko',
