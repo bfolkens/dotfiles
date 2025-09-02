@@ -7,7 +7,7 @@ autocmd('TextYankPost', {
   group = yank_group,
   pattern = '*',
   callback = function()
-    vim.highlight.on_yank({
+    vim.hl.on_yank({
       higroup = 'Substitute',
       timeout = 100,
       on_visual = false
