@@ -3,7 +3,8 @@
 -- https://neovim.io/doc/user/lsp.html#lsp-config
 
 vim.lsp.enable({
-  'elixir-ls',
+  'expert',
+  -- 'elixir-ls',
   -- 'lexical',
   -- 'next-ls',
   -- 'nil-ls',
