@@ -113,6 +113,8 @@
       #   nix-direnv.enable = true;
       # };
 
+      system.primaryUser = "bfolkens";
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -120,16 +122,28 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
-      # system.defaults = {
-      #   dock.autohide = true;
-      # #   dock.mru-spaces = false;
-      #   finder.AppleShowAllExtensions = true;
-      # #   finder.FXPreferredViewStyle = "clmv";
-      #   screencapture.location = "~/Desktop";
+      system.keyboard = {
+        enableKeyMapping = true;
+        remapCapsLockToControl = true;
+      };
+
+      system.defaults = {
+        finder.AppleShowAllExtensions = true;
+        screencapture.location = "~/Desktop";
       # #   screensaver.askForPasswordDelay = 10;
-      # TODO: map caps lock to left ctrl key
-      # TODO: mouse scroll trackpad backwards
-      # };
+      };
+
+      system.defaults.dock = {
+        autohide = true;
+        mru-spaces = false;
+        wvous-tl-corner = 13; # lock screen
+        wvous-bl-corner = 5; # start screensaver
+        wvous-tr-corner = 10; # put display to sleep
+        wvous-br-corner = 6; # disable screensaver
+      };
+
+      system.defaults.NSGlobalDomain.AppleSpacesSwitchOnActivate = false;
+      system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true;
 
       # homebrew.enable = true;
       # homebrew.taps = [];
