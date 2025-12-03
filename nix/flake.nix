@@ -1,4 +1,5 @@
 # Source:
+#   https://nix-darwin.github.io/nix-darwin/manual/
 #   https://nixcademy.com/posts/nix-on-macos/
 #   https://blog.dbalan.in/blog/2024/03/25/boostrap-a-macos-machine-with-nix/index.html
 # First run:
@@ -135,11 +136,25 @@
 
       system.defaults.dock = {
         autohide = true;
+        magnification = true;
+        tilesize = 36;
+        largesize = 90;
         mru-spaces = false;
         wvous-tl-corner = 13; # lock screen
         wvous-bl-corner = 5; # start screensaver
         wvous-tr-corner = 10; # put display to sleep
         wvous-br-corner = 6; # disable screensaver
+        # TODO: https://nix-darwin.github.io/nix-darwin/manual/#opt-system.defaults.dock.persistent-apps
+        # persistent-apps = [];
+      };
+
+      system.defaults.CustomUserPreferences = {
+        "com.apple.Dock" = {
+          wvous-tl-modifier = modifiers.cmd;
+          wvous-bl-modifier = modifiers.cmd;
+          wvous-tr-modifier = modifiers.cmd;
+          wvous-br-modifier = modifiers.cmd;
+        };
       };
 
       system.defaults.NSGlobalDomain.AppleSpacesSwitchOnActivate = false;
@@ -155,6 +170,14 @@
 
       # Allow unfree packages (like terraform)
       nixpkgs.config.allowUnfree = true;
+    };
+
+    # for modifier support, check https://github.com/LnL7/nix-darwin/issues/998
+    modifiers = {
+      none = 0;
+      option = 524288;
+      cmd = 1048576;
+      "option+cmd" = 1573864;
     };
   in
   {
