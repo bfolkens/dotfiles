@@ -51,6 +51,7 @@
         neofetch
         neomutt
         neovim
+        notmuch
         ookla-speedtest
         pwgen
         pv
@@ -63,6 +64,7 @@
         wget
         xan
         yazi
+        yt-dlp
         yubikey-manager
 
         # global dev tools
