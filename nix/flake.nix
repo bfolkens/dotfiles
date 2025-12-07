@@ -159,6 +159,14 @@
         };
       };
 
+      system.defaults.CustomUserPreferences = {
+        "com.apple.finder" = {
+          WarnOnEmptyTrash = false;
+        };
+      };
+      system.defaults.finder.FXEnableExtensionChangeWarning = false;
+
+      system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
       system.defaults.NSGlobalDomain.AppleSpacesSwitchOnActivate = false;
       system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true;
 
