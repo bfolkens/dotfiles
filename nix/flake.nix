@@ -133,6 +133,7 @@
       system.defaults = {
         finder.AppleShowAllExtensions = true;
         screencapture.location = "~/Desktop";
+        trackpad.Clicking = true;
       # #   screensaver.askForPasswordDelay = 10;
       };
 
@@ -157,18 +158,33 @@
           wvous-tr-modifier = modifiers.cmd;
           wvous-br-modifier = modifiers.cmd;
         };
-      };
-
-      system.defaults.CustomUserPreferences = {
         "com.apple.finder" = {
           WarnOnEmptyTrash = false;
+        };
+        "com.apple.Spotlight" = {
+          MenuItemHidden = 1;
+        };
+        "com.apple.symbolichotkeys" = {
+          AppleSymbolicHotkeys = {
+            "64" = {
+              enabled = true;
+              value = {
+                parameters = [32 49 modifiers."ctrl+cmd"];
+                type = "standard";
+              };
+            };
+          };
         };
       };
       system.defaults.finder.FXEnableExtensionChangeWarning = false;
 
-      system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
-      system.defaults.NSGlobalDomain.AppleSpacesSwitchOnActivate = false;
-      system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = true;
+      system.defaults.NSGlobalDomain = {
+        AppleShowAllExtensions = true;
+        AppleSpacesSwitchOnActivate = false;
+        InitialKeyRepeat = 25;
+        KeyRepeat = 2;
+        "com.apple.swipescrolldirection" = true;
+      };
 
       # homebrew.enable = true;
       # homebrew.taps = [];
@@ -188,6 +204,7 @@
       option = 524288;
       cmd = 1048576;
       "option+cmd" = 1573864;
+      "ctrl+cmd" = 1310720;
     };
   in
   {
