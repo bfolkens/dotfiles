@@ -134,6 +134,7 @@
         finder.AppleShowAllExtensions = true;
         screencapture.location = "~/Desktop";
         trackpad.Clicking = true;
+        hitoolbox.AppleFnUsageType = "Do Nothing";
       # #   screensaver.askForPasswordDelay = 10;
       };
 
