@@ -73,6 +73,7 @@
         earthly
         git
         gh
+        mitmproxy
         pgcli
         pgloader
         tbls
