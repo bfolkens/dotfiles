@@ -1,21 +1,21 @@
 return {
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     event = "BufEnter",
     opts = {}
   },
   {
-    'echasnovski/mini.bracketed',
+    'nvim-mini/mini.bracketed',
     event = "BufEnter",
     opts = {}
   },
   {
-    'echasnovski/mini.comment',
+    'nvim-mini/mini.comment',
     event = "BufEnter",
     opts = {}
   },
   {
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
     event = "BufEnter",
     opts = function ()
       require('mini.icons').setup()
@@ -23,17 +23,17 @@ return {
     end
   },
   -- {
-  --   'echasnovski/mini.pairs',
+  --   'nvim-mini/mini.pairs',
   --   event = "BufEnter",
   --   opts = {}
   -- },
   {
-    'echasnovski/mini.splitjoin',
+    'nvim-mini/mini.splitjoin',
     event = "BufEnter",
     opts = {}
   },
   {
-    'echasnovski/mini.move',
+    'nvim-mini/mini.move',
     event = "BufEnter",
     opts = {
       mappings = {
@@ -43,7 +43,7 @@ return {
     }
   },
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     event = "BufEnter",
     config = {
       mappings = {
@@ -59,5 +59,10 @@ return {
         suffix_next = 'n', -- Suffix to search with "next" method
       },
     }
+  },
+  {
+    'nvim-mini/mini.trailspace',
+    event = "BufEnter",
+    opts = {}
   }
 }
