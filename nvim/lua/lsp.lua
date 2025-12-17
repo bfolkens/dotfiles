@@ -17,6 +17,7 @@ vim.lsp.enable({
   'tailwindcss',
   'terraform-ls',
   'texlab',
+  'ty',
   'typescript-ls',
   'r'
 })

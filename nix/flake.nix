@@ -81,6 +81,9 @@
         tsung
         jujutsu
 
+        # LSPs (should be in dev flake envs)
+        ty
+
         # nix dev tools
         nixfmt-rfc-style
         nix-init
