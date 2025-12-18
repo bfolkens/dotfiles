@@ -37,6 +37,7 @@
         dive
         dust
         eza
+        fastfetch
         fd
         ffmpeg-headless
         fzf
