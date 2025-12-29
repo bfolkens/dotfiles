@@ -136,10 +136,12 @@
       };
 
       system.defaults = {
+        controlcenter.BatteryShowPercentage = false;
         finder.AppleShowAllExtensions = true;
+        hitoolbox.AppleFnUsageType = "Do Nothing";
+        menuExtraClock.IsAnalog = true;
         screencapture.location = "~/Desktop";
         trackpad.Clicking = true;
-        hitoolbox.AppleFnUsageType = "Do Nothing";
       # #   screensaver.askForPasswordDelay = 10;
       };
 
