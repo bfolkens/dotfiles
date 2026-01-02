@@ -29,19 +29,24 @@
       # $ brew leaves
       environment.systemPackages = with pkgs; [
         # general tools
+        age
         aria2
+        aspell
         # atuin
         bat
         colordiff
         curl
         dive
         dust
+        dutree
         eza
         fastfetch
         fd
         ffmpeg-headless
         fzf
         # ghostty
+        himalaya
+        htop
         imagemagick
         isync
         jq
@@ -63,6 +68,7 @@
         # starship
         tmux
         wget
+        weechat
         xan
         yazi
         yt-dlp
@@ -71,6 +77,7 @@
         # global dev tools
         # (otherwise put into project flake)
         act
+        air-formatter
         earthly
         git
         gh
