@@ -32,57 +32,96 @@
         age
         aria2
         aspell
-        # atuin
+        # TODO: atuin doesn't seem to work right (needs a background service
+        # too it looks like)
         bat
+        bore-cli
+        clamav
         colordiff
         curl
+        darwin.lsusb
         dive
         dust
         dutree
+        entr
         eza
         fastfetch
         fd
         ffmpeg-headless
         fzf
         # ghostty
+        ghostscript
+        glances
+        gpgme
+        gpgmepp
+        gnupg
+        gnuplot
+        graphicsmagick
+        graphviz
+        grex
+        groff
         himalaya
+        hwatch
         htop
+        inetutils
         imagemagick
         isync
         jq
+        kondo
         ledger
+        lima
+        lnav
         lla
         miller
         msmtp
+        ncmpcpp
         neofetch
         neomutt
         neovim
         notmuch
         ookla-speedtest
+        oxipng
+        p7zip
+        poppler
+        procs
+        psutils
         pwgen
         pv
+        qemu
         ripgrep
+        rmlint
         sd
         skim
         sq
-        # starship
+        starship
         tmux
+        tree
+        trippy
+        ugrep
+        viddy
+        viu
+        watch
         wget
+        websocat
         weechat
         xan
         yazi
         yt-dlp
         yubikey-manager
+        zoxide
 
         # global dev tools
         # (otherwise put into project flake)
         act
-        air-formatter
+        cmake
         earthly
         git
         gh
+        hyperfine
+        luajit
         mitmproxy
         pgcli
+        pgformatter
         pgloader
         tbls
         tokei
@@ -90,7 +129,15 @@
         jujutsu
 
         # LSPs (should be in dev flake envs)
+        air-formatter
+        bash-language-server
+        lua-language-server
+        solargraph
+        swiftlint
+        swift-format
+        tailwindcss-language-server
         ty
+        typescript-language-server
 
         # nix dev tools
         nixfmt-rfc-style

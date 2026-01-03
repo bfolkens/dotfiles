@@ -58,7 +58,7 @@
 [tag]
 	forceSignAnnotated = true
 [gpg]
-	program = /opt/homebrew/bin/gpg
+	program = /run/current-system/sw/bin/gpg
 [credential "https://source.developers.google.com"]
 	helper = gcloud.sh
 [init]
