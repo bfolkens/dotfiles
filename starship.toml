@@ -12,6 +12,7 @@ $vcsh\
 $memory_usage\
 $aws\
 $gcloud\
+${custom.oci}\
 $openstack\
 $azure\
 $kubernetes\
@@ -181,3 +182,10 @@ ignore_timeout = true
 shell = ["starship-jj", "--ignore-working-copy", "starship"]
 use_stdin = false
 when = true
+
+[custom.oci]
+command = "echo $OCI_CLI_PROFILE"
+when = "test -n \"$OCI_CLI_PROFILE\""
+symbol = " "
+style = "bold #F0CC72"
+format = "on [$symbol($output)]($style) "
