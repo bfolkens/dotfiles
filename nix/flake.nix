@@ -30,7 +30,7 @@
       environment.systemPackages = with pkgs; [
         # general tools
         age
-        aria2
+        # aria2
         aspell
         # TODO: atuin doesn't seem to work right (needs a background service
         # too it looks like)
@@ -40,10 +40,14 @@
         colordiff
         curl
         darwin.lsusb
+        delta
         dive
+        dua
+        duf
         dust
         dutree
         entr
+        erdtree
         eza
         fastfetch
         fd
@@ -54,6 +58,7 @@
         glances
         gpgme
         gpgmepp
+        gping
         gnupg
         gnuplot
         graphicsmagick
