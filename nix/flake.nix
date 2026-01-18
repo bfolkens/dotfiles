@@ -68,6 +68,7 @@
         himalaya
         hwatch
         htop
+        iperf3
         inetutils
         imagemagick
         isync
