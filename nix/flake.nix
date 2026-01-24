@@ -29,6 +29,7 @@
       # $ brew leaves
       environment.systemPackages = with pkgs; [
         # general tools
+        _1password-cli
         age
         # aria2
         aspell
@@ -36,18 +37,22 @@
         # too it looks like)
         bat
         bore-cli
+        bottom
         clamav
         colordiff
+        csvquote
         curl
         darwin.lsusb
         delta
         dive
+        dos2unix
         dua
         duf
         dust
         dutree
         entr
         erdtree
+        exiftool
         eza
         fastfetch
         fd
@@ -65,6 +70,7 @@
         graphviz
         grex
         groff
+        hex
         himalaya
         hwatch
         htop
@@ -79,31 +85,40 @@
         lnav
         lla
         miller
+        moreutils
         msmtp
         ncmpcpp
         neofetch
         neomutt
         neovim
+        nms
         notmuch
         ookla-speedtest
         oxipng
         p7zip
+        pinentry-curses
+        pop
         poppler
         procs
         psutils
         pwgen
         pv
         qemu
+        rclone
         ripgrep
         rmlint
         sd
+        sig
         skim
         sq
         starship
+        ticker
         tmux
         tree
         trippy
+        tidy-viewer
         ugrep
+        unar
         viddy
         viu
         watch
@@ -119,34 +134,47 @@
         # global dev tools
         # (otherwise put into project flake)
         act
+        bun
         cmake
         earthly
+        emscripten
+        esbuild
         git
+        git-lfs
         gh
         hyperfine
         luajit
+        mariadb
         mitmproxy
+        nodejs
+        postgresql
         pgcli
         pgformatter
         pgloader
+        # rosie
         tbls
+        texlab
         tokei
         tsung
+        tree-sitter
         jujutsu
 
         # LSPs (should be in dev flake envs)
         air-formatter
         bash-language-server
+        fish-lsp
         lua-language-server
+        rust-analyzer
         solargraph
         swiftlint
         swift-format
         tailwindcss-language-server
+        terraform-ls
         ty
         typescript-language-server
 
         # nix dev tools
-        nixfmt-rfc-style
+        nixfmt
         nix-init
         nixd
         fh
