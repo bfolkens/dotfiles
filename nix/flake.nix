@@ -110,6 +110,7 @@
         sd
         sig
         skim
+        sox
         sq
         starship
         ticker
