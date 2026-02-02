@@ -151,7 +151,7 @@
         postgresql
         pgcli
         pgformatter
-        pgloader
+        # pgloader
         # rosie
         tbls
         texlab
