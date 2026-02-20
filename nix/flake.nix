@@ -104,6 +104,7 @@
         pwgen
         pv
         qemu
+        qsv
         rclone
         ripgrep
         rmlint
@@ -126,6 +127,7 @@
         wget
         websocat
         weechat
+        # whosthere
         xan
         yazi
         yt-dlp
