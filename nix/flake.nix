@@ -77,6 +77,7 @@
         iperf3
         inetutils
         imagemagick
+        # impala
         isync
         jq
         kondo
@@ -130,6 +131,7 @@
         wget
         websocat
         weechat
+        # wiremix
         # whosthere
         xan
         yazi
