@@ -83,9 +83,11 @@
         ledger
         lima
         lnav
+        # lm_sensors
         lla
         miller
         moreutils
+        # mpd
         msmtp
         ncmpcpp
         neofetch
@@ -108,6 +110,7 @@
         rclone
         ripgrep
         rmlint
+        # rmpc
         sd
         sig
         skim
