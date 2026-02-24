@@ -102,6 +102,7 @@
         pinentry-curses
         pop
         poppler
+        poppler-utils
         procs
         psutils
         pwgen
