@@ -91,7 +91,6 @@
         # mpd
         msmtp
         ncmpcpp
-        neofetch
         neomutt
         neovim
         nms
@@ -151,6 +150,8 @@
         git
         git-lfs
         gh
+        # gh-dash
+        # gh-enhance
         hyperfine
         luajit
         mariadb
