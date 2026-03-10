@@ -52,6 +52,7 @@
         dutree
         entr
         erdtree
+        # eilmeldung
         exiftool
         eza
         fastfetch
@@ -319,7 +320,16 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        # ({ pkgs, ... }: {
+        #   nixpkgs.overlays = [
+        #     (final: prev: {
+        #       gh-enhance = prev.callPackage ./pkgs/gh-enhance/package.nix { };
+        #     })
+        #   ];
+        # })
+        configuration
+      ];
     };
 
     # Expose the package set, including overlays, for convenience.
