@@ -36,6 +36,7 @@
         # TODO: atuin doesn't seem to work right (needs a background service
         # too it looks like)
         bat
+        # bibiman
         bore-cli
         bottom
         clamav
@@ -196,6 +197,7 @@
         awscli2
         azure-cli
         # google-cloud-sdk
+        k9s
         kubectx
         kubectl
         terraform
