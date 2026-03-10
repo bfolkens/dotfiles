@@ -155,6 +155,7 @@
         # gh-dash
         # gh-enhance
         hyperfine
+        just
         luajit
         mariadb
         mitmproxy
