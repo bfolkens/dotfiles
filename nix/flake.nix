@@ -12,13 +12,16 @@
   description = "Brad's MacBook Pro";
 
   inputs = {
+    # Package sets
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Environment/system management
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Other sources
     elixir-expert-lsp.url = "github:elixir-lang/expert";
   };
 
