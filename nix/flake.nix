@@ -18,9 +18,11 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    elixir-expert-lsp.url = "github:elixir-lang/expert";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, elixir-expert-lsp }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -175,6 +177,7 @@
         # LSPs (should be in dev flake envs)
         air-formatter
         bash-language-server
+        elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
         fish-lsp
         lua-language-server
         rust-analyzer
