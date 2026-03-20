@@ -94,6 +94,7 @@
         # lm_sensors
         lla
         miller
+        # mole
         moreutils
         # mpd
         msmtp
