@@ -117,7 +117,7 @@
         qemu
         qsv
         rclone
-        riff
+        riffdiff
         ripgrep
         rmlint
         # rmpc
