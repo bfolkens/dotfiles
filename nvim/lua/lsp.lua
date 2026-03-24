@@ -3,14 +3,15 @@
 -- https://neovim.io/doc/user/lsp.html#lsp-config
 
 vim.lsp.enable({
+  'bashls',
+  'dot',
+  'fish-lsp',
   'expert',
   -- 'elixir-ls',
   -- 'lexical',
   -- 'next-ls',
   -- 'nil-ls',
   'nixd',
-  'bashls',
-  'fish-lsp',
   'postgres-lsp',
   'solargraph',
   'sumneko',
