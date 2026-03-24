@@ -125,4 +125,3 @@ mas "Things", id: 904280696
 mas "Web eID", id: 1576665083
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
-cargo "starship-jj"

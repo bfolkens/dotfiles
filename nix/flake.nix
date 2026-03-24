@@ -23,9 +23,10 @@
 
     # Other sources
     elixir-expert-lsp.url = "github:elixir-lang/expert";
+    jj-starship.url = "github:dmmulroy/jj-starship";
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, elixir-expert-lsp }:
+  outputs = inputs@{ self, nixpkgs, nix-darwin, elixir-expert-lsp, jj-starship }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -178,6 +179,7 @@
         tsung
         tree-sitter
         jujutsu
+        jj-starship.packages.${stdenv.hostPlatform.system}.default
 
         # LSPs (should be in dev flake envs)
         air-formatter
