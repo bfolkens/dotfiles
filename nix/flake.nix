@@ -184,6 +184,7 @@
         # LSPs (should be in dev flake envs)
         air-formatter
         bash-language-server
+        dot-language-server
         elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
         fish-lsp
         lua-language-server
