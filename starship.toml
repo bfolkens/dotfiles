@@ -12,7 +12,7 @@ $vcsh\
 $memory_usage\
 $aws\
 $gcloud\
-${custom.oci}\
+${env_var.OCI_CLI_PROFILE}\
 $openstack\
 $azure\
 $kubernetes\
@@ -196,9 +196,8 @@ format = "$output"
 shell = ["jj-starship"]
 when = "jj-starship detect"
 
-[custom.oci]
+[env_var.OCI_CLI_PROFILE]
 command = "echo $OCI_CLI_PROFILE"
-when = "test -n \"$OCI_CLI_PROFILE\""
 symbol = " "
 style = "bold #F0CC72"
-format = "on [$symbol($output)]($style) "
+format = "on [$symbol($env_value)]($style) "
