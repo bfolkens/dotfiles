@@ -19,15 +19,16 @@ $kubernetes\
 $nix_shell\
 $env_var\
 $line_break\
-$sudo\
-$directory\
-$direnv\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
 ${custom.jj}\
+$line_break\
+$sudo\
+$directory\
+$direnv\
 $jobs\
 $time\
 $status\
@@ -45,7 +46,25 @@ disabled = false
 symbol = "✖"
 
 [git_metrics]
-disabled = false
+disabled = true
+
+[git_status]
+# using jj-starship
+disabled = true
+
+[git_commit]
+# using jj-starship
+disabled = true
+
+[git_state]
+# using jj-starship
+disabled = true
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+# using jj-starship
+disabled = true
 
 [kubernetes]
 disabled = false
@@ -99,10 +118,6 @@ disabled = true
 symbol = " "
 format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
 detect_env_vars = ["CLOUDSDK_ACTIVE_CONFIG_NAME"]
-
-[git_branch]
-symbol = " "
-format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [golang]
 symbol = " "
@@ -178,10 +193,8 @@ disabled = true
 [custom.jj]
 command = "prompt"
 format = "$output"
-# ignore_timeout = true
-shell = ["starship-jj", "--ignore-working-copy", "starship"]
-use_stdin = false
-when = true
+shell = ["jj-starship"]
+when = "jj-starship detect"
 
 [custom.oci]
 command = "echo $OCI_CLI_PROFILE"
