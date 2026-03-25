@@ -224,7 +224,11 @@
         cli53
         awscli2
         azure-cli
-        google-cloud-sdk
+        (google-cloud-sdk.withExtraComponents(
+          with google-cloud-sdk.components; [
+            gke-gcloud-auth-plugin
+          ]
+        ))
         google-cloud-sql-proxy
         k9s
         kubectx
