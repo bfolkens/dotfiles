@@ -46,6 +46,7 @@
         bore-cli
         bottom
         brotli
+        bzip2
         # chrony
         clamav
         colordiff
