@@ -6,8 +6,6 @@ tap "ksysoev/wsget"
 tap "rbenv/tap"
 tap "tylerbrock/saw"
 brew "atuin", restart_service: :changed
-brew "autoconf"
-brew "automake"
 brew "gettext"
 brew "bash"
 brew "certifi"
