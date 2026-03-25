@@ -45,6 +45,8 @@
         # bibiman
         bore-cli
         bottom
+        brotli
+        # chrony
         clamav
         colordiff
         csvquote
@@ -78,6 +80,7 @@
         graphviz
         grex
         groff
+        hdf5
         hex
         himalaya
         hwatch
@@ -90,7 +93,11 @@
         jq
         kondo
         ledger
+        libheif
+        libtiff
+        libwebp
         lima
+        lz4
         lnav
         # lm_sensors
         lla
@@ -146,10 +153,12 @@
         # wiremix
         # whosthere
         xan
+        xz
         yazi
         yt-dlp
         yubikey-manager
         zoxide
+        zstd
 
         # global dev tools
         # (otherwise put into project flake)
@@ -159,6 +168,7 @@
         earthly
         emscripten
         esbuild
+        gcc
         git
         git-lfs
         gh
@@ -166,6 +176,7 @@
         # gh-enhance
         hyperfine
         just
+        llvm
         luajit
         mariadb
         mitmproxy
@@ -213,6 +224,7 @@
         awscli2
         azure-cli
         google-cloud-sdk
+        google-cloud-sql-proxy
         k9s
         kubectx
         kubectl
