@@ -197,7 +197,6 @@ shell = ["jj-starship"]
 when = "jj-starship detect"
 
 [env_var.OCI_CLI_PROFILE]
-command = "echo $OCI_CLI_PROFILE"
 symbol = " "
 style = "bold #F0CC72"
 format = "on [$symbol($env_value)]($style) "
