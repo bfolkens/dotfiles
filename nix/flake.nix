@@ -37,7 +37,7 @@
         # general tools
         _1password-cli
         age
-        # aria2
+        aria2
         aspell
         # TODO: atuin doesn't seem to work right (needs a background service
         # too it looks like)
@@ -117,7 +117,9 @@
         pv
         qemu
         qsv
+        rar
         rclone
+        reattach-to-user-namespace
         riffdiff
         ripgrep
         rmlint
@@ -167,11 +169,13 @@
         luajit
         mariadb
         mitmproxy
+        ngrok
         nodejs
         postgresql
         pgcli
         pgformatter
         # pgloader
+        # pgrok
         # rosie
         tbls
         texlab
@@ -208,7 +212,7 @@
         cli53
         awscli2
         azure-cli
-        # google-cloud-sdk
+        google-cloud-sdk
         k9s
         kubectx
         kubectl

@@ -32,11 +32,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1774108959,
-        "narHash": "sha256-qoJ+bzReygphxnTM++C8yz54mMwHZfVzmZp9Bu6GAHg=",
+        "lastModified": 1774408595,
+        "narHash": "sha256-FM1QVRrD0t2k1zUe0e0uqfzu6QBII5vhlvKnWih3wes=",
         "owner": "elixir-lang",
         "repo": "expert",
-        "rev": "257b3f0fe3ac44653f159e6905d6400b4df30915",
+        "rev": "11fb79058fe35966d58e1fc436f768690a671e2a",
         "type": "github"
       },
       "original": {
