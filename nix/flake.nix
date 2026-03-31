@@ -189,6 +189,7 @@
         # pgloader
         # pgrok
         # rosie
+        stripe-cli
         tbls
         texlab
         tokei
