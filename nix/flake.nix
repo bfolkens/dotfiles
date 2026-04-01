@@ -2,12 +2,6 @@
 #   https://nix-darwin.github.io/nix-darwin/manual/
 #   https://nixcademy.com/posts/nix-on-macos/
 #   https://blog.dbalan.in/blog/2024/03/25/boostrap-a-macos-machine-with-nix/index.html
-# First run:
-# $ nix run nix-darwin -- switch --flake .
-# Rebuild flake using:
-# $ darwin-rebuild switch --flake .
-# Updates?
-# $ nix flake update
 {
   description = "Brad's MacBook Pro";
 
@@ -112,6 +106,7 @@
         neovim
         nms
         notmuch
+        nvd
         ookla-speedtest
         oxipng
         p7zip
@@ -352,9 +347,6 @@
   in
   {
     # scutil --get LocalHostName
-    #
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [
         # ({ pkgs, ... }: {
