@@ -1,3 +1,5 @@
+-- https://tduyng.com/blog/neovim-basic-setup
+
 require("options")
 require("keymaps")
 require("colors")
