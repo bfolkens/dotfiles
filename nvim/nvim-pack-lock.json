@@ -1,9 +1,9 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "69b469147fd879ac30d815ecd2477b1ee9b6e2c7",
+      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
       "src": "https://github.com/saghen/blink.cmp",
-      "version": "1.0.0 - 2.0.0"
+      "version": ">=0.0.0"
     },
     "earthly.vim": {
       "rev": "cb0440a357a09fb9234ece56a6b09e04d25c1b1d",
@@ -14,7 +14,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "0f00d07c2c3106ba6abd594ac1c17f211141b7b5",
+      "rev": "d1e88d70c4c21f6bdc6b9c6176bd5ddc57ff8eec",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "indent-blankline.nvim": {
@@ -82,7 +82,7 @@
       "src": "https://github.com/SmiteshP/nvim-navic"
     },
     "nvim-treesitter": {
-      "rev": "c82bf96f0a773d85304feeb695e1e23b2207ac35",
+      "rev": "6878ae017d691a0df1c49d8a091c88a33e4c2d50",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-endwise": {
@@ -126,7 +126,7 @@
       "src": "https://github.com/sheerun/vim-polyglot"
     },
     "vim-test": {
-      "rev": "7d7a3a220fd46aa24e179bc9a073687e4cf187ac",
+      "rev": "36c501a89696e5ec18fb653e958957d0826e5c0b",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
