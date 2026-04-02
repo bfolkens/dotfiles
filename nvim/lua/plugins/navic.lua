@@ -1,3 +1,9 @@
+vim.pack.add({ 'https://github.com/SmiteshP/nvim-navic' })
+
+require('nvim-navic').setup({
+  separator = "  "
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local navic = require("nvim-navic")
@@ -8,10 +14,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
-
-return {
-	'SmiteshP/nvim-navic',
-	opts = {
-		separator = "  "
-	}
-}

@@ -1,10 +1,7 @@
-return {
-  'RRethy/nvim-treesitter-endwise',
-  config = function()
-    require('nvim-treesitter.configs').setup {
-      endwise = {
-        enable = true,
-      },
-    }
-  end
+vim.pack.add({ 'https://github.com/RRethy/nvim-treesitter-endwise' })
+
+require('nvim-treesitter').setup {
+  endwise = {
+    enable = true,
+  },
 }
