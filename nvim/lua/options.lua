@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+-- How to debug
+-- print(vim.inspect(vim.opt.<something>:get()))
+
 opt.number = true -- Add line numbers
 opt.relativenumber = true
 opt.cursorline = false
@@ -96,7 +99,7 @@ opt.wildmode = "longest:full,full"
 -- vim.opt.wildignore = "*/.git/*,.data/*,*/tmp/*,*/node_modules/*,_build/*,dist/*,deps/*,priv/static/*,*.pyc,*.so,*.a,*.o,*.swp"
 
 -- Better diff options
-opt.diffopt:append("linematch:60")
+opt.diffopt = { "internal", "filler", "closeoff", "indent-heuristic", "inline:char", "linematch:60" }
 
 -- Performance improvements
 opt.redrawtime = 10000
