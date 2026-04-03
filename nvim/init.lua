@@ -1,5 +1,7 @@
 -- https://tduyng.com/blog/neovim-basic-setup
 
+vim.cmd("packadd nvim.undotree")
+
 require("options")
 require("keymaps")
 require("colors")

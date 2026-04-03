@@ -11,9 +11,10 @@ vim.g.mapleader = ";"
 local set = vim.keymap.set
 
 set("n", "<esc>", ":noh<CR>", { silent = true, desc = "Stop highlighting on Enter" })
+set("n", "<leader>u", require("undotree").open)
 
 -- https://github.com/nvim-telescope/telescope.nvim/issues/3436
-vim.keymap.set('n', 'K',
+set('n', 'K',
         function()
                 vim.lsp.buf.hover({ border = "rounded", title = " hover " })
         end,
