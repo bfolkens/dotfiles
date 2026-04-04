@@ -11,3 +11,6 @@ require("cursor_hold_highlight")
 require("lsp")
 
 -- vim.lsp.set_log_level("trace")
+
+-- New experimental UI2
+require("vim._core.ui2").enable { }
