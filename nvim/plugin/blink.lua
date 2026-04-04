@@ -58,3 +58,8 @@ require('blink.cmp').setup({
   -- See the fuzzy documentation for more information
   fuzzy = { implementation = "prefer_rust_with_warning" }
 })
+
+-- Attach blink to all buffers by default (even if we don't have an LSP for it)
+vim.lsp.config['*'] = {
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
+}
