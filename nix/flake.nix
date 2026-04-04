@@ -23,9 +23,9 @@
   outputs = inputs@{ self, nixpkgs, nix-darwin, elixir-expert-lsp, jj-starship }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      # See all the homebrew packages currently installed
+      # List packages installed in system profile:
+      # $ nix-env -qaP
+      # See all the homebrew packages currently installed:
       # $ brew leaves
       environment.systemPackages = with pkgs; [
         # general tools
