@@ -104,6 +104,7 @@
         ncmpcpp
         neomutt
         neovim
+        nix-search-tv
         nms
         notmuch
         nvd
