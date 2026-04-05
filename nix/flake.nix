@@ -214,6 +214,7 @@
         nixfmt
         nix-init
         nixd
+        nixos-anywhere
         fh
         nurl
 
