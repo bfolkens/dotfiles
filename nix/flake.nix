@@ -198,7 +198,8 @@
         air-formatter
         bash-language-server
         dot-language-server
-        elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
+        # elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
+        beamMinimal28Packages.expert
         fish-lsp
         lua-language-server
         rust-analyzer
