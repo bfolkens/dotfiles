@@ -57,6 +57,10 @@
       "rev": "74d140143b1bb905c3d0aebcfc2f216fd237080e",
       "src": "https://github.com/nvim-mini/mini.move"
     },
+    "mini.pick": {
+      "rev": "437d44eb57312f23e6b931704694fc294922cd88",
+      "src": "https://github.com/nvim-mini/mini.pick"
+    },
     "mini.splitjoin": {
       "rev": "8bd5a3d581b9f3dd3bc91fe495e210b8b0ee981d",
       "src": "https://github.com/nvim-mini/mini.splitjoin"
@@ -98,12 +102,8 @@
       "src": "https://github.com/drewtempelmeyer/palenight.vim"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
-    },
-    "telescope.nvim": {
-      "rev": "48d2656e54d3e3953ae647153ccdaffa50d4d76b",
-      "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "text-case.nvim": {
       "rev": "e898cfd46fa6cde0e83abb624a16e67d2ffc6457",
@@ -126,7 +126,7 @@
       "src": "https://github.com/sheerun/vim-polyglot"
     },
     "vim-test": {
-      "rev": "cdc89c597e9697d6e5c83ce8c64e2bea81fe9ef8",
+      "rev": "bca51394b5febc6e50492d88e8e124f5c5147087",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
