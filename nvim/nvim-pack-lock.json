@@ -30,7 +30,7 @@
       "src": "https://github.com/linrongbin16/lsp-progress.nvim"
     },
     "lualine.nvim": {
-      "rev": "8811f3f3f4dc09d740c67e9ce399e7a541e2e5b2",
+      "rev": "f5d2a8570f8b736ddb9bb4be504355bcd6e15ec8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "marks.nvim": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "telescope.nvim": {
-      "rev": "7ef4d6dccb78ee71e552bbd866176762ad328afa",
+      "rev": "48d2656e54d3e3953ae647153ccdaffa50d4d76b",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "text-case.nvim": {
@@ -126,7 +126,7 @@
       "src": "https://github.com/sheerun/vim-polyglot"
     },
     "vim-test": {
-      "rev": "6eb2e5e7b32c321d373d2954199f4510be804713",
+      "rev": "cdc89c597e9697d6e5c83ce8c64e2bea81fe9ef8",
       "src": "https://github.com/vim-test/vim-test"
     },
     "which-key.nvim": {
