@@ -8,10 +8,25 @@ vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
   end
 end })
 
-require('nvim-treesitter').setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = {},
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    -- Enable treesitter highlighting and disable regex syntax
+    pcall(vim.treesitter.start)
+    -- Enable treesitter-based indentation
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
+})
 
+local ensure_installed = { "bash", }
+local already_installed = require('nvim-treesitter.config').get_installed()
+local parsers_to_install = vim.iter(ensure_installed)
+  :filter(function(parser)
+    return not vim.tbl_contains(already_installed, parser)
+  end)
+  :totable()
+require('nvim-treesitter').install(parsers_to_install)
+
+require('nvim-treesitter').setup {
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
@@ -36,7 +51,7 @@ require('nvim-treesitter').setup {
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
       -- Colors are a mess
-      for _, value in ipairs({ "elixir", "ruby", "nix", "terraform" }) do
+      for _, value in ipairs({ "lua", "elixir", "ruby", "nix", "terraform" }) do
         if string.match(lang, value) then
           return true
         end
