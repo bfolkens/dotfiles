@@ -9,6 +9,10 @@
       "rev": "cb0440a357a09fb9234ece56a6b09e04d25c1b1d",
       "src": "https://github.com/earthly/earthly.vim"
     },
+    "file_line.nvim": {
+      "rev": "d656c453f99fc9f13b2c9019346cd1a2560a5d71",
+      "src": "https://github.com/dk949/file_line.nvim"
+    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
