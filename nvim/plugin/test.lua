@@ -19,6 +19,10 @@ nt.setup({
     require("neotest-elixir"),
     require("neotest-nix-unit"),
   },
+  highlights = {
+    -- Get rid of the weird red
+    failed = "DiagnosticError",
+  },
 })
 
 vim.keymap.set("n", "<leader>t", function() nt.run.run() end, { desc = "Test nearest" })
