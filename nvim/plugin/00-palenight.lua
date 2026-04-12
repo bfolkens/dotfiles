@@ -44,3 +44,9 @@ vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#1e222f" })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bold = true, bg = "#4D435C" })
 vim.api.nvim_set_hl(0, "LspReferenceText", { bold = true, bg = "#4D435C" })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, bg = "#4D435C" })
+
+-- Some treesitter fixes
+vim.api.nvim_set_hl(0, "@constant.elixir", { link = "@keyword" })
+vim.api.nvim_set_hl(0, "@keyword.elixir", { link = "@keyword.function" })
+vim.api.nvim_set_hl(0, "@string.special.symbol.elixir", { link = "@constant" })
+vim.api.nvim_set_hl(0, "@string.special.elixir", { link = "@variable" })

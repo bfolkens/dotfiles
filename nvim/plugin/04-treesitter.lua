@@ -1,12 +1,14 @@
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 
-vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
-  local name, kind = ev.data.spec.name, ev.data.kind
-  if name == 'nvim-treesitter' and kind == 'update' then
-    if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
-    vim.cmd('TSUpdate')
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+      vim.cmd('TSUpdate')
+    end
   end
-end })
+})
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function()
@@ -17,25 +19,16 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
-local ensure_installed = { "bash", }
-local already_installed = require('nvim-treesitter.config').get_installed()
-local parsers_to_install = vim.iter(ensure_installed)
-  :filter(function(parser)
-    return not vim.tbl_contains(already_installed, parser)
-  end)
-  :totable()
-require('nvim-treesitter').install(parsers_to_install)
-
 require('nvim-treesitter').setup {
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = false,
+  auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "all" },
+  -- ignore_install = { "all" },
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -49,15 +42,8 @@ require('nvim-treesitter').setup {
     -- list of language that will be disabled
     -- disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-      -- Colors are a mess
-      for _, value in ipairs({ "lua", "elixir", "ruby", "nix", "terraform" }) do
-        if string.match(lang, value) then
-          return true
-        end
-      end
-
-      local max_filesize = 100 * 1024     -- 100 KB
+    disable = function(_, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
       if ok and stats and stats.size > max_filesize then
         return true
@@ -80,6 +66,8 @@ require('nvim-treesitter').setup {
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
 
+      -- Should we move this?
+      -- https://tduyng.com/blog/neovim-highlight-syntax/#tree-sitter-in-neovim
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["ae"] = "@block.outer",
@@ -104,9 +92,9 @@ require('nvim-treesitter').setup {
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
       selection_modes = {
-        ['@parameter.outer'] = 'v',     -- charwise
-        ['@function.outer'] = 'V',      -- linewise
-        ['@class.outer'] = '<c-v>',     -- blockwise
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V',  -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
@@ -121,3 +109,47 @@ require('nvim-treesitter').setup {
     }
   },
 }
+
+local ensure_installed = {
+  "bash",
+  "c",
+  "css",
+  "diff",
+  "dockerfile",
+  "elixir",
+  "fish",
+  "gitcommit",
+  "gitignore",
+  "html",
+  "javascript",
+  "json",
+  "latex",
+  "lua",
+  "make",
+  "markdown",
+  "nix",
+  "python",
+  "ruby",
+  "rust",
+  "scss",
+  "sql",
+  "terraform",
+  "toml",
+  "tsx",
+  "typescript",
+  "vim",
+  "vimdoc",
+  "xml",
+  "yaml",
+  "zig"
+}
+
+local already_installed = require('nvim-treesitter.config').get_installed()
+
+local parsers_to_install = vim.iter(ensure_installed)
+    :filter(function(parser)
+      return not vim.tbl_contains(already_installed, parser)
+    end)
+    :totable()
+
+require('nvim-treesitter').install(parsers_to_install)
