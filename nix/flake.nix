@@ -238,7 +238,7 @@
       ];
 
       # Auto upgrade nix package
-      # nix.package = pkgs.nix;
+      nix.package = pkgs.nix;
 
       # If you use determinate systems installer, disable nix's self-update
       nix.enable = true;
