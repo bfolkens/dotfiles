@@ -68,7 +68,7 @@ opt.hidden = true                            -- Allows buffers to be hidden
 opt.errorbells = false                       -- No error bells
 opt.backspace = { "indent", "eol", "start" } -- Better backspace behavior
 opt.autochdir = false                        -- Don't auto change directory
-opt.iskeyword:append("-")                    -- Treat dash as part of word
+-- opt.iskeyword:append("-")                    -- Treat dash as part of word
 -- opt.path:append("**")                                   -- include subdirectories in search
 opt.selection = "inclusive"                  -- Selection behavior
 opt.mouse = { i = true, n = true, v = true } -- Enable mouse support
