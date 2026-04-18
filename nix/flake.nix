@@ -237,6 +237,8 @@
         oci-cli
       ];
 
+      documentation.enable = true;
+
       # Auto upgrade nix package
       nix.package = pkgs.nix;
 
