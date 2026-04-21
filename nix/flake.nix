@@ -101,6 +101,7 @@
         moreutils
         # mpd
         msmtp
+        mtr
         ncmpcpp
         neomutt
         neovim
