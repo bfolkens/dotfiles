@@ -145,10 +145,6 @@
       "rev": "f061eddb7cdcc614c8406847b2bfb53099832a4e",
       "src": "https://github.com/sheerun/vim-polyglot"
     },
-    "vim-test": {
-      "rev": "bc0e94059de40641d163516a83c63bc45c716acf",
-      "src": "https://github.com/vim-test/vim-test"
-    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
