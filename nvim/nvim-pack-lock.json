@@ -26,7 +26,7 @@
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "leap.nvim": {
-      "rev": "ce3cf75200ae148d75563088f435389f9e4100fd",
+      "rev": "156c71aabb68d520c6269db4103c8e5580e3ea67",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
     "lsp-progress.nvim": {
