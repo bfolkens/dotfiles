@@ -118,7 +118,7 @@
         poppler-utils
         procs
         psutils
-        pwgen
+        # pwgen
         pv
         qemu
         qsv
@@ -181,7 +181,7 @@
         ngrok
         nodejs
         postgresql
-        pgcli
+        # pgcli
         pgformatter
         # pgloader
         # pgrok
