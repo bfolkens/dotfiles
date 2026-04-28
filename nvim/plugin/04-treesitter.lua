@@ -120,6 +120,7 @@ local ensure_installed = {
   "fish",
   "gitcommit",
   "gitignore",
+  "heex",
   "html",
   "javascript",
   "json",
