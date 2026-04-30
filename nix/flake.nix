@@ -176,7 +176,7 @@
         just
         llvm
         luajit
-        mariadb
+        mariadb.client
         mitmproxy
         ngrok
         nodejs
