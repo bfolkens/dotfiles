@@ -26,7 +26,7 @@
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "leap.nvim": {
-      "rev": "156c71aabb68d520c6269db4103c8e5580e3ea67",
+      "rev": "5ad712bbc927c09b6b6ebd3df414669bb80b6c77",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
     "lsp-progress.nvim": {
@@ -42,7 +42,7 @@
       "src": "https://github.com/chentoast/marks.nvim"
     },
     "mini.ai": {
-      "rev": "43eb2074843950a3a25aae56a5f41362ec043bfa",
+      "rev": "7e10ce8468c0fce4f527ae2c0e5c484f7667f73d",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.bracketed": {
