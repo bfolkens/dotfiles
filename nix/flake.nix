@@ -246,6 +246,9 @@
       # If you use determinate systems installer, disable nix's self-update
       nix.enable = true;
 
+      # Enable the linux builder
+      nix.linux-builder.enable = true;
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
