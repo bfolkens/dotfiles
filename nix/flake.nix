@@ -233,6 +233,7 @@
         k9s
         kubectx
         kubectl
+        packer
         terraform
         terraformer
         oci-cli
