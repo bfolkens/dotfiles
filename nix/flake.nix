@@ -248,6 +248,7 @@
 
       # Enable the linux builder
       nix.linux-builder.enable = true;
+      nix.settings.trusted-users = [ "@admin" ];
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
