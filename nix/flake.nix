@@ -131,6 +131,7 @@
         # rmpc
         sd
         sig
+        skopeo
         skim
         sox
         sq
