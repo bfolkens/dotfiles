@@ -181,7 +181,7 @@
         mitmproxy
         ngrok
         nodejs
-        postgresql
+        postgresql_18
         # pgcli
         pgformatter
         # pgloader
