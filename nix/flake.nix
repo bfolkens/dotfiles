@@ -40,7 +40,7 @@
         bore-cli
         bottom
         brotli
-        bzip2
+        # bzip2 (having issues with lib, include, pkgconfig, etc - need a way to handle this)
         # chrony
         clamav
         colordiff
