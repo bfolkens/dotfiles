@@ -212,6 +212,7 @@
         terraform-ls
         ty
         typescript-language-server
+        yaml-language-server
 
         # nix dev tools
         nixfmt
