@@ -20,7 +20,8 @@ vim.lsp.enable({
   'texlab',
   'ty',
   'typescript-ls',
-  'r'
+  'r',
+  'yaml'
 })
 
 -- Add border to the diagnostic popup window
