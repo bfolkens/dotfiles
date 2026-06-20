@@ -7,6 +7,7 @@ vim.lsp.enable({
   'dot',
   'fish-lsp',
   'expert',
+  'hls',
   -- 'elixir-ls',
   -- 'lexical',
   -- 'next-ls',
