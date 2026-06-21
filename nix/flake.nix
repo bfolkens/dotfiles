@@ -49,9 +49,6 @@
         darwin.lsusb
         delta
         dive
-        (python3.withPackages (ps: with ps; [
-          docx2txt
-        ]))
         dos2unix
         dua
         duf
