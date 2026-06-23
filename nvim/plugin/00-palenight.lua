@@ -47,6 +47,7 @@ vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, bg = "#4D435C" })
 
 -- Some treesitter fixes
 vim.api.nvim_set_hl(0, "@constant.elixir", { link = "@keyword" })
+vim.api.nvim_set_hl(0, "@module.elixir", { link = "@constant.builtin" })
 vim.api.nvim_set_hl(0, "@keyword.elixir", { link = "@keyword.function" })
 vim.api.nvim_set_hl(0, "@string.special.symbol.elixir", { link = "@constant" })
 vim.api.nvim_set_hl(0, "@string.special.elixir", { link = "@variable" })
