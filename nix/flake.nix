@@ -203,7 +203,7 @@
         # elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
         beamMinimal28Packages.expert
         fish-lsp
-        haskell-language-server
+        # haskell-language-server # installed via ghcup
         lua-language-server
         rust-analyzer
         solargraph
