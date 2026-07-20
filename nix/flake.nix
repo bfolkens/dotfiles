@@ -142,7 +142,7 @@
         trippy
         tidy-viewer
         ugrep
-        unar
+        # unar
         viddy
         viu
         watch
