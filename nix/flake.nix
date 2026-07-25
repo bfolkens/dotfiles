@@ -178,7 +178,7 @@
         llvm
         luajit
         mariadb.client
-        mitmproxy
+        # mitmproxy
         ngrok
         nodejs
         postgresql_18
