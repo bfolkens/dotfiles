@@ -10,6 +10,7 @@ vim.lsp.enable({
   'hls',
   -- 'elixir-ls',
   -- 'lexical',
+  'ledger',
   -- 'next-ls',
   -- 'nil-ls',
   'nixd',

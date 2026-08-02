@@ -204,6 +204,7 @@
         beamMinimal28Packages.expert
         fish-lsp
         # haskell-language-server # installed via ghcup
+        ledger-lsp
         lua-language-server
         rust-analyzer
         solargraph
@@ -363,13 +364,13 @@
     # scutil --get LocalHostName
     darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [
-        # ({ pkgs, ... }: {
-        #   nixpkgs.overlays = [
-        #     (final: prev: {
-        #       gh-enhance = prev.callPackage ./pkgs/gh-enhance/package.nix { };
-        #     })
-        #   ];
-        # })
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
+            })
+          ];
+        })
         configuration
       ];
     };

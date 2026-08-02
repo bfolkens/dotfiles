@@ -10,8 +10,6 @@ vim.pack.add({
 	-- Formats
 	'https://github.com/sheerun/vim-polyglot',
 	'https://github.com/earthly/earthly.vim',
-	'https://github.com/ledger/vim-ledger',
-	'https://github.com/rcaputo/vim-ledger_x',
 	-- 'lervag/vimtex',
 	-- 'xuhdev/vim-latex-live-preview', { 'for': 'tex' },
 	-- 'slashmili/alchemist.vim',

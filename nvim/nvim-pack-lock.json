@@ -133,14 +133,6 @@
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"
     },
-    "vim-ledger": {
-      "rev": "4f2d93dd914f625e2d3db47d97bd9f428fedd68f",
-      "src": "https://github.com/ledger/vim-ledger"
-    },
-    "vim-ledger_x": {
-      "rev": "af2b318ad25a909cbe18f2508d09808570c00937",
-      "src": "https://github.com/rcaputo/vim-ledger_x"
-    },
     "vim-polyglot": {
       "rev": "f061eddb7cdcc614c8406847b2bfb53099832a4e",
       "src": "https://github.com/sheerun/vim-polyglot"
