@@ -164,7 +164,7 @@
         act
         bun
         cmake
-        earthly
+        earthbuild
         emscripten
         esbuild
         gcc
