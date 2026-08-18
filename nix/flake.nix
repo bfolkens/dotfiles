@@ -65,7 +65,6 @@
         fzf
         # ghostty
         ghostscript
-        glances
         gpgme
         gpgmepp
         gping
@@ -81,6 +80,7 @@
         hwatch
         htop
         iperf3
+        # iproute2
         inetutils
         imagemagick
         # impala
@@ -140,6 +140,7 @@
         tmux
         tree
         trippy
+        ttl
         tidy-viewer
         ugrep
         unar
