@@ -252,8 +252,18 @@
       # If you use determinate systems installer, disable nix's self-update
       nix.enable = true;
 
+      nix.distributedBuilds = true;
+
       # Enable the linux builder
-      nix.linux-builder.enable = true;
+      nix.linux-builder = {
+        enable = true;
+        package = pkgs.darwin.linux-builder-vz;
+        systems = [
+          "aarch64-linux"
+          "x86_64-linux"
+        ];
+      };
+
       nix.settings.trusted-users = [ "@admin" ];
 
       # Necessary for using flakes on this system.
