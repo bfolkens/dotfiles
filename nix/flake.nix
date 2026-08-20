@@ -262,6 +262,15 @@
           "aarch64-linux"
           "x86_64-linux"
         ];
+          
+        config.virtualisation.darwin-builder = {
+          # MiB: 32 GiB
+          diskSize = 32 * 1024;
+
+          # Trigger GC below 4 GiB; collect until 8 GiB is free.
+          min-free = 4 * 1024 * 1024 * 1024;
+          max-free = 8 * 1024 * 1024 * 1024;
+        };
       };
 
       nix.settings.trusted-users = [ "@admin" ];
