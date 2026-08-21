@@ -49,6 +49,7 @@
         darwin.lsusb
         delta
         dive
+        docx2txt # old one for publicsalary
         dos2unix
         dua
         duf
@@ -391,6 +392,7 @@
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
             (final: prev: {
+              docx2txt = prev.callPackage ./pkgs/docx2txt/package.nix { };
               ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
             })
           ];
