@@ -197,6 +197,7 @@
         tree-sitter
         jujutsu
         jj-starship.packages.${stdenv.hostPlatform.system}.default
+        vector
 
         # LSPs (should be in dev flake envs)
         air-formatter
