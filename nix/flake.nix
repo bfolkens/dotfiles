@@ -106,7 +106,6 @@
         ncmpcpp
         neomutt
         neovim
-        nghttp
         nix-search-tv
         nms
         notmuch
