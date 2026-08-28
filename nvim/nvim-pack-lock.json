@@ -25,8 +25,12 @@
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
+    "jj-diffconflicts": {
+      "rev": "a2aa9a247b56d2c1a6f6be81bcf41c5450cc82ff",
+      "src": "https://github.com/rafikdraoui/jj-diffconflicts.git"
+    },
     "leap.nvim": {
-      "rev": "2479d86f168c13e99f3ba2c6830d6bccca906b94",
+      "rev": "5db34d1a302ef18bc819dc8a38011abe29dae229",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
     "lsp-progress.nvim": {
@@ -62,7 +66,7 @@
       "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.pick": {
-      "rev": "04e73ab07222508361095bb6e27621b315e6b9f1",
+      "rev": "b27dc13b3d6dafc10e868b6ddc682cc4f047f4d1",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "mini.splitjoin": {
@@ -106,7 +110,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "8b98b4470eb326f1c7b50dae79f8c963568e5720",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-endwise": {

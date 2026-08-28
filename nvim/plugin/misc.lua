@@ -1,6 +1,7 @@
 vim.pack.add({
   'https://github.com/tpope/vim-fugitive',
   'https://github.com/mfussenegger/nvim-dap',
+	'https://github.com/rafikdraoui/jj-diffconflicts.git',
   -- 'm4xshen/hardtime.nvim',
 	-- 'folke/twilight.nvim',
 	-- 'folke/zen-mode.nvim',
