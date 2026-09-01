@@ -189,6 +189,7 @@
         # pgloader
         # pgrok
         # rosie
+        sentry-cli
         stripe-cli
         tbls
         texlab
