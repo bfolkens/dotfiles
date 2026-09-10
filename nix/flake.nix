@@ -169,7 +169,7 @@
         earthbuild
         emscripten
         esbuild
-        gcc
+        # gcc (causes problems with ruby)
         git
         git-lfs
         gh
@@ -239,6 +239,7 @@
         ))
         google-cloud-sql-proxy
         k9s
+        krew
         kubectx
         kubectl
         packer
