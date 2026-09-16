@@ -186,7 +186,7 @@
         postgresql_18
         # pgcli
         pgformatter
-        # pgloader
+        pgloader
         # pgrok
         # rosie
         sentry-cli
