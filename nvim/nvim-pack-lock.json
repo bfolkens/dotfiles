@@ -46,7 +46,7 @@
       "src": "https://github.com/chentoast/marks.nvim"
     },
     "mini.ai": {
-      "rev": "6c39ae7b11abe479fbe1bc81bf00ac6bca7afa07",
+      "rev": "c2c4278beb759aa24b9506f56a67186a6cc2209c",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.bracketed": {
@@ -66,7 +66,7 @@
       "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.pick": {
-      "rev": "360c1bb33610e030698d07ed15969ab4762dbcd6",
+      "rev": "230805ad6d0d6e4cebbf377bad864ac20b83a1f0",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "mini.splitjoin": {
@@ -74,7 +74,7 @@
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
     "mini.surround": {
-      "rev": "33a2ebe5df8eb4751828fcba133e18ed0fbbdfab",
+      "rev": "72feeaa0f984646efde875cc775a97b6f8a8be9b",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "mini.trailspace": {
@@ -110,7 +110,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "728e031f6b11d03d1f0708b7dc4fb0f1d9c8a137",
+      "rev": "910fdf6f49e9dee7e7257c7d11a76b040fdfb9de",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-endwise": {
