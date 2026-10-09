@@ -34,8 +34,6 @@ brew "gawk"
 brew "gnu-sed"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@76"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Asynchronous event library
 brew "libevent"
 # GNOME XML library
@@ -50,6 +48,8 @@ brew "mise"
 brew "mole"
 # Open source relational database management system
 brew "mysql-client@8.4"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Package compiler and linker metadata toolkit
@@ -80,4 +80,36 @@ cask "ghostty"
 cask "little-snitch"
 # Tool to explore all the running tasks (processes)
 cask "taskexplorer"
+mas "1Password for Safari", id: 1569813296
+mas "Apple Configurator", id: 1037126344
+mas "Classic Color Meter", id: 451640037
+mas "CotEditor", id: 1024640650
+mas "Developer", id: 640199958
+mas "DigiDoc4", id: 1370791134
+mas "Duplicate File Finder", id: 1032755628
+mas "Exporter", id: 1099120373
+mas "Free Ruler", id: 1483172210
+mas "GarageBand", id: 682658836
+mas "HazeOver", id: 430798174
+mas "iMovie", id: 408981434
+mas "iStat Menus", id: 1319778037
+mas "KakaoTalk", id: 869223134
+mas "Keynote", id: 409183694
+mas "Kindle", id: 302584613
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Paprika Recipe Manager 3", id: 1303222628
+mas "Parcel", id: 375589283
 mas "Phone.com", id: 1441327945
+mas "RadarScope", id: 288419283
+mas "Reeder", id: 6475002485
+mas "RUMlogNG", id: 964454561
+mas "Serial", id: 877615577
+mas "Telegram", id: 747648890
+mas "Things", id: 904280696
+mas "Web eID", id: 1576665083
+mas "Windows App", id: 1295203466
+mas "Xcode", id: 497799835
+krew "krew"
+krew "view-allocations"
+krew "view-utilization"
