@@ -312,7 +312,17 @@
         controlcenter.BatteryShowPercentage = false;
         finder.AppleShowAllExtensions = true;
         hitoolbox.AppleFnUsageType = "Do Nothing";
-        menuExtraClock.IsAnalog = true;
+        menuExtraClock = {
+          IsAnalog = false;
+          Show24Hour = false;
+          ShowAMPM   = true;
+          ShowSeconds = true;
+          ShowDate = 0;
+          ShowDayOfWeek = false;
+          ShowDayOfMonth = false;
+          FlashDateSeparators = false;
+
+        };
         screencapture.location = "~/Desktop";
         trackpad.Clicking = true;
       # #   screensaver.askForPasswordDelay = 10;
