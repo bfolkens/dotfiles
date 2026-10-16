@@ -216,6 +216,7 @@
         swift-format
         tailwindcss-language-server
         terraform-ls
+        tinymist
         ty
         typescript-language-server
         yaml-language-server
