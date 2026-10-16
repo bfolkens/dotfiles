@@ -91,6 +91,7 @@ mas "Exporter", id: 1099120373
 mas "Free Ruler", id: 1483172210
 mas "GarageBand", id: 682658836
 mas "HazeOver", id: 430798174
+mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "iStat Menus", id: 1319778037
 mas "KakaoTalk", id: 869223134
