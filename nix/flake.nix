@@ -196,6 +196,7 @@
         tokei
         tsung
         tree-sitter
+        typst
         jujutsu
         jj-starship.packages.${stdenv.hostPlatform.system}.default
         # vector
