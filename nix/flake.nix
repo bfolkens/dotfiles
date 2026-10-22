@@ -263,6 +263,7 @@
       # Enable the linux builder
       nix.linux-builder = {
         enable = true;
+        ephemeral = true;
         package = pkgs.darwin.linux-builder-vz;
         systems = [
           "aarch64-linux"
