@@ -364,10 +364,98 @@ in
     "com.apple.swipescrolldirection" = true;
   };
 
-  # homebrew.enable = true;
-  # homebrew.taps = [];
-  # homebrew.casks = [];
-  # homebrew.brews = [];
+  homebrew = {
+    enable = true;
+    # onActivation.cleanup = "uninstall";
+
+    taps = [
+      "514-labs/tap"
+      "bfolkens/tap"
+      "ellie/atuin"
+      "homebrew/cask"
+      "homebrew/core"
+      "immanuwell/droast"
+      "k06a/tap"
+      "ksysoev/wsget"
+      "rbenv/tap"
+      "tylerbrock/saw"
+    ];
+    casks = [
+      "font-monaspace"
+      "font-symbols-only-nerd-font"
+      "ghostty"
+      "little-snitch"
+      "taskexplorer"
+    ];
+    brews = [
+      "atuin"
+      "gettext"
+      "bash"
+      "bzip2"
+      "certifi"
+      "gmp"
+      "coreutils"
+      "direnv"
+      "pcre2"
+      "fish"
+      "gawk"
+      "gnu-sed"
+      "icu4c@76"
+      "libevent"
+      "libxml2"
+      "libyaml"
+      "mas"
+      "mise"
+      "mole"
+      "mysql-client@8.4"
+      "openssl@3"
+      "pinentry-mac"
+      "pkgconf"
+      "sqlite"
+      "zlib"
+      "zsh"
+      "514-labs/tap/dnsglobe"
+      "immanuwell/droast/droast"
+      "k06a/tap/macpow"
+      "ksysoev/wsget/wsget"
+      "rbenv/tap/openssl@1.1"
+      "tylerbrock/saw/saw"
+    ];
+
+    masApps = {
+      "1Password for Safari" = 1569813296;
+      "Apple Configurator" = 1037126344;
+      "Classic Color Meter" = 451640037;
+      "CotEditor" = 1024640650;
+      "Developer" = 640199958;
+      "DigiDoc4" = 1370791134;
+      "Duplicate File Finder" = 1032755628;
+      "Exporter" = 1099120373;
+      "Free Ruler" = 1483172210;
+      "GarageBand" = 682658836;
+      "HazeOver" = 430798174;
+      "iA Writer" = 775737590;
+      "iMovie" = 408981434;
+      "iStat Menus" = 1319778037;
+      "KakaoTalk" = 869223134;
+      "Keynote" = 409183694;
+      "Kindle" = 302584613;
+      "Numbers" = 409203825;
+      "Pages" = 409201541;
+      "Paprika Recipe Manager 3" = 1303222628;
+      "Parcel" = 375589283;
+      "Phone.com" = 1441327945;
+      "RadarScope" = 288419283;
+      "Reeder" = 6475002485;
+      "RUMlogNG" = 964454561;
+      "Serial" = 877615577;
+      "Telegram" = 747648890;
+      "Things" = 904280696;
+      "Web eID" = 1576665083;
+      "Windows App" = 1295203466;
+      "Xcode" = 497799835;
+    };
+  };
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
