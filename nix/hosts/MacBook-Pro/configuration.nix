@@ -220,6 +220,8 @@ in
     google-cloud-sql-proxy
     k9s
     krew
+    krew-plugins.view-allocations
+    krew-plugins.view-utilization
     kubectx
     kubectl
     packer

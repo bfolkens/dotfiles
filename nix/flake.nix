@@ -18,6 +18,7 @@
     # Other sources
     elixir-expert-lsp.url = "github:elixir-lang/expert";
     jj-starship.url = "github:dmmulroy/jj-starship";
+    krew-nix.url = "github:n-at-han-k/krew.nix";
   };
 
   outputs =
@@ -27,6 +28,7 @@
       nix-darwin,
       elixir-expert-lsp,
       jj-starship,
+      krew-nix
     }:
     {
       # scutil --get LocalHostName
@@ -40,6 +42,7 @@
                 docx2txt = prev.callPackage ./pkgs/docx2txt/package.nix { };
                 ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
               })
+              krew-nix.overlays.default
             ];
           })
           ./hosts/MacBook-Pro/configuration.nix
