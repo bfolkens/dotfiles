@@ -158,7 +158,6 @@ in
     # gh-dash
     # gh-enhance
     hyperfine
-    just
     llvm
     luajit
     mariadb.client
@@ -271,17 +270,6 @@ in
 
   nix.settings.trusted-users = [ "@admin" ];
 
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true; # default shell on catalina
-  programs.fish.enable = true;
-  # programs.direnv = {
-  #   enable = true;
-  #   nix-direnv.enable = true;
-  # };
-
   system.primaryUser = "bfolkens";
 
   # Set Git commit hash for darwin-version.
@@ -298,8 +286,60 @@ in
 
   system.defaults = {
     controlcenter.BatteryShowPercentage = false;
-    finder.AppleShowAllExtensions = true;
+    CustomUserPreferences = {
+      "com.apple.Dock" = {
+        wvous-tl-modifier = modifiers.cmd;
+        wvous-bl-modifier = modifiers.cmd;
+        wvous-tr-modifier = modifiers.cmd;
+        wvous-br-modifier = modifiers.cmd;
+      };
+      "com.apple.finder" = {
+        WarnOnEmptyTrash = false;
+      };
+      "com.apple.Spotlight" = {
+        MenuItemHidden = 1;
+      };
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotkeys = {
+          "64" = {
+            enabled = true;
+            value = {
+              parameters = [
+                32
+                49
+                modifiers."ctrl+cmd"
+              ];
+              type = "standard";
+            };
+          };
+        };
+      };
+    };
+    dock = {
+      autohide = true;
+      magnification = true;
+      tilesize = 36;
+      largesize = 90;
+      mru-spaces = false;
+      wvous-tl-corner = 13; # lock screen
+      wvous-bl-corner = 5; # start screensaver
+      wvous-tr-corner = 10; # put display to sleep
+      wvous-br-corner = 6; # disable screensaver
+      # TODO: https://nix-darwin.github.io/nix-darwin/manual/#opt-system.defaults.dock.persistent-apps
+      # persistent-apps = [];
+    };
+    finder = {
+      AppleShowAllExtensions = true;
+      FXEnableExtensionChangeWarning = false;
+    };
     hitoolbox.AppleFnUsageType = "Do Nothing";
+    NSGlobalDomain = {
+      AppleShowAllExtensions = true;
+      AppleSpacesSwitchOnActivate = false;
+      InitialKeyRepeat = 25;
+      KeyRepeat = 2;
+      "com.apple.swipescrolldirection" = true;
+    };
     menuExtraClock = {
       IsAnalog = false;
       Show24Hour = false;
@@ -309,69 +349,15 @@ in
       ShowDayOfWeek = false;
       ShowDayOfMonth = false;
       FlashDateSeparators = false;
-
     };
     screencapture.location = "~/Desktop";
     trackpad.Clicking = true;
     # #   screensaver.askForPasswordDelay = 10;
   };
 
-  system.defaults.dock = {
-    autohide = true;
-    magnification = true;
-    tilesize = 36;
-    largesize = 90;
-    mru-spaces = false;
-    wvous-tl-corner = 13; # lock screen
-    wvous-bl-corner = 5; # start screensaver
-    wvous-tr-corner = 10; # put display to sleep
-    wvous-br-corner = 6; # disable screensaver
-    # TODO: https://nix-darwin.github.io/nix-darwin/manual/#opt-system.defaults.dock.persistent-apps
-    # persistent-apps = [];
-  };
-
-  system.defaults.CustomUserPreferences = {
-    "com.apple.Dock" = {
-      wvous-tl-modifier = modifiers.cmd;
-      wvous-bl-modifier = modifiers.cmd;
-      wvous-tr-modifier = modifiers.cmd;
-      wvous-br-modifier = modifiers.cmd;
-    };
-    "com.apple.finder" = {
-      WarnOnEmptyTrash = false;
-    };
-    "com.apple.Spotlight" = {
-      MenuItemHidden = 1;
-    };
-    "com.apple.symbolichotkeys" = {
-      AppleSymbolicHotkeys = {
-        "64" = {
-          enabled = true;
-          value = {
-            parameters = [
-              32
-              49
-              modifiers."ctrl+cmd"
-            ];
-            type = "standard";
-          };
-        };
-      };
-    };
-  };
-  system.defaults.finder.FXEnableExtensionChangeWarning = false;
-
-  system.defaults.NSGlobalDomain = {
-    AppleShowAllExtensions = true;
-    AppleSpacesSwitchOnActivate = false;
-    InitialKeyRepeat = 25;
-    KeyRepeat = 2;
-    "com.apple.swipescrolldirection" = true;
-  };
-
   homebrew = {
     enable = true;
-    # onActivation.cleanup = "uninstall";
+    onActivation.cleanup = "uninstall";
 
     taps = [
       "514-labs/tap"
@@ -383,7 +369,6 @@ in
       "k06a/tap"
       "ksysoev/wsget"
       "rbenv/tap"
-      "tylerbrock/saw"
     ];
     casks = [
       "font-monaspace"
@@ -395,14 +380,13 @@ in
     brews = [
       "atuin"
       "gettext"
-      "bash"
       "bzip2"
       "certifi"
       "gmp"
       "coreutils"
       "direnv"
-      "pcre2"
       "fish"
+      "pcre2"
       "gawk"
       "gnu-sed"
       "icu4c@76"
@@ -418,13 +402,11 @@ in
       "pkgconf"
       "sqlite"
       "zlib"
-      "zsh"
       "514-labs/tap/dnsglobe"
       "immanuwell/droast/droast"
       "k06a/tap/macpow"
       "ksysoev/wsget/wsget"
       "rbenv/tap/openssl@1.1"
-      "tylerbrock/saw/saw"
     ];
 
     masApps = {
