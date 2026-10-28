@@ -1,4 +1,9 @@
-{ pkgs, self, elixir-expert-lsp, jj-starship, ... }:
+{
+  pkgs,
+  self,
+  inputs,
+  ...
+}:
 let
   # for modifier support, check https://github.com/LnL7/nix-darwin/issues/998
   modifiers = {
@@ -175,14 +180,14 @@ in
     tree-sitter
     typst
     jujutsu
-    jj-starship.packages.${stdenv.hostPlatform.system}.default
+    inputs.jj-starship.packages.${stdenv.hostPlatform.system}.default
     # vector
 
     # LSPs (should be in dev flake envs)
     air-formatter
     bash-language-server
     dot-language-server
-    elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
+    inputs.elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
     # beamMinimal28Packages.expert
     fish-lsp
     # haskell-language-server # installed via ghcup

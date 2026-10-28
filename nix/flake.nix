@@ -22,7 +22,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       nix-darwin,
@@ -33,7 +33,7 @@
     {
       # scutil --get LocalHostName
       darwinConfigurations."MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit self elixir-expert-lsp jj-starship; };
+        specialArgs = { inherit self inputs; };
 
         modules = [
           ({ pkgs, ... }: {
