@@ -1,0 +1,16 @@
+diff:
+  nvd diff /run/current-system ./result
+check:
+  nix flake check
+update: && build
+  nix flake update
+build: && diff
+  sudo darwin-rebuild build --flake .
+switch:
+  sudo darwin-rebuild switch --flake .
+gc:
+  sudo nix-collect-garbage -d
+gc-builder:
+  sudo launchctl bootout --wait system/org.nixos.linux-builder && \
+      sudo rm -f /var/lib/linux-builder/nixos.qcow2 && \
+      sudo launchctl bootstrap system /Library/LaunchDaemons/org.nixos.linux-builder.plist
