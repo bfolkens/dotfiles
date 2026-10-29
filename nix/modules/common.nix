@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     # general tools
     curl
+    inputs.dnsglobe.packages.${stdenv.hostPlatform.system}.default
     jq
     neovim
     ripgrep

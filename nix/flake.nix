@@ -19,6 +19,7 @@
     elixir-expert-lsp.url = "github:elixir-lang/expert";
     jj-starship.url = "github:dmmulroy/jj-starship";
     krew-nix.url = "github:n-at-han-k/krew.nix";
+    dnsglobe.url = "github:514-labs/dnsglobe";
   };
 
   outputs =
@@ -26,9 +27,8 @@
       self,
       nixpkgs,
       nix-darwin,
-      elixir-expert-lsp,
-      jj-starship,
-      krew-nix
+      krew-nix,
+      ...
     }:
     {
       # scutil --get LocalHostName

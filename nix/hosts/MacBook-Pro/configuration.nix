@@ -25,8 +25,7 @@ in
     age
     aria2
     aspell
-    # TODO: atuin doesn't seem to work right (needs a background service
-    # too it looks like)
+    # TODO: atuin doesn't seem to work right (needs a background service too it looks like)
     bat
     # bibiman
     bore-cli
@@ -360,7 +359,6 @@ in
     onActivation.cleanup = "uninstall";
 
     taps = [
-      "514-labs/tap"
       "bfolkens/tap"
       "ellie/atuin"
       "homebrew/cask"
@@ -402,7 +400,6 @@ in
       "pkgconf"
       "sqlite"
       "zlib"
-      "514-labs/tap/dnsglobe"
       "immanuwell/droast/droast"
       "k06a/tap/macpow"
       "ksysoev/wsget/wsget"
