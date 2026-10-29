@@ -156,6 +156,24 @@
         "type": "github"
       }
     },
+    "mole": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1793172523,
+        "narHash": "sha256-tYD4DtTWbAGaIWS2suN3X2I09F6f00zTaa1cDEH6u60=",
+        "owner": "tw93",
+        "repo": "Mole",
+        "rev": "45ee88cbb07b325901b80d7db8b1624fa1dceb05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tw93",
+        "repo": "Mole",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -257,6 +275,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1791244311,
+        "narHash": "sha256-cy5PsNucfXU5+KtLR+S9/zdkWOUplhL5Xr0LQWhSYbs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2bd3427b41d10b8318383195efe502ed1baca6cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-26.05-darwin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1792116957,
         "narHash": "sha256-EjZqHKObBfIOeHZnMRVV87HB3pPq/WBkmRJWyFxmZu8=",
         "owner": "NixOS",
@@ -277,8 +311,9 @@
         "elixir-expert-lsp": "elixir-expert-lsp",
         "jj-starship": "jj-starship",
         "krew-nix": "krew-nix",
+        "mole": "mole",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_6"
       }
     },
     "systems": {

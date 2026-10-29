@@ -87,7 +87,7 @@ in
     # lm_sensors
     lla
     miller
-    # mole
+    inputs.mole.packages.${stdenv.hostPlatform.system}.default
     moreutils
     # mpd
     msmtp
@@ -393,7 +393,6 @@ in
       "libyaml"
       "mas"
       "mise"
-      "mole"
       "mysql-client@8.4"
       "openssl@3"
       "pinentry-mac"

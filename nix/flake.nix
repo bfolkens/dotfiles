@@ -19,6 +19,7 @@
     elixir-expert-lsp.url = "github:elixir-lang/expert";
     jj-starship.url = "github:dmmulroy/jj-starship";
     krew-nix.url = "github:n-at-han-k/krew.nix";
+    mole.url = "github:tw93/Mole";
     dnsglobe.url = "github:514-labs/dnsglobe";
   };
 
