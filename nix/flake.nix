@@ -42,6 +42,24 @@
               (final: prev: {
                 docx2txt = prev.callPackage ./pkgs/docx2txt/package.nix { };
                 ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
+                # Fix python3.14-fabric-3.2.3 build issues
+                pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+                  (self: super: {
+                    reuse = super.reuse.overridePythonAttrs (old: {
+                      __structuredAttrs = false;
+                    });
+                    invoke = super.invoke.overridePythonAttrs (old: {
+                      version = "2.2.1";
+                      pyproject = null;
+                      format = "setuptools";
+                      src = final.fetchPypi {
+                        pname = "invoke";
+                        version = "2.2.1";
+                        hash = "sha256-UVv0m0pIkyt5sCRZA0jaIvOcSULf+ZGtH7i4uuob5wc=";
+                      };
+                    });
+                  })
+                ];
               })
               krew-nix.overlays.default
             ];
