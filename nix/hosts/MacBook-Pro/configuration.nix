@@ -269,6 +269,8 @@ in
 
   nix.settings.trusted-users = [ "@admin" ];
 
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   system.primaryUser = "bfolkens";
 
   # Set Git commit hash for darwin-version.
@@ -382,8 +384,6 @@ in
       "certifi"
       "gmp"
       "coreutils"
-      "direnv"
-      "fish"
       "pcre2"
       "gawk"
       "gnu-sed"
