@@ -1,22 +1,38 @@
 { pkgs, inputs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    # general tools
-    curl
-    inputs.dnsglobe.packages.${stdenv.hostPlatform.system}.default
-    jq
-    neovim
-    ripgrep
-    tmux
-    tree
-    watch
-    wget
+  environment = {
+    systemPackages = with pkgs; [
+      # general tools
+      bat
+      curl
+      fd
+      inputs.dnsglobe.packages.${stdenv.hostPlatform.system}.default
+      jq
+      # minus
+      less
+      moor
+      neovim
+      ripgrep
+      skim
+      tmux
+      tree
+      ugrep
+      watch
+      wget
 
-    # dev tools
-    git
-    git-lfs
-    just
-  ];
+      # dev tools
+      git
+      git-lfs
+      just
+    ];
+
+    variables = {
+      PAGER = "less";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      SKIM_DEFAULT_COMMAND = "fd --type f || rg --files || find .";
+    };
+  };
 
   programs.bash.enable = true;
   programs.fish.enable = true;

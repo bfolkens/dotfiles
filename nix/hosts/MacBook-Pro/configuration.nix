@@ -19,221 +19,228 @@ in
   # $ nix-env -qaP
   # See all the homebrew packages currently installed:
   # $ brew leaves
-  environment.systemPackages = with pkgs; [
-    # general tools
-    _1password-cli
-    age
-    aria2
-    aspell
-    # TODO: atuin doesn't seem to work right (needs a background service too it looks like)
-    bat
-    # bibiman
-    bore-cli
-    bottom
-    brotli
-    # bzip2 (having issues with lib, include, pkgconfig, etc - need a way to handle this)
-    # chrony
-    clamav
-    colordiff
-    csvquote
-    darwin.lsusb
-    delta
-    dive
-    docx2txt # old one for publicsalary
-    dos2unix
-    dua
-    duf
-    dust
-    dutree
-    entr
-    erdtree
-    # eilmeldung
-    exiftool
-    eza
-    fastfetch
-    fd
-    ffmpeg-headless
-    fzf
-    # ghostty
-    ghostscript
-    gpgme
-    gpgmepp
-    gping
-    gnupg
-    gnuplot
-    graphicsmagick
-    graphviz
-    grex
-    groff
-    hdf5
-    hex
-    himalaya
-    hwatch
-    htop
-    iperf3
-    # iproute2
-    inetutils
-    imagemagick
-    # impala
-    isync
-    kondo
-    ledger
-    libheif
-    libtiff
-    libwebp
-    lima
-    lz4
-    lnav
-    # lm_sensors
-    lla
-    miller
-    inputs.mole.packages.${stdenv.hostPlatform.system}.default
-    moreutils
-    # mpd
-    msmtp
-    mtr
-    ncmpcpp
-    neomutt
-    nix-search-tv
-    nms
-    notmuch
-    nvd
-    ookla-speedtest
-    oxipng
-    p7zip
-    pinentry-curses
-    pop
-    poppler
-    poppler-utils
-    procs
-    psutils
-    # pwgen
-    pv
-    qemu
-    qsv
-    rar
-    rclone
-    reattach-to-user-namespace
-    riffdiff
-    rmlint
-    # rmpc
-    sd
-    sig
-    skopeo
-    skim
-    sox
-    sq
-    starship
-    ticker
-    trippy
-    ttl
-    tidy-viewer
-    ugrep
-    unar
-    viddy
-    viu
-    websocat
-    weechat
-    # wiremix
-    # whosthere
-    xan
-    xz
-    yazi
-    yt-dlp
-    yubikey-manager
-    zoxide
-    zstd
+  environment = {
+    systemPackages = with pkgs; [
+      # general tools
+      _1password-cli
+      age
+      aria2
+      aspell
+      # TODO: atuin doesn't seem to work right (needs a background service too it looks like)
+      # bibiman
+      bore-cli
+      bottom
+      brotli
+      # bzip2 (having issues with lib, include, pkgconfig, etc - need a way to handle this)
+      # chrony
+      clamav
+      colordiff
+      csvquote
+      darwin.lsusb
+      delta
+      dive
+      docx2txt # old one for publicsalary
+      dos2unix
+      dua
+      duf
+      dust
+      dutree
+      entr
+      erdtree
+      # eilmeldung
+      exiftool
+      eza
+      fastfetch
+      ffmpeg-headless
+      fzf
+      # ghostty
+      ghostscript
+      gpgme
+      gpgmepp
+      gping
+      gnupg
+      gnuplot
+      graphicsmagick
+      graphviz
+      grex
+      groff
+      hdf5
+      hex
+      himalaya
+      hwatch
+      htop
+      iperf3
+      # iproute2
+      inetutils
+      imagemagick
+      # impala
+      isync
+      kondo
+      ledger
+      libheif
+      libtiff
+      libwebp
+      lima
+      lz4
+      lnav
+      # lm_sensors
+      lla
+      miller
+      inputs.mole.packages.${stdenv.hostPlatform.system}.default
+      moreutils
+      # mpd
+      msmtp
+      mtr
+      ncmpcpp
+      neomutt
+      nix-search-tv
+      nms
+      notmuch
+      nvd
+      ookla-speedtest
+      oxipng
+      p7zip
+      pinentry-curses
+      pop
+      poppler
+      poppler-utils
+      procs
+      psutils
+      # pwgen
+      pv
+      qemu
+      qsv
+      rar
+      rclone
+      reattach-to-user-namespace
+      riffdiff
+      rmlint
+      # rmpc
+      sd
+      sig
+      skopeo
+      sox
+      sq
+      starship
+      ticker
+      trippy
+      ttl
+      tidy-viewer
+      unar
+      viddy
+      viu
+      websocat
+      weechat
+      # wiremix
+      # whosthere
+      xan
+      xz
+      yazi
+      yt-dlp
+      yubikey-manager
+      zoxide
+      zstd
 
-    # global dev tools
-    # (otherwise put into project flake)
-    act
-    bun
-    cmake
-    earthbuild
-    emscripten
-    esbuild
-    # gcc (causes problems with ruby)
-    gh
-    # gh-dash
-    # gh-enhance
-    hyperfine
-    llvm
-    luajit
-    mariadb.client
-    # mitmproxy
-    ngrok
-    nodejs
-    postgresql_18
-    # pgcli
-    pgformatter
-    pgloader
-    # pgrok
-    # rosie
-    sentry-cli
-    stripe-cli
-    tbls
-    texlab
-    tokei
-    tsung
-    tree-sitter
-    typst
-    jujutsu
-    inputs.jj-starship.packages.${stdenv.hostPlatform.system}.default
-    # vector
+      # global dev tools
+      # (otherwise put into project flake)
+      act
+      bun
+      cmake
+      earthbuild
+      emscripten
+      esbuild
+      # gcc (causes problems with ruby)
+      gh
+      # gh-dash
+      # gh-enhance
+      hyperfine
+      llvm
+      luajit
+      mariadb.client
+      # mitmproxy
+      ngrok
+      nodejs
+      postgresql_18
+      # pgcli
+      pgformatter
+      pgloader
+      # pgrok
+      # rosie
+      sentry-cli
+      stripe-cli
+      tbls
+      texlab
+      tokei
+      tsung
+      tree-sitter
+      typst
+      jujutsu
+      inputs.jj-starship.packages.${stdenv.hostPlatform.system}.default
+      # vector
 
-    # LSPs (should be in dev flake envs)
-    air-formatter
-    bash-language-server
-    dot-language-server
-    inputs.elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
-    # beamMinimal28Packages.expert
-    fish-lsp
-    # haskell-language-server # installed via ghcup
-    ledger-lsp
-    lua-language-server
-    rust-analyzer
-    solargraph
-    swiftlint
-    swift-format
-    tailwindcss-language-server
-    terraform-ls
-    tinymist
-    ty
-    typescript-language-server
-    yaml-language-server
+      # LSPs (should be in dev flake envs)
+      air-formatter
+      bash-language-server
+      dot-language-server
+      inputs.elixir-expert-lsp.packages.${stdenv.hostPlatform.system}.default
+      # beamMinimal28Packages.expert
+      fish-lsp
+      # haskell-language-server # installed via ghcup
+      ledger-lsp
+      lua-language-server
+      rust-analyzer
+      solargraph
+      swiftlint
+      swift-format
+      tailwindcss-language-server
+      terraform-ls
+      tinymist
+      ty
+      typescript-language-server
+      yaml-language-server
 
-    # nix dev tools
-    nixfmt
-    nix-init
-    nixd
-    nixos-anywhere
-    fh
-    nurl
+      # nix dev tools
+      nixfmt
+      nix-init
+      nixd
+      nixos-anywhere
+      fh
+      nurl
 
-    # devops / infra
-    cli53
-    awscli2
-    azure-cli
-    (google-cloud-sdk.withExtraComponents (
-      with google-cloud-sdk.components;
-      [
-        gke-gcloud-auth-plugin
-      ]
-    ))
-    google-cloud-sql-proxy
-    k9s
-    krew
-    krew-plugins.view-allocations
-    krew-plugins.view-utilization
-    kubectx
-    kubectl
-    packer
-    terraform
-    terraformer
-    oci-cli
-  ];
+      # devops / infra
+      cli53
+      awscli2
+      azure-cli
+      (google-cloud-sdk.withExtraComponents (
+        with google-cloud-sdk.components;
+        [
+          gke-gcloud-auth-plugin
+        ]
+      ))
+      google-cloud-sql-proxy
+      k9s
+      krew
+      krew-plugins.view-allocations
+      krew-plugins.view-utilization
+      kubectx
+      kubectl
+      packer
+      terraform
+      terraformer
+      oci-cli
+    ];
+
+    variables = {
+      MAILDIR = "$HOME/Mail";
+      SSH_KEY_PATH = "~/.ssh/id_ed25519.pub";
+    };
+  };
 
   documentation.enable = true;
+
+  programs.fish.interactiveShellInit = ''
+    set -gx GPG_TTY (tty)
+  '';
 
   # Auto upgrade nix package
   nix.package = pkgs.nix;
