@@ -1,6 +1,12 @@
 { pkgs, inputs, ... }:
 {
   environment = {
+    shellAliases = {
+      l = "eza -la --git";
+      t = "eza -T";
+      vi = "nvim";
+    };
+
     systemPackages = with pkgs; [
       # general tools
       bat

@@ -368,6 +368,7 @@ in
 
   homebrew = {
     enable = true;
+    enableFishIntegration = true;
     onActivation.cleanup = "uninstall";
 
     taps = [
