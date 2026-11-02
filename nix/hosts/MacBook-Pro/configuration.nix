@@ -81,6 +81,7 @@ in
       libtiff
       libwebp
       lima
+      # linecast
       lz4
       lnav
       # lm_sensors
@@ -93,6 +94,7 @@ in
       mtr
       ncmpcpp
       neomutt
+      netwatch
       nix-search-tv
       nms
       notmuch
@@ -122,6 +124,7 @@ in
       sox
       sq
       starship
+      # terrahour
       ticker
       trippy
       ttl
