@@ -66,10 +66,6 @@ source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completi
 # Above is slow to wait each time on ZSH start, just copy below
 export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 
-# Android Studio
-export ANDROID_HOME="/opt/homebrew/share/android-sdk"
-export ANDROID_SDK_ROOT="/opt/homebrew/share/android-sdk"
-
 # OpenSSL tools
 export PATH="/opt/homebrew/opt/openssl/bin:$PATH"
 

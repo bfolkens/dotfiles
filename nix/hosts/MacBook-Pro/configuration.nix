@@ -28,6 +28,7 @@ in
       aspell
       # TODO: atuin doesn't seem to work right (needs a background service too it looks like)
       # bibiman
+      # broot
       bore-cli
       bottom
       brotli
@@ -138,7 +139,7 @@ in
       # whosthere
       xan
       xz
-      yazi
+      # yazi
       yt-dlp
       yubikey-manager
       zoxide
@@ -236,14 +237,23 @@ in
     variables = {
       MAILDIR = "$HOME/Mail";
       SSH_KEY_PATH = "~/.ssh/id_ed25519.pub";
+      # kubectl needs this, maybe move to module
+      USE_GKE_GCLOUD_AUTH_PLUGIN = "true";
     };
   };
 
   documentation.enable = true;
 
-  programs.fish.interactiveShellInit = ''
-    set -gx GPG_TTY (tty)
-  '';
+  programs.fish = {
+    shellAbbrs = {
+      gbc = "gcloud builds cancel";
+      gbl = "gcloud builds list --limit=10";
+    };
+
+    interactiveShellInit = ''
+      set -gx GPG_TTY (tty)
+    '';
+  };
 
   # Auto upgrade nix package
   nix.package = pkgs.nix;

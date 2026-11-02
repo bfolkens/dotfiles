@@ -66,6 +66,8 @@
           })
           ./hosts/MacBook-Pro/configuration.nix
           ./modules/common.nix
+          ./modules/docker-compose-aliases.nix
+          ./modules/kubectl-fish.nix
         ];
       };
 
