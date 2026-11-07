@@ -396,6 +396,7 @@ in
       "font-symbols-only-nerd-font"
       "ghostty"
       "little-snitch"
+      "markdown-preview"
       "taskexplorer"
     ];
     brews = [
