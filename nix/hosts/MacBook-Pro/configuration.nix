@@ -48,7 +48,7 @@ in
       dutree
       entr
       erdtree
-      # eilmeldung
+      eilmeldung
       exiftool
       eza
       fastfetch
