@@ -1,7 +1,7 @@
 diff:
     nvd diff /run/current-system ./result
 check:
-    nix flake check
+    sudo darwin-rebuild check --flake .
 update: && build
     nix flake update
 build: && diff
