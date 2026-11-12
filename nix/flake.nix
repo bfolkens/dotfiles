@@ -41,7 +41,10 @@
             nixpkgs.overlays = [
               (final: prev: {
                 docx2txt = prev.callPackage ./pkgs/docx2txt/package.nix { };
+                droast = prev.callPackage ./pkgs/droast/package.nix { };
                 ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
+                macpow = prev.callPackage ./pkgs/macpow/package.nix { };
+                wsget = prev.callPackage ./pkgs/wsget/package.nix { };
               })
               krew-nix.overlays.default
             ];

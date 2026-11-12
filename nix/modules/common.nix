@@ -9,6 +9,7 @@
 
     systemPackages = with pkgs; [
       # general tools
+      atuin
       bat
       curl
       fd
@@ -25,6 +26,7 @@
       ugrep
       watch
       wget
+      zoxide
 
       # dev tools
       git

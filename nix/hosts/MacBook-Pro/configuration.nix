@@ -42,6 +42,7 @@ in
       dive
       docx2txt # old one for publicsalary
       dos2unix
+      droast
       dua
       duf
       dust
@@ -87,7 +88,9 @@ in
       lnav
       # lm_sensors
       lla
+      macpow
       miller
+      mise
       inputs.mole.packages.${stdenv.hostPlatform.system}.default
       moreutils
       # mpd
@@ -137,12 +140,12 @@ in
       weechat
       # wiremix
       # whosthere
+      wsget
       xan
       xz
       # yazi
       yt-dlp
       yubikey-manager
-      zoxide
       zstd
 
       # global dev tools
@@ -383,12 +386,8 @@ in
 
     taps = [
       "bfolkens/tap"
-      "ellie/atuin"
       "homebrew/cask"
       "homebrew/core"
-      "immanuwell/droast"
-      "k06a/tap"
-      "ksysoev/wsget"
       "rbenv/tap"
     ];
     casks = [
@@ -400,7 +399,6 @@ in
       "taskexplorer"
     ];
     brews = [
-      "atuin"
       "gettext"
       "bzip2"
       "certifi"
@@ -414,16 +412,12 @@ in
       "libxml2"
       "libyaml"
       "mas"
-      "mise"
       "mysql-client@8.4"
       "openssl@3"
       "pinentry-mac"
       "pkgconf"
       "sqlite"
       "zlib"
-      "immanuwell/droast/droast"
-      "k06a/tap/macpow"
-      "ksysoev/wsget/wsget"
       "rbenv/tap/openssl@1.1"
     ];
 
