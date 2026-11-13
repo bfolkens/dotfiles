@@ -404,22 +404,6 @@ in
       "coreutils"
       "gawk"
       "gnu-sed"
-      ## dev libs
-      "gettext"
-      "bzip2"
-      "certifi"
-      "gmp"
-      "pcre2"
-      "icu4c@76"
-      "libevent"
-      "libxml2"
-      "libyaml"
-      "mysql-client@8.4"
-      "openssl@3"
-      "pkgconf"
-      "sqlite"
-      "zlib"
-      "rbenv/tap/openssl@1.1"
     ];
 
     masApps = {
