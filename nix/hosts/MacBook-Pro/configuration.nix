@@ -96,7 +96,7 @@ in
       # mpd
       msmtp
       mtr
-      ncmpcpp
+      # ncmpcpp
       neomutt
       netwatch
       nix-search-tv
