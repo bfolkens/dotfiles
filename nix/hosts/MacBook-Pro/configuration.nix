@@ -156,12 +156,10 @@ in
       earthbuild
       emscripten
       esbuild
-      # gcc (causes problems with ruby)
       gh
       # gh-dash
       # gh-enhance
       hyperfine
-      llvm
       luajit
       mariadb.client
       # mitmproxy
@@ -382,7 +380,12 @@ in
   homebrew = {
     enable = true;
     enableFishIntegration = true;
-    onActivation.cleanup = "uninstall";
+
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "uninstall";
+      upgrade = true;
+    };
 
     taps = [
       "bfolkens/tap"
