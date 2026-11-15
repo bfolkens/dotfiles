@@ -419,10 +419,10 @@ in
       "Duplicate File Finder" = 1032755628;
       "Exporter" = 1099120373;
       "Free Ruler" = 1483172210;
-      "GarageBand" = 682658836;
+      # "GarageBand" = 682658836;
       "HazeOver" = 430798174;
       "iA Writer" = 775737590;
-      "iMovie" = 408981434;
+      # "iMovie" = 408981434;
       "iStat Menus" = 1319778037;
       "KakaoTalk" = 869223134;
       "Keynote" = 409183694;
