@@ -166,7 +166,7 @@ in
       ngrok
       nodejs
       postgresql_18
-      # pgcli
+      pgcli
       pgformatter
       pgloader
       # pgrok
