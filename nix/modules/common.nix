@@ -47,7 +47,29 @@
 
   programs.direnv = {
     enable = true;
-    nix-direnv.enable = true;
+    nix-direnv = {
+      enable = true;
+      # Backport the fix for cached shells triggering reloads in other tabs.
+      # Remove once nixpkgs includes https://github.com/nix-community/nix-direnv/pull/790.
+      package =
+        if pkgs.nix-direnv.version == "3.2.0" then
+          pkgs.nix-direnv.override {
+            # Patch the release source before resholve processes the installed script.
+            fetchFromGitHub =
+              args:
+              pkgs.applyPatches {
+                src = pkgs.fetchFromGitHub args;
+                patches = [
+                  (pkgs.fetchpatch {
+                    url = "https://github.com/nix-community/nix-direnv/commit/94e4fe0c96eb995cc29725e09cd7168b8e7fe886.patch";
+                    hash = "sha256-nhIKPK3Mw6y3Ef5c0M51Pm1IAyeWPm1qeA++UXUfbY4=";
+                  })
+                ];
+              };
+          }
+        else
+          pkgs.nix-direnv;
+    };
   };
 
   # Necessary for using flakes on this system.
