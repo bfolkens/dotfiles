@@ -128,7 +128,8 @@ in
       sox
       sq
       starship
-      # terrahour
+      terrahour
+      texliveSmall
       ticker
       trippy
       ttl

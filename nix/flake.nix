@@ -44,6 +44,7 @@
                 droast = prev.callPackage ./pkgs/droast/package.nix { };
                 ledger-lsp = prev.callPackage ./pkgs/ledger-lsp/package.nix { pkgs = pkgs; };
                 macpow = prev.callPackage ./pkgs/macpow/package.nix { };
+                terrahour = prev.callPackage ./pkgs/terrahour/package.nix { };
                 wsget = prev.callPackage ./pkgs/wsget/package.nix { };
               })
               krew-nix.overlays.default
