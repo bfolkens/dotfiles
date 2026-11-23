@@ -129,7 +129,7 @@ in
       sq
       starship
       terrahour
-      texliveSmall
+      # texliveFull
       ticker
       trippy
       ttl
